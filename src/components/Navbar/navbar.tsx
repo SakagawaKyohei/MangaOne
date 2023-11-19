@@ -30,11 +30,30 @@ function Navbar() {
       );
   };
   return (
-    <div style={{ textAlign: "start" }}>
+    <div
+      style={{ textAlign: "start" }}
+      onClick={slidebar ? showSlidebar : undefined}
+    >
       <div className="navbar">
+        <div className={slidebar ? "bg" : ""} />
         <button className="open-menu" onClick={showSlidebar}>
           <FaIcons.FaBars />
         </button>
+        <Link
+          to="/"
+          style={{ display: "flex", textDecoration: "none", color: "black" }}
+        >
+          <img
+            src={logo}
+            alt=""
+            width={55}
+            height={55}
+            style={{ marginLeft: 30, marginRight: 5 }}
+          />
+          <h1 style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}>
+            MangaOne
+          </h1>
+        </Link>
       </div>
       <div className="line" />
       <nav className={slidebar ? "nav-menu active" : "nav-menu"}>
@@ -56,9 +75,13 @@ function Navbar() {
               <aiIcons.AiOutlineClose />
             </button>
           </li>
-          <li key={0} className="nav-title">
+          <li key={0} className="nav-title" style={{ paddingLeft: 0 }}>
             <Link to="/">
-              <button className="nav-title-button" onClick={showSlidebar}>
+              <button
+                className="nav-title-button"
+                onClick={showSlidebar}
+                style={{ paddingLeft: 25, paddingRight: 10 }}
+              >
                 <FaIcons.FaHome style={{ fontSize: 25 }} />
                 <span>Trang chủ</span>
               </button>
@@ -66,14 +89,16 @@ function Navbar() {
           </li>
           {SlidebarData.map((item, index) => (
             <div>
-              <li key={index} style={{ paddingLeft: 30 }}>
-                {TitleOrButton(item)}
-              </li>
+              <li key={index}>{TitleOrButton(item)}</li>
             </div>
           ))}
-          <li key={0} className="nav-title">
+          <li key={0} className="nav-title" style={{ paddingLeft: 0 }}>
             <Link to="">
-              <button className="nav-title-button" onClick={showSlidebar}>
+              <button
+                className="nav-title-button"
+                onClick={showSlidebar}
+                style={{ paddingLeft: 25, paddingRight: 8 }}
+              >
                 <IOIcons.IoLogOut style={{ fontSize: 25 }} />
                 <span>Đăng xuất</span>
               </button>
