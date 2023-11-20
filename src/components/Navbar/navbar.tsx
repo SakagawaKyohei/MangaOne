@@ -7,8 +7,13 @@ import { useState } from "react";
 import { SlidebarData } from "./SlidebarData";
 import { Link } from "react-router-dom";
 import logo from "D:/MangaOne/src/images/logos.svg";
+import chualogin from "D:/MangaOne/src/images/Chualogin.svg";
+import noti from "D:/MangaOne/src/images/Noti.svg";
+import { Input } from "antd";
+import { ConfigProvider } from "antd";
 //thêm màu cho selected color
 function Navbar() {
+  const { Search } = Input;
   const [slidebar, setslidebar] = useState(false);
   const showSlidebar = () => setslidebar(!slidebar);
   const TitleOrButton = (item: any) => {
@@ -17,7 +22,7 @@ function Navbar() {
         <Link to={item.path} style={{ textDecoration: "none" }}>
           <button className={item.cName} onClick={showSlidebar}>
             {item.icon}
-            <span>{item.title}</span>
+            <span style={{ marginLeft: 12 }}>{item.title}</span>
           </button>
         </Link>
       );
@@ -30,83 +35,108 @@ function Navbar() {
       );
   };
   return (
-    <div
-      style={{ textAlign: "start" }}
-      onClick={slidebar ? showSlidebar : undefined}
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#FF9040",
+          borderRadius: 10,
+        },
+      }}
     >
-      <div className="navbar">
-        <div className={slidebar ? "bg" : ""} />
-        <button className="open-menu" onClick={showSlidebar}>
-          <FaIcons.FaBars />
-        </button>
-        <Link
-          to="/"
-          style={{ display: "flex", textDecoration: "none", color: "black" }}
-        >
-          <img
-            src={logo}
-            alt=""
-            width={55}
-            height={55}
-            style={{ marginLeft: 30, marginRight: 5 }}
+      <div
+        style={{ textAlign: "start" }}
+        onClick={slidebar ? showSlidebar : undefined}
+      >
+        <div className="navbar">
+          <div className={slidebar ? "bg" : ""} />
+          <button className="open-menu" onClick={showSlidebar}>
+            <FaIcons.FaBars />
+          </button>
+          <Link
+            to="/"
+            style={{
+              display: "flex",
+              textDecoration: "none",
+              color: "black",
+              marginLeft: 40,
+            }}
+          >
+            <img
+              src={logo}
+              alt=""
+              width={55}
+              height={55}
+              style={{ marginRight: 5 }}
+            />
+            <h1 style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}>
+              MangaOne
+            </h1>
+          </Link>
+          <Search
+            placeholder="Tìm truyện"
+            style={{ width: 550, marginLeft: 150 }}
           />
-          <h1 style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}>
-            MangaOne
-          </h1>
-        </Link>
+          <img src={noti} height={30} width={30} style={{ marginLeft: 226 }} />
+          <img
+            src={chualogin}
+            height={45}
+            width={45}
+            style={{ marginLeft: 35 }}
+          />
+        </div>
+        <div className="line" />
+        <nav className={slidebar ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu-items">
+            <li className="menu-toggle">
+              <Link to="/" style={{ display: "flex" }} onClick={showSlidebar}>
+                <img
+                  src={logo}
+                  alt=""
+                  width={55}
+                  height={55}
+                  style={{ marginLeft: 23, marginRight: 10 }}
+                />
+                <h1 style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}>
+                  MangaOne
+                </h1>
+              </Link>
+              <button className="close-menu" onClick={showSlidebar}>
+                <aiIcons.AiOutlineClose />
+              </button>
+            </li>
+            <li key={0} className="nav-title" style={{ paddingLeft: 0 }}>
+              <Link to="/">
+                <button
+                  className="nav-title-button"
+                  onClick={showSlidebar}
+                  style={{ paddingLeft: 35, paddingRight: 10 }}
+                >
+                  <FaIcons.FaHome style={{ fontSize: 25 }} />
+                  <span>Trang chủ</span>
+                </button>
+              </Link>
+            </li>
+            {SlidebarData.map((item, index) => (
+              <div>
+                <li key={index}>{TitleOrButton(item)}</li>
+              </div>
+            ))}
+            <li key={0} className="nav-title" style={{ paddingLeft: 0 }}>
+              <Link to="">
+                <button
+                  className="nav-title-button"
+                  onClick={showSlidebar}
+                  style={{ paddingLeft: 35, paddingRight: 8 }}
+                >
+                  <IOIcons.IoLogOut style={{ fontSize: 25 }} />
+                  <span>Đăng xuất</span>
+                </button>
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div className="line" />
-      <nav className={slidebar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items">
-          <li className="menu-toggle">
-            <Link to="/" style={{ display: "flex" }} onClick={showSlidebar}>
-              <img
-                src={logo}
-                alt=""
-                width={55}
-                height={55}
-                style={{ marginLeft: 20, marginRight: 10 }}
-              />
-              <h1 style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}>
-                MangaOne
-              </h1>
-            </Link>
-            <button className="close-menu" onClick={showSlidebar}>
-              <aiIcons.AiOutlineClose />
-            </button>
-          </li>
-          <li key={0} className="nav-title" style={{ paddingLeft: 0 }}>
-            <Link to="/">
-              <button
-                className="nav-title-button"
-                onClick={showSlidebar}
-                style={{ paddingLeft: 25, paddingRight: 10 }}
-              >
-                <FaIcons.FaHome style={{ fontSize: 25 }} />
-                <span>Trang chủ</span>
-              </button>
-            </Link>
-          </li>
-          {SlidebarData.map((item, index) => (
-            <div>
-              <li key={index}>{TitleOrButton(item)}</li>
-            </div>
-          ))}
-          <li key={0} className="nav-title" style={{ paddingLeft: 0 }}>
-            <Link to="">
-              <button
-                className="nav-title-button"
-                onClick={showSlidebar}
-                style={{ paddingLeft: 25, paddingRight: 8 }}
-              >
-                <IOIcons.IoLogOut style={{ fontSize: 25 }} />
-                <span>Đăng xuất</span>
-              </button>
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    </ConfigProvider>
   );
 }
 
