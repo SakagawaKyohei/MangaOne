@@ -5,4 +5,4 @@ function Chonngaunhien() {
 }
 
 export default Chonngaunhien;
-export { Chonngaunhien };
+export {};

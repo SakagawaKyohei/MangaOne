@@ -48,6 +48,10 @@ transition: 250ms;
     left: 0;
     transition: 250ms;
 }
+.nav-title span
+{
+    margin-left: 10px;
+}
 .nav-title-button{
     display: flex;
     justify-content: start;

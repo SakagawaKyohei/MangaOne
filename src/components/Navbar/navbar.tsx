@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import logo from "D:/MangaOne/src/images/logos.svg";
 import chualogin from "D:/MangaOne/src/images/Chualogin.svg";
 import noti from "D:/MangaOne/src/images/Noti.svg";
-import { Input } from "antd";
+import { Input, Avatar } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color
 function Navbar() {
@@ -76,13 +76,12 @@ function Navbar() {
             placeholder="Tìm truyện"
             style={{ width: 550, marginLeft: 150 }}
           />
-          <img src={noti} height={30} width={30} style={{ marginLeft: 226 }} />
-          <img
+          <img src={noti} height={30} width={30} style={{ marginLeft: 215 }} />
+          <Avatar
+            size={"large"}
             src={chualogin}
-            height={45}
-            width={45}
-            style={{ marginLeft: 35 }}
-          />
+            style={{ marginLeft: 45 }}
+          ></Avatar>
         </div>
         <div className="line" />
         <nav className={slidebar ? "nav-menu active" : "nav-menu"}>
@@ -109,7 +108,7 @@ function Navbar() {
                 <button
                   className="nav-title-button"
                   onClick={showSlidebar}
-                  style={{ paddingLeft: 35, paddingRight: 10 }}
+                  style={{ paddingLeft: 35 }}
                 >
                   <FaIcons.FaHome style={{ fontSize: 25 }} />
                   <span>Trang chủ</span>
@@ -126,7 +125,7 @@ function Navbar() {
                 <button
                   className="nav-title-button"
                   onClick={showSlidebar}
-                  style={{ paddingLeft: 35, paddingRight: 8 }}
+                  style={{ paddingLeft: 35 }}
                 >
                   <IOIcons.IoLogOut style={{ fontSize: 25 }} />
                   <span>Đăng xuất</span>
