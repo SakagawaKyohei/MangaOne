@@ -13,6 +13,7 @@ import Xemnhieunhat from "./pages/Xemnhieunhat";
 import Notfound from "./pages/Notfound";
 import Diemthuong from "./pages/Diemthuong";
 import Trangchu from "./pages/Trangchu";
+import Footer from "./components/Footer/footer";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/diem-thuong" element={<Diemthuong />} />
           <Route path="/*" element={<Notfound />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
