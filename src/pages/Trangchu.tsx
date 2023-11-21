@@ -28,11 +28,52 @@ function Trangchu() {
       </Row>
       {/*truyen moi cap nhat*/}
       <p className="title">Truyện mới cập nhật</p>
+      {/*danh sách truyện*/}
       <Row gutter={16}>
-        <Col className="gutter-row" span={16}>
-          <div style={{ backgroundColor: "#999999", height: 800 }}></div>
+        <Col span={16}>
+          <div style={{ backgroundColor: "#999999" }}>
+            <Row gutter={[16, 24]}>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+              <Col span={6}>
+                <div className="mangaitem"></div>
+              </Col>
+            </Row>
+          </div>
         </Col>
-        <Col className="gutter-row" span={8}>
+        {/*Xếp hạng theo mốc thời gian*/}
+        <Col span={8}>
           <div style={{ backgroundColor: "#999999", height: 800 }}></div>
         </Col>
       </Row>
