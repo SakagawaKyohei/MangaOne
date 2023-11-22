@@ -1,11 +1,47 @@
 .App {
   text-align: start;
 }
+.tacgiavschuyehuong
+{
+  display: flex;
+  flex-direction: row;
+}
 
+.chuyenhuong
+{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+.no{
+  color: #FF9040;
+font-size: 21px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+padding-right: 40px;
+}
 .title{
   font-size: 30px;
-  padding: 20px;
-  padding-left: 0px;
+  margin: 20px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.xemnhieunhattitle
+{
+  color: #F3EB39;
+  text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.80);
+  font-family: Tahoma;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;padding-bottom : 0px 
 }
 
 .topmangatitle
@@ -28,19 +64,53 @@
   justify-content: start;
 }
 .topmanga{
-  background-color: #999999;
-  height: 350px;
   display: flex;
   align-items: center;
   justify-content: left;
+  width: auto;
+  overflow: hidden;
+}
+.topmangabg
+{
+  height: 350px;
+  background-size:100% 100%;
+  width: 100%;
+  position:absolute;
+  background: #0000002c;
+  z-index: -1;
+  /*background:url(D:\mangaone\src\images\mangaimage.jpg);
+  height: 350px;
+  background-size:100% 100%;
+  background-blend-mode: darken;
+  width: 100%;
+  position:absolute;
+  filter: blur(175px);
+/*blur lớn không tràn thế nào?*/
 }
 .topmangaavt{
   width: 206px;
   height: 100%;
 }
+.timebutton
+{
+  margin-top: 10px;
+  margin-bottom:20px;
+  border-radius: 0px;
+  font-size: 18px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#D9D9D9;
+}
+.timebutton.selected
+{
+  color: white;
+  background-color:#FF9040;
+}
 .pagination
 {
-  padding: 20px;
+  padding: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,17 +132,12 @@
   justify-content: center;
   align-items: center;
 }
-.mangaitem{
-  background-color:white;
-  height: 500px;
-}
 .tentacgia
 {
   font-weight:600; font-size: 23px; margin: 5px; margin-left: 0px;
 }
 .noidung
 {
-  /*background-color: blue;*/
   font-size: 16px;
   height: 100%;
   padding-top: 8px;
@@ -101,24 +166,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-.mangaimage
-{
-  height: 63.0%;
-}
-.chapterandtime
-{
-  display: flex;
-}
-.mangaitemchapter
-{
-  width: 50%;
-  text-align: left;
-}
-.mangaitemtime
-{
-  width: 50%;
-  text-align: right;
 }
 
 .App-link {

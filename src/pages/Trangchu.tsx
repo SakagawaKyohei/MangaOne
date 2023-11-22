@@ -1,9 +1,15 @@
 import React from "react";
-import { Col, Flex, Row, Pagination, ConfigProvider } from "antd";
+import { Col, Flex, Row, Pagination, ConfigProvider, Button } from "antd";
 import mangaimage from "D:/MangaOne/src/images/mangaimage.jpg";
-
+import MangaCart from "../components/MangaCart/MangaCart";
+import star from "D:/MangaOne/src/images/StarIcon.png";
+import TimeManga from "../components/TopTimeManga/TimeManga";
+import Top1time from "../components/TopTimeManga/Top1time";
+import * as mdIcons from "react-icons/md";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
+//lỗi flex nhiều màn hình image
+//chinh top item thanh component
 function Trangchu() {
   return (
     <ConfigProvider
@@ -17,11 +23,19 @@ function Trangchu() {
       }}
     >
       {/*top manga*/}
-      <div style={{ marginLeft: 35, marginRight: 35 }}>
-        <p className="title">Xem nhiều nhất</p>
+      <div
+        style={{
+          marginLeft: 35,
+          marginRight: 35,
+        }}
+      >
+        <p className="title" style={{ marginBottom: 20 }}>
+          Xem nhiều nhất
+        </p>
         <Row>
           <Col span={24}>
             <div className="topmanga">
+              <div className="topmangabg" />
               <div className="topmangadetail">
                 <div className="topmangaavt">
                   <img src={mangaimage} className="topmangaavt" />
@@ -35,68 +49,71 @@ function Trangchu() {
                     <div className="buttontheloai">Thể loại</div>
                   </Flex>
                   <div className="noidung">Nội dung</div>
-                  <i className="tentacgia">Tên tác giả</i>
+                  <div className="tacgiavschuyehuong">
+                    <div style={{ width: "50%" }}>
+                      <i className="tentacgia">Tên tác giả</i>
+                    </div>
+                    <div className="chuyenhuong">
+                      <i className="no">No.1</i>
+                      <mdIcons.MdArrowBackIos
+                        fontSize={25}
+                        style={{ marginTop: 5, marginRight: 30 }}
+                      />
+                      <mdIcons.MdArrowForwardIos
+                        fontSize={25}
+                        style={{ marginTop: 5, marginRight: 10 }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </Col>
         </Row>
         {/*truyen moi cap nhat*/}
-        <p className="title">Truyện mới cập nhật</p>
         {/*danh sách truyện*/}
         <Row gutter={16}>
           <Col span={16}>
-            <div style={{ backgroundColor: "#999999" }}>
+            <div>
+              <p className="title">Truyện mới cập nhật</p>
+            </div>
+            <div style={{ marginTop: 20 }}>
               <Row gutter={[16, 24]}>
                 <Col span={6}>
-                  <div className="mangaitem">
-                    <img className="mangaimage" src={mangaimage} />
-                    <div className="chapterandtime">
-                      <div className="mangaitemchapter">
-                        <p>Chapter 1</p>
-                        <p>Chapter 1</p>
-                        <p>Chapter 1</p>
-                      </div>
-                      <div className="mangaitemtime">
-                        <p>1 giờ trước</p>
-                        <p>1 giờ trước</p>
-                        <p>1 giờ trước</p>
-                      </div>
-                    </div>
-                  </div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
                 <Col span={6}>
-                  <div className="mangaitem"></div>
+                  <MangaCart />
                 </Col>
               </Row>
             </div>
@@ -106,7 +123,23 @@ function Trangchu() {
           </Col>
           {/*Xếp hạng theo mốc thời gian*/}
           <Col span={8}>
-            <div style={{ backgroundColor: "#999999", height: 800 }}></div>
+            <div className="xemnhieunhattitle">
+              <img src={star} height={40} width={40}></img>
+              <p style={{ paddingLeft: 10 }}>Xem nhiều nhất</p>
+            </div>
+            <div>
+              {/*Chỉnh lại gap reponsive*/}
+              <Flex gap={27}>
+                <Button className="timebutton selected">Ngày</Button>
+                <Button className="timebutton">Tuần</Button>
+                <Button className="timebutton">Tháng</Button>
+                <Button className="timebutton">Năm</Button>
+              </Flex>
+              <Top1time />
+              <TimeManga />
+              <TimeManga />
+              <TimeManga />
+            </div>
           </Col>
         </Row>
       </div>

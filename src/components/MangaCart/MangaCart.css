@@ -1,0 +1,32 @@
+
+.mangaimage
+{
+  width: 100%;
+}
+.chapterandtime
+{
+  display: flex;
+}
+.mangaitem
+{
+  overflow: hidden;
+}
+.mangaitemchapter
+{
+  width: 50%;
+  text-align: left;
+}
+  .mangaitem p {
+    font-size: 15px;
+    padding: 7px;
+    padding-left: 0;
+  }
+  .mangaitemtitle
+  {
+    font-size: 20px !important;
+  }
+.mangaitemtime
+{
+  width: 50%;
+  text-align: right;
+}
