@@ -24,10 +24,14 @@ padding-right: 40px;
 }
 .title{
   font-size: 30px;
-  margin: 20px;
+  margin: 30px;
   margin-bottom: 0px;
   margin-left: 0px;
   font-family: 'Times New Roman', Times, serif;
+}
+
+input{
+  
 }
 
 .xemnhieunhattitle
@@ -41,7 +45,8 @@ padding-right: 40px;
   line-height: normal;
   display: flex;
   flex-direction: row;
-  padding-top: 15px;padding-bottom : 0px 
+  padding-top: 15px;
+  padding-bottom : 0px 
 }
 
 .topmangatitle

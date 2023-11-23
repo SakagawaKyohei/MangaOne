@@ -10,6 +10,7 @@ import * as mdIcons from "react-icons/md";
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
 //chinh top item thanh component
+//chuyen danh sach truyen vs top time sang component
 function Trangchu() {
   return (
     <ConfigProvider
@@ -29,7 +30,9 @@ function Trangchu() {
           marginRight: 35,
         }}
       >
-        <p className="title" style={{ marginBottom: 20 }}>
+        <p style={{ fontSize: 0.01 }}>.</p>{" "}
+        {/*collision tăng chiều cao cho div*/}
+        <p className="title" style={{ marginBottom: 30, marginTop: 90 }}>
           Xem nhiều nhất
         </p>
         <Row>
@@ -123,7 +126,7 @@ function Trangchu() {
           </Col>
           {/*Xếp hạng theo mốc thời gian*/}
           <Col span={8}>
-            <div className="xemnhieunhattitle">
+            <div className="xemnhieunhattitle" style={{ paddingTop: 30 }}>
               <img src={star} height={40} width={40}></img>
               <p style={{ paddingLeft: 10 }}>Xem nhiều nhất</p>
             </div>

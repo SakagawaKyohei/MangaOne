@@ -47,43 +47,50 @@ function Navbar() {
         style={{ textAlign: "start" }}
         onClick={slidebar ? showSlidebar : undefined}
       >
-        <div className="navbar">
-          <div className={slidebar ? "bg" : ""} />
-          <button className="open-menu" onClick={showSlidebar}>
-            <FaIcons.FaBars />
-          </button>
-          <Link
-            to="/"
-            style={{
-              display: "flex",
-              textDecoration: "none",
-              color: "black",
-              marginLeft: 40,
-            }}
-          >
-            <img
-              src={logo}
-              alt=""
-              width={55}
-              height={55}
-              style={{ marginRight: 5 }}
+        <div className="fixed">
+          <div className="navbar">
+            <div className={slidebar ? "bg" : ""} />
+            <button className="open-menu" onClick={showSlidebar}>
+              <FaIcons.FaBars />
+            </button>
+            <Link
+              to="/"
+              style={{
+                display: "flex",
+                textDecoration: "none",
+                color: "black",
+                marginLeft: 40,
+              }}
+            >
+              <img
+                src={logo}
+                alt=""
+                width={55}
+                height={55}
+                style={{ marginRight: 5 }}
+              />
+              <h1 style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}>
+                MangaOne
+              </h1>
+            </Link>
+            <Search
+              placeholder="Tìm truyện"
+              style={{ width: 550, marginLeft: 150 }}
             />
-            <h1 style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}>
-              MangaOne
-            </h1>
-          </Link>
-          <Search
-            placeholder="Tìm truyện"
-            style={{ width: 550, marginLeft: 150 }}
-          />
-          <img src={noti} height={30} width={30} style={{ marginLeft: 215 }} />
-          <Avatar
-            size={"large"}
-            src={chualogin}
-            style={{ marginLeft: 45 }}
-          ></Avatar>
+            <img
+              src={noti}
+              height={30}
+              width={30}
+              style={{ marginLeft: 215 }}
+            />
+            <Avatar
+              size={"large"}
+              src={chualogin}
+              style={{ marginLeft: 45 }}
+            ></Avatar>
+          </div>
+          <div className="line" />
         </div>
-        <div className="line" />
         <nav className={slidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items">
             <li className="menu-toggle">

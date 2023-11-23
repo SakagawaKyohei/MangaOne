@@ -4,6 +4,12 @@
     justify-content:start;
     align-items:center;
 }
+.fixed
+{
+    position: fixed;
+    z-index: 1;
+    background-color: #fff;
+}
 .line{
     width: 100vw;
 height: 1px;
