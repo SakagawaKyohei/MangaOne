@@ -1,6 +1,6 @@
 import React from "react";
 import "./MangaCart.css";
-import mangaimage from "D:/MangaOne/src/images/mangaimage.jpg";
+import mangaimage from "/MangaOne/src/images/mangaimage.jpg";
 
 function MangaCart() {
   return (
