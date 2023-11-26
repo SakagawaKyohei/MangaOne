@@ -1,17 +1,23 @@
-import React from "react";
 import "./Navbar.css";
 import * as FaIcons from "react-icons/fa";
 import * as aiIcons from "react-icons/ai";
 import * as IOIcons from "react-icons/io5";
 import { useState } from "react";
 import { SlidebarData } from "./SlidebarData";
+import { items } from "./DropdownData";
 import { Link } from "react-router-dom";
-import logo from "D:/MangaOne/src/images/logos.svg";
-import chualogin from "D:/MangaOne/src/images/Chualogin.svg";
+import logo from "/MangaOne/src/images/logos.svg";
+import chualogin from "/MangaOne/src/images/Chualogin.svg";
 import noti from "D:/MangaOne/src/images/Noti.svg";
 import { Input, Avatar, Row, Col } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color
+
+import React from "react";
+import { DownOutlined, SmileOutlined } from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Dropdown, Space } from "antd";
+import { click } from "@testing-library/user-event/dist/click";
 function Navbar() {
   const { Search } = Input;
   const [slidebar, setslidebar] = useState(false);
@@ -101,11 +107,14 @@ function Navbar() {
                   width={30}
                   style={{ marginTop: 13 }}
                 />
-                <Avatar
-                  size={"large"}
-                  src={chualogin}
-                  style={{ marginTop: 10, marginLeft: 40 }}
-                ></Avatar>
+
+                <Dropdown menu={{ items }} trigger={["click"]}>
+                  <Avatar
+                    size={"large"}
+                    src={chualogin}
+                    style={{ marginTop: 10, marginLeft: 40 }}
+                  ></Avatar>
+                </Dropdown>
               </Col>
             </Row>
           </div>
