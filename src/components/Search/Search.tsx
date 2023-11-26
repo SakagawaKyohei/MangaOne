@@ -38,13 +38,17 @@ function Search() {
           placeholder="Có thể để trống"
           type="text"
         ></Input>
-        <p style={{ fontSize: 20, paddingBottom: 10 }}>Tên truyện cần tìm</p>
+        <p style={{ fontSize: 20, paddingBottom: 10 }}>
+          Tên tác giả của truyện cần tìm
+        </p>
         <Input
           className="bgo"
           placeholder="Có thể để trống"
           type="text"
         ></Input>
-        <p style={{ fontSize: 20, paddingBottom: 10 }}>Tên truyện cần tìm</p>
+        <p style={{ fontSize: 20, paddingBottom: 10 }}>
+          Tên họa sĩ của truyện cần tìm
+        </p>
         <Input
           className="bgo"
           placeholder="Có thể để trống"

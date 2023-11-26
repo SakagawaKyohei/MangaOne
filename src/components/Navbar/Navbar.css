@@ -1,11 +1,13 @@
 .navbar{
     height:60px;
-    display: flex;
     justify-content:start;
     align-items:center;
+    margin-right: 52px; /*? tại sao fixed lại ảnh hưởng margin*/
+    margin-left: 35px;
 }
 .fixed
 {
+    margin-right: 0px;
     position: fixed;
     z-index: 1;
     background-color: #fff;
@@ -26,7 +28,6 @@ background: #FF9040;
     display: flex;
     border:none;
     background-color: transparent;
-    padding-left:2rem;
     font-size: 1.5rem;
 }
 .bg{
@@ -75,7 +76,7 @@ button{
     font-family: 'Times New Roman', Times, serif;
 }
 .nav-title{
-    padding-left: 35px;
+    padding-left: 1.5rem;
     font-weight: bold;
     font-size: 20px;
     display: flex;

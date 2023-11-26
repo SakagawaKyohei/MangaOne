@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import logo from "D:/MangaOne/src/images/logos.svg";
 import chualogin from "D:/MangaOne/src/images/Chualogin.svg";
 import noti from "D:/MangaOne/src/images/Noti.svg";
-import { Input, Avatar } from "antd";
+import { Input, Avatar, Row, Col } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color
 function Navbar() {
@@ -50,44 +50,64 @@ function Navbar() {
         <div className="fixed">
           <div className="navbar">
             <div className={slidebar ? "bg" : ""} />
-            <button className="open-menu" onClick={showSlidebar}>
-              <FaIcons.FaBars />
-            </button>
-            <Link
-              to="/"
-              style={{
-                display: "flex",
-                textDecoration: "none",
-                color: "black",
-                marginLeft: 40,
-              }}
-            >
-              <img
-                src={logo}
-                alt=""
-                width={55}
-                height={55}
-                style={{ marginRight: 5 }}
-              />
-              <h1 style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}>
-                MangaOne
-              </h1>
-            </Link>
-            <Search
-              placeholder="Tìm truyện"
-              style={{ width: 550, marginLeft: 150 }}
-            />
-            <img
-              src={noti}
-              height={30}
-              width={30}
-              style={{ marginLeft: 215 }}
-            />
-            <Avatar
-              size={"large"}
-              src={chualogin}
-              style={{ marginLeft: 45 }}
-            ></Avatar>
+            <Row>
+              <Col span={6}>
+                <div style={{ display: "flex" }}>
+                  <button className="open-menu" onClick={showSlidebar}>
+                    <FaIcons.FaBars
+                      style={{ marginTop: 14, marginRight: 40 }}
+                    />
+                  </button>
+                  <Link
+                    to="/"
+                    style={{
+                      display: "flex",
+                      textDecoration: "none",
+                      color: "black",
+                    }}
+                  >
+                    <img
+                      src={logo}
+                      alt=""
+                      width={55}
+                      height={55}
+                      style={{ marginRight: 5 }}
+                    />
+                    <h1
+                      style={{ fontSize: 25, marginTop: 10, marginRight: 10 }}
+                    >
+                      MangaOne
+                    </h1>
+                  </Link>
+                </div>
+              </Col>
+              <Col span={10} offset={2}>
+                <Search
+                  placeholder="Tìm truyện"
+                  style={{ width: "100%", paddingTop: 12 }}
+                />
+              </Col>
+              <Col
+                offset={2}
+                span={4}
+                style={{
+                  display: "flex",
+                  justifyContent: "end",
+                }}
+              >
+                <img
+                  src={noti}
+                  height={30}
+                  width={30}
+                  style={{ marginTop: 13 }}
+                />
+                <Avatar
+                  size={"large"}
+                  src={chualogin}
+                  style={{ marginTop: 10, marginLeft: 40 }}
+                ></Avatar>
+              </Col>
+            </Row>
           </div>
           <div className="line" />
         </div>

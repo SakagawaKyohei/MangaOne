@@ -86,13 +86,20 @@ function Lichsudoc() {
               <p style={{ paddingLeft: 10 }}>Xem nhiều nhất</p>
             </div>
             <div>
-              {/*Chỉnh lại gap reponsive*/}
-              <Flex gap={27}>
-                <Button className="timebutton selected">Ngày</Button>
-                <Button className="timebutton">Tuần</Button>
-                <Button className="timebutton">Tháng</Button>
-                <Button className="timebutton">Năm</Button>
-              </Flex>
+              <Row>
+                <Col span={6}>
+                  <Button className="timebutton selected">Ngày</Button>
+                </Col>
+                <Col span={6}>
+                  <Button className="timebutton">Tuần</Button>
+                </Col>
+                <Col span={6}>
+                  <Button className="timebutton">Tháng</Button>
+                </Col>
+                <Col span={6}>
+                  <Button className="timebutton">Năm</Button>
+                </Col>
+              </Row>
               <Top1time />
               <TimeManga />
               <TimeManga />
