@@ -1,0 +1,12 @@
+.navbutton
+{
+    display: flex;
+    height: 8vh;
+    border-radius: 100px;
+    align-items: center;
+    font-size: 16px;
+}
+.navbutton.seleted
+{    color: white;
+    background-color: #FF9040;
+}
