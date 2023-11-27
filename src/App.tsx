@@ -7,7 +7,7 @@ import Doimaukhau from "./pages/Doimaukhau";
 import Lichsudoc from "./pages/LichSu";
 import Timkiemnangcao from "./pages/Timkiemnangcao";
 import Trangcanhan from "./pages/Trangcanhan";
-import TruyenDaDang from "./pages/Truyendadang";
+import TruyenDaDang from "./pages/ThemMoiTruyen/Truyendadang";
 import Truyentheodoi from "./pages/Truyentheodoi";
 import Xemnhieunhat from "./pages/Xemnhieunhat";
 import Notfound from "./pages/Notfound";
@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Trangchu />} />
           <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
-          <Route path="/doi-mat-kau" element={<Doimaukhau />} />
+          <Route path="/doi-mat-khau" element={<Doimaukhau />} />
           <Route path="/lich-su" element={<Lichsudoc />} />
           <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
           <Route path="/trang-ca-nhan" element={<Trangcanhan />} />

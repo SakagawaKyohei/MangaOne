@@ -1,6 +1,5 @@
 import React from "react";
 import { Col, Flex, Row, Pagination, ConfigProvider, Button } from "antd";
-import mangaimage from "/MangaOne/src/images/mangaimage.jpg";
 import MangaCart from "../components/MangaCart/MangaCart";
 import star from "/MangaOne/src/images/StarIcon.png";
 import TimeManga from "../components/TopTimeManga/TimeManga";

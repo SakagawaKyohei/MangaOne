@@ -7,6 +7,13 @@
   flex-direction: row;
 }
 
+.khung
+{
+  border: 1px solid #D9D9D9;
+background: #FFF;
+height: 730px;
+}
+
 .chuyenhuong
 {
   width: 50%;

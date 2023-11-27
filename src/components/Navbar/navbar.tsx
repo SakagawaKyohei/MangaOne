@@ -8,7 +8,7 @@ import { items } from "./DropdownData";
 import { Link } from "react-router-dom";
 import logo from "/MangaOne/src/images/logos.svg";
 import chualogin from "/MangaOne/src/images/Chualogin.svg";
-import noti from "D:/MangaOne/src/images/Noti.svg";
+import noti from "/MangaOne/src/images/Noti.svg";
 import { Input, Avatar, Row, Col } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color
@@ -17,7 +17,6 @@ import React from "react";
 import { DownOutlined, SmileOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
-import { click } from "@testing-library/user-event/dist/click";
 function Navbar() {
   const { Search } = Input;
   const [slidebar, setslidebar] = useState(false);
