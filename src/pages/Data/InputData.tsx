@@ -80,7 +80,7 @@ const input: React.CSSProperties = {
   flexDirection: "row",
 };
 
-export const InputData = [
+export const InputThemMoiTruyen = [
   {
     title: "Tên truyện",
     batbuoc: true,

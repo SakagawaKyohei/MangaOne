@@ -7,7 +7,7 @@ import Doimaukhau from "./pages/Doimaukhau";
 import Lichsudoc from "./pages/LichSu";
 import Timkiemnangcao from "./pages/Timkiemnangcao";
 import Trangcanhan from "./pages/Trangcanhan";
-import TruyenDaDang from "./pages/ThemMoiTruyen/Truyendadang";
+import TruyenDaDang from "./pages/QuanLyTruyen/TruyenDaDang";
 import Truyentheodoi from "./pages/Truyentheodoi";
 import Xemnhieunhat from "./pages/Xemnhieunhat";
 import Notfound from "./pages/Notfound";
