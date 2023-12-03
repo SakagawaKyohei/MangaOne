@@ -14,6 +14,9 @@ import Notfound from "./pages/Notfound";
 import Diemthuong from "./pages/Diemthuong";
 import Trangchu from "./pages/Trangchu";
 import Footer from "./components/Footer/footer";
+import ThemMoiTruyen from "./pages/QuanLyTruyen/ThemMoiTruyen";
+import ThemMoiChapter from "./pages/QuanLyTruyen/ThemMoiChapter";
+import ChapterDaDang from "./pages/QuanLyTruyen/ChapterDaDang";
 
 function App() {
   return (
@@ -27,7 +30,7 @@ function App() {
           <Route path="/lich-su" element={<Lichsudoc />} />
           <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
           <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
-          <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
+          <Route path="/truyen-da-dang" element={<ThemMoiTruyen />} />
           <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
           <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
           <Route path="/diem-thuong" element={<Diemthuong />} />

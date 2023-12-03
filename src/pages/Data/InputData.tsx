@@ -1,5 +1,9 @@
 import { Button, ConfigProvider, Input } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  LoadingOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
 import { message, Upload } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
@@ -80,6 +84,63 @@ const input: React.CSSProperties = {
   flexDirection: "row",
 };
 
+export const InputThemMoiChuong = [
+  {
+    title: "Tên chương",
+    batbuoc: true,
+    label: <Input style={input} placeholder="Tên chương"></Input>,
+  },
+  {
+    label: (
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#FF9040",
+          },
+        }}
+      >
+        <Upload
+          action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+          directory
+        >
+          <Button icon={<UploadOutlined />}>Chọn thư mục</Button>
+        </Upload>
+      </ConfigProvider>
+    ),
+  },
+  {
+    title: "Nội dung",
+    batbuoc: true,
+    label: (
+      <TextArea
+        style={{ height: 275, fontSize: 16 }}
+        placeholder="Nội dung chương"
+        disabled
+      ></TextArea>
+    ),
+  },
+  {
+    label: (
+      <div style={{ display: "flex", justifyContent: "end" }}>
+        <Button
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 0,
+            backgroundColor: "#FF9040",
+            color: "white",
+            fontSize: 18,
+            height: 38,
+          }}
+        >
+          <p>Thêm mới</p>
+        </Button>
+      </div>
+    ),
+  },
+];
+
 export const InputThemMoiTruyen = [
   {
     title: "Tên truyện",
@@ -125,7 +186,62 @@ export const InputThemMoiTruyen = [
             backgroundColor: "#FF9040",
             color: "white",
             fontSize: 18,
-            height: 40,
+            height: 38,
+          }}
+        >
+          <p>Thêm mới</p>
+        </Button>
+      </div>
+    ),
+  },
+];
+
+export const InputTruyenDaDang = [
+  {
+    title: "Tên truyện",
+    batbuoc: true,
+    label: <Input style={input} placeholder="Tên truyện"></Input>,
+  },
+  {
+    title: "Bìa truyện",
+    batbuoc: true,
+    label: <UpAnh />,
+  },
+  {
+    title: "Tên khác",
+    batbuoc: false,
+    label: <Input style={input} placeholder="Tên khác"></Input>,
+  },
+  {
+    title: "Tác giả",
+    batbuoc: false,
+    label: <Input style={input} placeholder="Tác giả"></Input>,
+  },
+  {
+    title: "Thể loại",
+    batbuoc: true,
+    label: (
+      <Input style={input} placeholder="Nhập tên và chọn thể loại"></Input>
+    ),
+  },
+  {
+    title: "Tóm tắt truyện",
+    batbuoc: true,
+    label: <TextArea style={{ height: 175, fontSize: 16 }}></TextArea>,
+  },
+  {
+    label: (
+      <div style={{ display: "flex", justifyContent: "end" }}>
+        <Button
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 0,
+            backgroundColor: "#FF9040",
+            color: "white",
+            fontSize: 18,
+            height: 38,
           }}
         >
           <p>Thêm mới</p>

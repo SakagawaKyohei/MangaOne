@@ -1,7 +1,6 @@
 import { Col, ConfigProvider, Row } from "antd";
 import React from "react";
 import AccountPage from "../../components/AccountPage/AccountPage";
-import { InputThemMoiTruyen } from "../Data/InputData";
 interface Pros {
   title: string;
   title1: string;

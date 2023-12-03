@@ -1,14 +1,13 @@
 import Template from "./Template";
-import { ThemMoiTruyenData } from "../Data/ComponentData";
+import { TruyenDaDangData } from "../Data/ComponentData";
 
 function TruyenDaDang() {
   return (
     <div>
-      {" "}
       <Template
-        title={ThemMoiTruyenData.title}
-        title1={ThemMoiTruyenData.title1}
-        components={ThemMoiTruyenData.label}
+        title={TruyenDaDangData.title}
+        title1={TruyenDaDangData.title1}
+        components={TruyenDaDangData.label}
       />
     </div>
   );
