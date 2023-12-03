@@ -15,7 +15,7 @@ export const AccountbarData = [
   {
     num: 2,
     title: "Truyện theo dõi",
-    icon: <FaIcons.FaBookmark style={style} />,
+    icon: <FaIcons.FaBookmar style={style} />,
     path: "/thong-tin-tai-khoan",
   },
   {
