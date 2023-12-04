@@ -1,8 +1,25 @@
 import React from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
-import { Col, Row } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
+import { InputChangePass } from "./Data/InputData";
 
 function Diemthuong() {
+  const style2: React.CSSProperties = {
+    marginBottom: 20,
+    marginRight: 10,
+    fontSize: 18,
+    display: "flex",
+    flexDirection: "row",
+  };
+  const input2: React.CSSProperties = {
+    fontSize: 18,
+    width: "100%",
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderRadius: 10,
+    display: "flex",
+    flexDirection: "row",
+  };
   return (
     <div>
       <p style={{ fontSize: 0.01 }}>.</p>
@@ -11,8 +28,81 @@ function Diemthuong() {
           <Col span={6}>
             <AccountPage />
           </Col>
-          <Col span={18} style={{ backgroundColor: "blue" }}>
-            <p>a</p>
+          <Col span={17} offset={1}>
+            <h1
+              style={{
+                textAlign: "center",
+                marginTop: 10,
+                marginBottom: 20,
+                fontSize: 23,
+              }}
+            >
+              ĐIỂM DỊCH TRUYỆN
+            </h1>
+            <p style={style2}>
+              Điểm dịch truyện có thể quy đổi ra tiền mặt, mỗi điểm tương ứng
+              1.000đ. Mỗi 500 view truyện bạn dịch sẽ nhận được 1 điểm dịch
+              truyện
+            </p>
+            <div style={style2}>
+              <p>Điểm hiện tại của bạn:</p>
+              <p style={{ color: "red", marginLeft: 5 }}>0</p>
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 0,
+                  backgroundColor: "#FF9040",
+                  color: "white",
+                  fontSize: 16,
+
+                  marginLeft: 10,
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                }}
+              >
+                {/*custom lai*/}
+                Rút tiền
+              </Button>
+            </div>
+            <div
+              style={{
+                marginRight: 20,
+              }}
+            >
+              <div
+                style={{
+                  marginBottom: 30,
+                }}
+              >
+                <div style={style2}>
+                  Số tài khoản ngân hàng
+                  <p style={{ color: "red", marginLeft: 5 }}>*</p>
+                </div>
+                <Input style={input2}></Input>
+              </div>
+              <div style={{ display: "flex", justifyContent: "end" }}>
+                <Button
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 0,
+                    backgroundColor: "#FF9040",
+                    color: "white",
+                    fontSize: 18,
+                    height: 38,
+                    paddingTop: 20,
+                    paddingBottom: 20,
+                    paddingLeft: 30,
+                    paddingRight: 30,
+                  }}
+                >
+                  <p>Cập nhật</p>
+                </Button>
+              </div>
+            </div>
           </Col>
         </Row>
       </div>

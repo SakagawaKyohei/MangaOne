@@ -4,11 +4,6 @@ import { Col, Form, Row } from "antd";
 import { InputChangePass } from "./Data/InputData";
 
 function Doimaukhau() {
-  const style: React.CSSProperties = {
-    fontSize: 18,
-    paddingBottom: 10,
-  };
-
   const style2: React.CSSProperties = {
     marginBottom: 12,
     marginRight: 20,
