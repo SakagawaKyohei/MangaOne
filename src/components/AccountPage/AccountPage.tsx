@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./AccountPage.css";
 import { AccountbarData } from "./AccountbarData";
 
+//lam position fixed nhung khong loi
+
 function AccountPage() {
   const handleclick = (i: number) => {
     seti(i);

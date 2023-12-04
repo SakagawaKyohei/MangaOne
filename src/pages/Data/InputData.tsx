@@ -291,6 +291,55 @@ export const InputInfo = [
             color: "white",
             fontSize: 18,
             height: 38,
+            paddingTop: 20,
+            paddingBottom: 20,
+            paddingLeft: 30,
+            paddingRight: 30,
+          }}
+        >
+          <p>Cập nhật</p>
+        </Button>
+      </div>
+    ),
+  },
+];
+
+export const InputChangePass = [
+  {
+    title: "Mật khẩu hiện tại",
+    batbuoc: true,
+    label: <Input style={input2}></Input>,
+  },
+
+  {
+    title: "Mật khẩu mới",
+    batbuoc: true,
+    label: <Input style={input2}></Input>,
+  },
+
+  {
+    title: "Xác nhận mật khẩu mới",
+    batbuoc: true,
+    label: <Input style={input2}></Input>,
+  },
+
+  {
+    label: (
+      <div style={{ display: "flex", justifyContent: "end" }}>
+        <Button
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 0,
+            backgroundColor: "#FF9040",
+            color: "white",
+            fontSize: 18,
+            height: 38,
+            paddingTop: 20,
+            paddingBottom: 20,
+            paddingLeft: 30,
+            paddingRight: 30,
           }}
         >
           <p>Cập nhật</p>
