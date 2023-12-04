@@ -32,13 +32,13 @@ function Template(pros: Pros) {
                   textAlign: "center",
                   marginTop: 10,
                   marginBottom: 20,
-                  fontSize: 25,
+                  fontSize: 23,
                 }}
               >
                 {pros.title}
               </h1>
               <div className="khung">
-                <p style={{ fontSize: 22, padding: 15 }}>{pros.title1}</p>
+                <p style={{ fontSize: 20, padding: 15 }}>{pros.title1}</p>
                 <div
                   style={{
                     width: "100%",

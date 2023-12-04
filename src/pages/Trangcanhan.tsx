@@ -1,8 +1,23 @@
 import React from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
-import { Col, Row } from "antd";
+import { Col, ConfigProvider, Form, Input, Row } from "antd";
+import chualogin from "../images/Chualogin.svg";
+import { InputInfo } from "./Data/InputData";
 
 function Trangcanhan() {
+  const style: React.CSSProperties = {
+    fontSize: 18,
+    paddingBottom: 10,
+  };
+
+  const style2: React.CSSProperties = {
+    marginBottom: 12,
+    marginRight: 20,
+    fontSize: 18,
+    display: "flex",
+    flexDirection: "row",
+  };
+
   return (
     <div>
       <p style={{ fontSize: 0.01 }}>.</p>
@@ -11,8 +26,56 @@ function Trangcanhan() {
           <Col span={6}>
             <AccountPage />
           </Col>
-          <Col span={18} style={{ backgroundColor: "blue" }}>
-            <p>a</p>
+          <Col span={17} offset={1}>
+            <h1
+              style={{
+                textAlign: "center",
+                marginTop: 10,
+                marginBottom: 20,
+                fontSize: 23,
+              }}
+            >
+              THÔNG TIN TÀI KHOẢN
+            </h1>
+            <div
+              style={{
+                marginTop: 25,
+                marginBottom: 25,
+                marginRight: 20,
+              }}
+            >
+              <div style={style}>Ảnh đại diện</div>
+              <div className="center">
+                <img src={chualogin} style={{ height: 80, marginBottom: 30 }} />
+              </div>
+              <div>
+                <Form>
+                  <div>
+                    {InputInfo.map((items, index) => (
+                      <div
+                        style={{
+                          marginBottom: 20,
+                        }}
+                      >
+                        <Row>
+                          <Col span={24}>
+                            <div style={style2}>
+                              {items.title}
+                              {items.batbuoc ? (
+                                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+                              ) : (
+                                <p></p>
+                              )}
+                            </div>
+                          </Col>
+                          <Col span={24}>{items.label}</Col>
+                        </Row>
+                      </div>
+                    ))}
+                  </div>
+                </Form>
+              </div>
+            </div>
           </Col>
         </Row>
       </div>

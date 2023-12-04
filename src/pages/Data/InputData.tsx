@@ -49,37 +49,38 @@ function UpAnh() {
     </div>
   );
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          /* here is your global tokens */
-          colorPrimary: "#FF9040",
-        },
-      }}
-    >
-      <>
-        <Upload
-          name="avatar"
-          listType="picture-card"
-          className="avatar-uploader"
-          showUploadList={false}
-          action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-          beforeUpload={beforeUpload}
-          onChange={handleChange}
-        >
-          {imageUrl ? (
-            <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
-          ) : (
-            uploadButton
-          )}
-        </Upload>
-      </>
-    </ConfigProvider>
+    <>
+      <Upload
+        name="avatar"
+        listType="picture-card"
+        className="avatar-uploader"
+        showUploadList={false}
+        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+        beforeUpload={beforeUpload}
+        onChange={handleChange}
+      >
+        {imageUrl ? (
+          <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+        ) : (
+          uploadButton
+        )}
+      </Upload>
+    </>
   );
 }
 const input: React.CSSProperties = {
   fontSize: 16,
+  width: "100%",
   borderRadius: 0,
+  display: "flex",
+  flexDirection: "row",
+};
+const input2: React.CSSProperties = {
+  fontSize: 18,
+  width: "100%",
+  paddingTop: 5,
+  paddingBottom: 5,
+  borderRadius: 10,
   display: "flex",
   flexDirection: "row",
 };
@@ -92,20 +93,12 @@ export const InputThemMoiChuong = [
   },
   {
     label: (
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#FF9040",
-          },
-        }}
+      <Upload
+        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+        directory
       >
-        <Upload
-          action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-          directory
-        >
-          <Button icon={<UploadOutlined />}>Chọn thư mục</Button>
-        </Upload>
-      </ConfigProvider>
+        <Button icon={<UploadOutlined />}>Chọn thư mục</Button>
+      </Upload>
     ),
   },
   {
@@ -245,6 +238,62 @@ export const InputTruyenDaDang = [
           }}
         >
           <p>Thêm mới</p>
+        </Button>
+      </div>
+    ),
+  },
+];
+
+export const InputInfo = [
+  {
+    title: "UserName",
+    batbuoc: true,
+    label: <Input style={input2} disabled></Input>,
+  },
+
+  {
+    title: "Tên",
+    batbuoc: true,
+    label: <Input style={input2}></Input>,
+  },
+
+  {
+    title: "Họ",
+    batbuoc: true,
+    label: <Input style={input2}></Input>,
+  },
+
+  {
+    title: "Điện thoại",
+    batbuoc: false,
+    label: <Input style={input2}></Input>,
+  },
+  {
+    title: "Email",
+    batbuoc: false,
+    label: <Input style={input2}></Input>,
+  },
+  {
+    title: "Số tài khoản",
+    batbuoc: false,
+    label: <Input style={input2}></Input>,
+  },
+  {
+    label: (
+      <div style={{ display: "flex", justifyContent: "end" }}>
+        <Button
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 0,
+            backgroundColor: "#FF9040",
+            color: "white",
+            fontSize: 18,
+            height: 38,
+          }}
+        >
+          <p>Cập nhật</p>
         </Button>
       </div>
     ),

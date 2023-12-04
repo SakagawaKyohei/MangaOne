@@ -17,28 +17,39 @@ import Footer from "./components/Footer/footer";
 import ThemMoiTruyen from "./pages/QuanLyTruyen/ThemMoiTruyen";
 import ThemMoiChapter from "./pages/QuanLyTruyen/ThemMoiChapter";
 import ChapterDaDang from "./pages/QuanLyTruyen/ChapterDaDang";
+import { ConfigProvider } from "antd";
+
+//sau khi code xong component chinh lai font, router
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Trangchu />} />
-          <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
-          <Route path="/doi-mat-khau" element={<Doimaukhau />} />
-          <Route path="/lich-su" element={<Lichsudoc />} />
-          <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
-          <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
-          <Route path="/truyen-da-dang" element={<ThemMoiTruyen />} />
-          <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
-          <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
-          <Route path="/diem-thuong" element={<Diemthuong />} />
-          <Route path="/*" element={<Notfound />} />
-        </Routes>
-        <Footer />
-      </Router>
-    </div>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#FF9040",
+        },
+      }}
+    >
+      <div className="App">
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Trangchu />} />
+            <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
+            <Route path="/doi-mat-khau" element={<Doimaukhau />} />
+            <Route path="/lich-su" element={<Lichsudoc />} />
+            <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
+            <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
+            <Route path="/truyen-da-dang" element={<ThemMoiTruyen />} />
+            <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
+            <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
+            <Route path="/diem-thuong" element={<Diemthuong />} />
+            <Route path="/*" element={<Notfound />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </div>
+    </ConfigProvider>
   );
 }
 
