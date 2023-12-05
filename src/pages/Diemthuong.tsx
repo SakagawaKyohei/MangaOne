@@ -6,7 +6,7 @@ import { InputChangePass } from "./Data/InputData";
 function Diemthuong() {
   const style2: React.CSSProperties = {
     marginBottom: 20,
-    marginRight: 10,
+    marginRight: 40,
     fontSize: 18,
     display: "flex",
     flexDirection: "row",
@@ -52,7 +52,7 @@ function Diemthuong() {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderRadius: 0,
+
                   backgroundColor: "#FF9040",
                   color: "white",
                   fontSize: 16,
@@ -68,7 +68,7 @@ function Diemthuong() {
             </div>
             <div
               style={{
-                marginRight: 20,
+                marginRight: 40,
               }}
             >
               <div

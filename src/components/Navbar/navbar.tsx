@@ -13,10 +13,7 @@ import { Input, Avatar, Row, Col } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color
 
-import React from "react";
-import { DownOutlined, SmileOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Dropdown, Space } from "antd";
+import { Dropdown } from "antd";
 function Navbar() {
   const { Search } = Input;
   const [slidebar, setslidebar] = useState(false);

@@ -34,7 +34,7 @@ function Doimaukhau() {
               style={{
                 marginTop: 25,
                 marginBottom: 25,
-                marginRight: 20,
+                marginRight: 40,
               }}
             >
               <div>

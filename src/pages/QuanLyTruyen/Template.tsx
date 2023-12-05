@@ -19,7 +19,7 @@ function Template(pros: Pros) {
         },
       }}
     >
-      <div style={{ marginRight: 20 }}>
+      <div style={{ marginRight: 35 }}>
         <p style={{ fontSize: 0.01 }}>.</p>
         <div style={{ marginBottom: 30, marginTop: 80 }}>
           <Row>

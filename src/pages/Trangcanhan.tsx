@@ -41,7 +41,7 @@ function Trangcanhan() {
               style={{
                 marginTop: 25,
                 marginBottom: 25,
-                marginRight: 20,
+                marginRight: 30,
               }}
             >
               <div style={style}>Ảnh đại diện</div>
