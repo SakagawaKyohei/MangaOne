@@ -18,6 +18,8 @@ import ThemMoiTruyen from "./pages/QuanLyTruyen/ThemMoiTruyen";
 import ThemMoiChapter from "./pages/QuanLyTruyen/ThemMoiChapter";
 import ChapterDaDang from "./pages/QuanLyTruyen/ChapterDaDang";
 import { ConfigProvider } from "antd";
+import Login from "./pages/Login/Login";
+import Timkiemnangcaoresult from "./pages/Timkiemnangcaoresult";
 
 //sau khi code xong component chinh lai font, router
 
@@ -39,12 +41,14 @@ function App() {
             <Route path="/doi-mat-khau" element={<Doimaukhau />} />
             <Route path="/lich-su" element={<Lichsudoc />} />
             <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
+            <Route path="/ket-qua" element={<Timkiemnangcaoresult />} />
             <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
             <Route path="/truyen-da-dang" element={<ThemMoiTruyen />} />
             <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
             <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
             <Route path="/diem-thuong" element={<Diemthuong />} />
             <Route path="/*" element={<Notfound />} />
+            <Route path="/dang-nhap" element={<Login />} />
           </Routes>
           <Footer />
         </Router>

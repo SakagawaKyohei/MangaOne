@@ -262,16 +262,18 @@ function Search() {
             </Col>
             {/*cần chỉnh lại button đa màn hình*/}
             <Col offset={15} span={3}>
-              <Button
-                style={{
-                  backgroundColor: "#FF9040",
-                  color: "white",
-                  width: "80%",
-                  borderRadius: 0,
-                }}
-              >
-                Tìm truyện
-              </Button>
+              <a href="/ket-qua">
+                <Button
+                  style={{
+                    backgroundColor: "#FF9040",
+                    color: "white",
+                    width: "80%",
+                    borderRadius: 0,
+                  }}
+                >
+                  Tìm truyện
+                </Button>
+              </a>
             </Col>
           </Row>
         </div>
