@@ -34,7 +34,6 @@ function App() {
     >
       <div className="App">
         <Router>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Trangchu />} />
             <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
@@ -49,8 +48,8 @@ function App() {
             <Route path="/diem-thuong" element={<Diemthuong />} />
             <Route path="/*" element={<Notfound />} />
             <Route path="/dang-nhap" element={<Login />} />
+            <Route path="/noi-dung" element={<NoiDungTruyen />} />
           </Routes>
-          <Footer />
         </Router>
       </div>
     </ConfigProvider>
