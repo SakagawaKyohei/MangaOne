@@ -18,8 +18,9 @@ import ThemMoiTruyen from "./pages/QuanLyTruyen/ThemMoiTruyen";
 import ThemMoiChapter from "./pages/QuanLyTruyen/ThemMoiChapter";
 import ChapterDaDang from "./pages/QuanLyTruyen/ChapterDaDang";
 import { ConfigProvider } from "antd";
-import Login from "./pages/Login/Login";
 import Timkiemnangcaoresult from "./pages/Timkiemnangcaoresult";
+import NoiDungTruyen from "./pages/NoiDungTruyen";
+import Login from "./pages/Login";
 
 //sau khi code xong component chinh lai font, router
 
