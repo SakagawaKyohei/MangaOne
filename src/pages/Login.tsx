@@ -1,4 +1,6 @@
 import React from "react";
+import saitama from "D:/mangaone/src/images/Saitama1.png";
+
 import {
   Col,
   Flex,
@@ -13,6 +15,7 @@ import {
 import "../components/Login/Login.css";
 import logo from "../images/logos.svg";
 import { Link } from "react-router-dom";
+import { relative } from "path";
 function Login() {
   const InputStyle: React.CSSProperties = {
     border: "none",
@@ -23,6 +26,7 @@ function Login() {
 
     backgroundColor: "rgba(61, 65, 74, 1)",
     color: "white",
+    zIndex: 6,
     fontSize: 15,
   };
   const ButtonStyle: React.CSSProperties = {
@@ -31,6 +35,7 @@ function Login() {
     height: 33,
     borderRadius: 0,
     border: "none",
+    zIndex: 6,
     fontWeight: "bold",
     backgroundColor: "rgba(235, 190, 101, 1)",
   };
@@ -50,7 +55,12 @@ function Login() {
             alt=""
             width={60}
             height={60}
-            style={{ marginRight: 10, marginTop: 50, marginBottom: 40 }}
+            style={{
+              marginRight: 10,
+              marginTop: 50,
+              marginBottom: 40,
+              zIndex: 6,
+            }}
           />
           <h1
             style={{
@@ -58,6 +68,7 @@ function Login() {
               marginBottom: 55,
               marginTop: 65,
               marginRight: 10,
+              zIndex: 6,
               color: "white",
             }}
           >

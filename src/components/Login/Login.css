@@ -12,14 +12,19 @@
     
     align-items: center;
 }
-.Black{
-    /*background-image: url('../../images/Saitama1.png');
-    background-size:cover;*/
+.Black{    background-image: url('../../images/Saitama1.png');
+
+    background-position-x: -10vw;
+    background-position-y: 10rem ;
+    background-repeat: no-repeat;
     background-color:black;
+    background-size: 60rem;
+    /*sau xoa chu~ ok di*/
 }
 .loginBorder{
     border-top: 4px solid rgba(235, 190, 101, 1);
     height: 425px;
+    z-index: 6;
     width: 600px;
     background-color: rgba(54, 54, 54, 1) ;
     display: flex;

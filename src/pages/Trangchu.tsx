@@ -131,7 +131,7 @@ function Trangchu() {
               <p style={{ paddingLeft: 10 }}>Xem nhiều nhất</p>
             </div>
             <div>
-              <Row>
+              <Row gutter={18}>
                 <Col span={6}>
                   <Button className="timebutton selected">Ngày</Button>
                 </Col>
