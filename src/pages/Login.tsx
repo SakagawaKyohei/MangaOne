@@ -14,6 +14,26 @@ import "../components/Login/Login.css";
 import logo from "../images/logos.svg";
 import { Link } from "react-router-dom";
 function Login() {
+  const InputStyle: React.CSSProperties = {
+    border: "none",
+    borderRadius: 5,
+    width: 350,
+    marginTop: 5,
+    height: 30,
+
+    backgroundColor: "rgba(61, 65, 74, 1)",
+    color: "white",
+    fontSize: 15,
+  };
+  const ButtonStyle: React.CSSProperties = {
+    marginTop: 20,
+    width: 350,
+    height: 33,
+    borderRadius: 0,
+    border: "none",
+    fontWeight: "bold",
+    backgroundColor: "rgba(235, 190, 101, 1)",
+  };
   return (
     <div className="Black">
       <div className="center1">
@@ -60,47 +80,20 @@ function Login() {
               <div style={{ marginTop: 20 }}>
                 <span style={{ color: "white" }}>Tên đăng nhập</span>
                 <br />
-                <Input
-                  type="text"
-                  name="TenDangNhap"
-                  style={{
-                    border: "none",
-                    borderRadius: 5,
-                    width: 300,
-                    marginTop: 5,
-                    height: 30,
-
-                    backgroundColor: "rgba(61, 65, 74, 1)",
-                    color: "white",
-                    fontSize: 15,
-                  }}
-                />
+                <Input type="text" name="TenDangNhap" style={InputStyle} />
                 <br />
               </div>
               <div style={{ marginTop: 20 }}>
                 <span style={{ color: "white" }}>Mật khẩu</span>
                 <br />
-                <Input
-                  type="password"
-                  name="MatKhau"
-                  style={{
-                    border: "none",
-                    marginTop: 5,
-                    width: 300,
-                    height: 30,
-                    borderRadius: 5,
-                    backgroundColor: "rgba(61, 65, 74, 1)",
-                    color: "white",
-                    fontSize: 15,
-                  }}
-                />
+                <Input type="password" name="MatKhau" style={InputStyle} />
                 <br />
               </div>
             </div>
             <div
               style={{
                 marginTop: 20,
-                width: 300,
+                width: 350,
                 display: "flex",
                 justifyContent: "space-between",
               }}
@@ -124,25 +117,19 @@ function Login() {
                 Quên mật khẩu
               </a>
             </div>
-            <Button
-              className="font"
-              style={{
-                marginTop: 20,
-                width: 300,
-                height: 31,
-                fontWeight: "bold",
-                backgroundColor: "rgba(235, 190, 101, 1)",
-              }}
-            >
+            <Button className="font" style={ButtonStyle}>
               Đăng nhập
             </Button>
             <br />
             <Button
               className="font GoogleIcon"
               style={{
+                borderRadius: 0,
                 marginTop: 20,
-                width: 300,
-                height: 31,
+                border: "none",
+                fontSize: 16,
+                width: 350,
+                height: 33,
                 fontWeight: "bold",
                 backgroundColor: "rgba(221, 75, 57, 1)",
               }}
