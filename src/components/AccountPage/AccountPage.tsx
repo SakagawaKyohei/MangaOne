@@ -16,9 +16,15 @@ function AccountPage() {
           className={index == i ? "navbutton seleted" : "navbutton"}
           onClick={() => handleclick(index)}
         >
-          <div style={{ marginLeft: "23%" }}>
+          <div
+            style={{
+              marginLeft: "23%",
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
             {item.icon}
-            {item.title}
+            <p style={{ fontSize: 16 }}>{item.title}</p>
           </div>
         </div>
       ))}

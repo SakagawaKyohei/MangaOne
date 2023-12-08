@@ -26,7 +26,7 @@ function Search() {
         },
         components: {
           Select: {
-            optionFontSize: 18,
+            optionFontSize: 16,
           },
         },
       }}

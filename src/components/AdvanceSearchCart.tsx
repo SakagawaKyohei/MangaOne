@@ -7,7 +7,7 @@ import { items } from "./Navbar/DropdownData";
 function AdvanceSearchCart() {
   const style: React.CSSProperties = {
     marginRight: 5,
-    marginTop: "2.5",
+    marginTop: "0",
   };
   let theloai: string[];
   theloai = ["ACTION", "PSYCHOLOGICAL", "ROMANCE", "COMEDY", "ADVENTURE"];

@@ -38,13 +38,7 @@
     font-weight: bold;
     margin-top: 0;
 }
-div{
-    font-family: Arial, Helvetica, sans-serif;
-}
-.font{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-}
+
 .GoogleIcon{
     background-image: url('../../images/GoogleAccountLogo.png');
     background-size: 25px;

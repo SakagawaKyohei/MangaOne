@@ -27,7 +27,7 @@ function Login() {
     backgroundColor: "rgba(61, 65, 74, 1)",
     color: "white",
     zIndex: 6,
-    fontSize: 15,
+    fontSize: 16,
   };
   const ButtonStyle: React.CSSProperties = {
     marginTop: 20,
@@ -36,9 +36,11 @@ function Login() {
     borderRadius: 0,
     border: "none",
     zIndex: 6,
+    fontSize: 17,
     fontWeight: "bold",
     backgroundColor: "rgba(235, 190, 101, 1)",
   };
+
   return (
     <div className="Black">
       <div className="center1">
@@ -89,13 +91,15 @@ function Login() {
           <Form>
             <div>
               <div style={{ marginTop: 20 }}>
-                <span style={{ color: "white" }}>Tên đăng nhập</span>
+                <span style={{ color: "white", fontSize: 15 }}>
+                  Tên đăng nhập
+                </span>
                 <br />
                 <Input type="text" name="TenDangNhap" style={InputStyle} />
                 <br />
               </div>
               <div style={{ marginTop: 20 }}>
-                <span style={{ color: "white" }}>Mật khẩu</span>
+                <span style={{ color: "white", fontSize: 15 }}>Mật khẩu</span>
                 <br />
                 <Input type="password" name="MatKhau" style={InputStyle} />
                 <br />
@@ -103,7 +107,7 @@ function Login() {
             </div>
             <div
               style={{
-                marginTop: 20,
+                marginTop: 15,
                 width: 350,
                 display: "flex",
                 justifyContent: "space-between",
@@ -114,6 +118,7 @@ function Login() {
                 style={{
                   color: "rgba(235, 190, 101, 1)",
                   textDecoration: "none",
+                  fontSize: 15,
                 }}
               >
                 Đăng ký
@@ -123,6 +128,7 @@ function Login() {
                 style={{
                   color: "rgba(235, 190, 101, 1)",
                   textDecoration: "none",
+                  fontSize: 15,
                 }}
               >
                 Quên mật khẩu
@@ -138,7 +144,7 @@ function Login() {
                 borderRadius: 0,
                 marginTop: 20,
                 border: "none",
-                fontSize: 16,
+                fontSize: 17,
                 width: 350,
                 height: 33,
                 fontWeight: "bold",

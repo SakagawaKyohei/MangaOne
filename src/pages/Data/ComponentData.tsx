@@ -28,10 +28,11 @@ export const ThemMoiTruyenData = {
                 display: "flex",
                 alignItems: "end",
                 flexDirection: "column",
+                paddingTop: 4,
               }}
             >
               <div style={style}>
-                {items.title}
+                <p style={{ fontSize: 16 }}>{items.title}</p>
                 {items.batbuoc ? (
                   <p style={{ color: "red", marginLeft: 5 }}>*</p>
                 ) : (
@@ -111,7 +112,7 @@ export const TruyenDaDangData = {
               borderRadius: 0,
               backgroundColor: "#FF9040",
               color: "white",
-              fontSize: 18,
+              fontSize: 16,
               height: 38,
               width: "100%",
             }}
@@ -180,7 +181,7 @@ export const TruyenDaDangData = {
             borderRadius: 0,
             backgroundColor: "#FF9040",
             color: "white",
-            fontSize: 18,
+            fontSize: 16,
             height: 38,
             marginBottom: 25,
             marginTop: 25,
@@ -197,7 +198,7 @@ export const TruyenDaDangData = {
             borderRadius: 0,
             backgroundColor: "red",
             color: "white",
-            fontSize: 18,
+            fontSize: 16,
             height: 38,
             marginBottom: 25,
             marginTop: 25,
@@ -236,7 +237,7 @@ export const ChapterDaDangData = {
               borderRadius: 0,
               backgroundColor: "#FF9040",
               color: "white",
-              fontSize: 18,
+              fontSize: 16,
               height: 38,
               width: "100%",
             }}
@@ -303,7 +304,7 @@ export const ChapterDaDangData = {
             borderRadius: 0,
             backgroundColor: "#FF9040",
             color: "white",
-            fontSize: 18,
+            fontSize: 16,
             height: 38,
             marginBottom: 25,
             marginTop: 25,
@@ -320,7 +321,7 @@ export const ChapterDaDangData = {
             borderRadius: 0,
             backgroundColor: "red",
             color: "white",
-            fontSize: 18,
+            fontSize: 16,
             height: 38,
             marginBottom: 25,
             marginTop: 25,

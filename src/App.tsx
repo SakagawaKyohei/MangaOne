@@ -35,6 +35,7 @@ function App() {
     >
       <div className="App">
         <Router>
+          <Navbar />
           <Routes>
             <Route path="/" element={<Trangchu />} />
             <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
@@ -43,7 +44,7 @@ function App() {
             <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
             <Route path="/ket-qua" element={<Timkiemnangcaoresult />} />
             <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
-            <Route path="/truyen-da-dang" element={<ThemMoiTruyen />} />
+            <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
             <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
             <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
             <Route path="/diem-thuong" element={<Diemthuong />} />
@@ -51,6 +52,7 @@ function App() {
             <Route path="/dang-nhap" element={<Login />} />
             <Route path="/noi-dung" element={<NoiDungTruyen />} />
           </Routes>
+          <Footer />
         </Router>
       </div>
     </ConfigProvider>

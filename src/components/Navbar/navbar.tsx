@@ -76,7 +76,7 @@ function Navbar() {
                       style={{ marginRight: 5 }}
                     />
                     <h1
-                      style={{ fontSize: 25, marginTop: 10, marginRight: 10 }}
+                      style={{ fontSize: 25, marginTop: 15, marginRight: 10 }}
                     >
                       MangaOne
                     </h1>
