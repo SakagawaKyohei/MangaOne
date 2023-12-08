@@ -211,7 +211,6 @@ span{
   display: flex;
   height:100%;
 flex-direction: column;
-  background: url(D:/MangaOne/src/images/mangaimage.jpg);
   justify-content: end;
   filter: blur(17.5px);
 
