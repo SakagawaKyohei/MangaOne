@@ -1,7 +1,6 @@
 import { Col, ConfigProvider, Pagination, Row } from "antd";
 import React from "react";
 import AdvanceSearchCart from "../components/AdvanceSearchCart";
-import * as faIcons from "react-icons/fa";
 
 function Timkiemnangcaoresult() {
   return (

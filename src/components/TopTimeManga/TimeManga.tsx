@@ -1,7 +1,7 @@
 import "./TimeManga.css";
 import React from "react";
-import img from "/MangaOne/src/images/mangaimage.jpg";
-import view from "/mangaone/src/images/view.png";
+import img from "../../images/mangaimage.jpg";
+import view from "../../images/view.png";
 
 function TimeManga() {
   return (

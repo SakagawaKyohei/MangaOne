@@ -1,5 +1,5 @@
 import React from "react";
-import mangaimage from "/MangaOne/src/images/mangaimage.jpg";
+import mangaimage from "../images/mangaimage.jpg";
 import { Col, Flex, Row } from "antd";
 import * as FaIcons from "react-icons/fa";
 import { items } from "./Navbar/DropdownData";

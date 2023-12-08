@@ -1,8 +1,7 @@
 import * as faIcons from "react-icons/fa";
-import React from "react";
-import mangaimage from "/MangaOne/src/images/mangaimage.jpg";
-import content from "/MangaOne/src/images/content.svg";
-import { Button, Col, Row } from "antd";
+import mangaimage from "../images/mangaimage.jpg";
+import content from "../images/content.svg";
+import { Button } from "antd";
 import ChapterList from "../components/ChapterList";
 import TextArea from "antd/es/input/TextArea";
 function NoiDungTruyen() {
@@ -13,7 +12,7 @@ function NoiDungTruyen() {
         <div
           style={{
             backgroundColor: "rgba(0, 0, 0, 0.40)",
-            width: "100vw",
+            width: "100%",
             height: "40vh",
             position: "absolute",
             zIndex: 1,
@@ -22,7 +21,7 @@ function NoiDungTruyen() {
           <div
             style={{
               marginLeft: 35,
-              marginRight: 40,
+              marginRight: 35,
 
               position: "relative",
             }}

@@ -6,9 +6,9 @@ import { useState } from "react";
 import { SlidebarData } from "./SlidebarData";
 import { items } from "./DropdownData";
 import { Link } from "react-router-dom";
-import logo from "/MangaOne/src/images/logos.svg";
-import chualogin from "/MangaOne/src/images/Chualogin.svg";
-import noti from "/MangaOne/src/images/Noti.svg";
+import logo from "../../images/logos.svg";
+import chualogin from "../../images/Chualogin.svg";
+import noti from "../../images/Noti.svg";
 import { Input, Avatar, Row, Col } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color

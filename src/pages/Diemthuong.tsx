@@ -1,7 +1,6 @@
 import React from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
 import { Button, Col, Form, Input, Row } from "antd";
-import { InputChangePass } from "./Data/InputData";
 
 function Diemthuong() {
   const style2: React.CSSProperties = {

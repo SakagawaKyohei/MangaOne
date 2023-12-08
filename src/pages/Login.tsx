@@ -1,17 +1,6 @@
 import React from "react";
-import saitama from "D:/mangaone/src/images/Saitama1.png";
 
-import {
-  Col,
-  Flex,
-  Row,
-  Pagination,
-  ConfigProvider,
-  Button,
-  Grid,
-  Form,
-  Input,
-} from "antd";
+import { Button, Form, Input } from "antd";
 import "../components/Login/Login.css";
 import logo from "../images/logos.svg";
 import { Link } from "react-router-dom";

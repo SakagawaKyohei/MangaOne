@@ -1,7 +1,7 @@
 import { Checkbox, Col, Row } from "antd";
 import React from "react";
-import capnhat from "/mangaone/src/images/CapNhat.svg";
-import danhsach from "/mangaone/src/images/DanhSach.svg";
+import capnhat from "../../images/CapNhat.svg";
+import danhsach from "../../images/DanhSach.svg";
 interface Pros {
   tentruyen: string;
   sochuong: number;

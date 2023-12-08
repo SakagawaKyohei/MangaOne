@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Flex, Row, Pagination, ConfigProvider, Button } from "antd";
 import MangaCart from "../components/MangaCart/MangaCart";
-import star from "/MangaOne/src/images/StarIcon.png";
+import star from "../images/StarIcon.png";
 import TimeManga from "../components/TopTimeManga/TimeManga";
 import Top1time from "../components/TopTimeManga/Top1time";
 import * as mdIcons from "react-icons/md";
