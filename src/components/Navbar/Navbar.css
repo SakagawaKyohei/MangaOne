@@ -6,17 +6,31 @@
     margin-left: 35px;
     position: relative;
 }
+.textnav{
+    color: black;
+}
+.textnav.t{
+    color:white;
+}
 .fixed
 {
     margin-right: 0px;
     position: fixed;
     z-index: 2;
+    background-color: white;
+    transition: 1s;
+}
+.fixed.t{
     background-color: transparent;
 }
 .line{
     width: 100vw;
 height: 1px;
 background: #FF9040;
+transition: 1s;
+}
+.line.t{
+    background-color: transparent;
 }
 .line2{
     width: 100%;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -35,7 +35,6 @@ function App() {
     >
       <div className="App">
         <Router>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Trangchu />} />
             <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />

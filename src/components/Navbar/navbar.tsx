@@ -14,6 +14,7 @@ import { ConfigProvider } from "antd";
 //thêm màu cho selected color
 
 import { Dropdown } from "antd";
+import { IoMdNotificationsOutline } from "react-icons/io";
 function Navbar() {
   const { Search } = Input;
   const [slidebar, setslidebar] = useState(false);
@@ -97,10 +98,8 @@ function Navbar() {
                   justifyContent: "end",
                 }}
               >
-                <img
-                  src={noti}
-                  height={30}
-                  width={30}
+                <IoMdNotificationsOutline
+                  fontSize={35}
                   style={{ marginTop: 13 }}
                 />
 
