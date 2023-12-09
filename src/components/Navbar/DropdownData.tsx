@@ -5,12 +5,14 @@ import { IoMdPerson } from "react-icons/io";
 import { FaBookmark } from "react-icons/fa6";
 import { ImBook } from "react-icons/im";
 import { IoLogOut } from "react-icons/io5";
+import { Link } from "react-router-dom";
 const style: React.CSSProperties = {
   marginTop: 5,
   marginBottom: 5,
   fontSize: 18,
   display: "flex",
   flexDirection: "row",
+  color: "black",
 };
 
 export const items: MenuProps["items"] = [
@@ -48,32 +50,37 @@ export const items: MenuProps["items"] = [
   {
     key: "2",
     label: (
-      <div style={style}>
+      <Link style={style} to="/trang-ca-nhan">
         <IoMdPerson style={{ fontSize: 25, marginRight: 13, marginTop: 2 }} />
         <p>Trang cá nhân</p>
-      </div>
+      </Link>
     ),
   },
   {
     key: "3",
     label: (
-      <div style={style}>
+      <Link to="/truyen-theo-doi-2" style={style}>
         <FaBookmark
           style={{ fontSize: 20, marginRight: 15, marginTop: 5, marginLeft: 3 }}
         />
         <p>Theo dõi</p>
-      </div>
+      </Link>
     ),
   },
   {
     key: "4",
     label: (
-      <div style={style}>
+      <Link to="/truyen-da-dang" style={style}>
         <ImBook
-          style={{ fontSize: 20, marginRight: 15, marginTop: 5, marginLeft: 3 }}
+          style={{
+            fontSize: 20,
+            marginRight: 15,
+            marginTop: 5,
+            marginLeft: 3,
+          }}
         />
         <p>Truyện đã đăng</p>
-      </div>
+      </Link>
     ),
   },
   {

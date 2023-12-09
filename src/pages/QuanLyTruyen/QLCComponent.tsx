@@ -18,7 +18,7 @@ function QLCComponent(pros: Pros) {
           height: 40,
           display: "flex",
           alignItems: "center",
-          fontSize: 20,
+          fontSize: 16,
         }}
       >
         <Col span={5}>

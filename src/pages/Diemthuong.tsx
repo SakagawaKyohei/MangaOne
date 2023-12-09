@@ -28,7 +28,7 @@ function Diemthuong() {
       <div style={{ marginBottom: 30, marginTop: 80 }}>
         <Row>
           <Col span={6}>
-            <AccountPage />
+            <AccountPage i={3} />
           </Col>
           <Col span={17} offset={1}>
             <h1

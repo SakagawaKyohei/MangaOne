@@ -6,7 +6,7 @@ import QLCComponent from "../QuanLyTruyen/QLCComponent";
 const style: React.CSSProperties = {
   marginTop: 3,
   marginRight: 20,
-  fontSize: 18,
+  fontSize: 16,
   display: "flex",
   flexDirection: "row",
 };
@@ -70,7 +70,7 @@ export const ThemMoiChapterData = {
               }}
             >
               <div style={style}>
-                {items.title}
+                <p style={{ fontSize: 16 }}>{items.title}</p>
                 {items.batbuoc ? (
                   <p style={{ color: "red", marginLeft: 5 }}>*</p>
                 ) : (
@@ -98,8 +98,8 @@ export const TruyenDaDangData = {
             style={{
               borderRadius: 5,
               width: "100%",
-              height: 38,
-              fontSize: 16,
+              height: 32,
+              fontSize: 15,
             }}
           />
         </Col>
@@ -112,8 +112,8 @@ export const TruyenDaDangData = {
               borderRadius: 0,
               backgroundColor: "#FF9040",
               color: "white",
-              fontSize: 16,
-              height: 38,
+              fontSize: 15,
+              height: 32,
               width: "100%",
             }}
           >
@@ -122,45 +122,48 @@ export const TruyenDaDangData = {
         </Col>
       </Row>
       <div className="khung" style={{ marginLeft: "8%", height: "50vh" }}>
-        <div style={{ marginLeft: 20, margin: 5, fontSize: 16 }}>
+        <div style={{ marginLeft: 20, margin: 5, fontSize: 15 }}>
           <Row style={{ marginBottom: 10, marginTop: 10 }}>
             <Col span={5}>
-              <Checkbox style={{ marginLeft: 10, fontSize: 16 }}>
-                Tên truyện
+              <Checkbox style={{ marginLeft: 10 }}>
+                <p style={{ fontSize: 15 }}>Tên truyện</p>
               </Checkbox>
             </Col>
             <Col
               span={3}
               offset={6}
               style={{
-                fontSize: 16,
+                fontSize: 15,
                 padding: 0.001,
                 display: "flex",
                 justifyContent: "center",
               }}
             >
-              Số chương
+              <p style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+                Số chương
+              </p>
             </Col>
             <Col
               span={3}
               style={{
-                fontSize: 16,
+                fontSize: 15,
                 padding: 0.001,
                 display: "flex",
                 justifyContent: "center",
+                fontFamily: "Arial, Helvetica, sans-serif",
               }}
             >
-              Người đăng
+              <p> Người đăng</p>
             </Col>
             <Col
               style={{
-                fontSize: 16,
+                fontSize: 15,
                 padding: 0.001,
                 display: "flex",
                 justifyContent: "center",
               }}
             >
-              <div style={{ paddingLeft: 10 }}>Số lượt xem</div>
+              <div style={{ paddingLeft: 10, fontSize: 15 }}>Số lượt xem</div>
             </Col>
           </Row>
           <QLTComponent
@@ -181,8 +184,8 @@ export const TruyenDaDangData = {
             borderRadius: 0,
             backgroundColor: "#FF9040",
             color: "white",
-            fontSize: 16,
-            height: 38,
+            fontSize: 15,
+            height: 32,
             marginBottom: 25,
             marginTop: 25,
             marginRight: 20,
@@ -198,8 +201,8 @@ export const TruyenDaDangData = {
             borderRadius: 0,
             backgroundColor: "red",
             color: "white",
-            fontSize: 16,
-            height: 38,
+            height: 32,
+            fontSize: 15,
             marginBottom: 25,
             marginTop: 25,
           }}
@@ -223,8 +226,8 @@ export const ChapterDaDangData = {
             style={{
               borderRadius: 5,
               width: "100%",
-              height: 38,
-              fontSize: 16,
+              height: 32,
+              fontSize: 15,
             }}
           />
         </Col>
@@ -237,8 +240,8 @@ export const ChapterDaDangData = {
               borderRadius: 0,
               backgroundColor: "#FF9040",
               color: "white",
-              fontSize: 16,
-              height: 38,
+              fontSize: 15,
+              height: 32,
               width: "100%",
             }}
           >

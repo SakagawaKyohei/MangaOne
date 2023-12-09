@@ -76,10 +76,8 @@ const input: React.CSSProperties = {
   flexDirection: "row",
 };
 const input2: React.CSSProperties = {
-  fontSize: 18,
+  fontSize: 16,
   width: "100%",
-  paddingTop: 5,
-  paddingBottom: 5,
   borderRadius: 10,
   display: "flex",
   flexDirection: "row",

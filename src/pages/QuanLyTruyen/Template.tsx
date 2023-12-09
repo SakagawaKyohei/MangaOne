@@ -23,12 +23,12 @@ function Template(pros: Pros) {
     >
       <div>
         <Navbar />
-        <div style={{ marginRight: 35 }}>
+        <div>
           <p style={{ fontSize: 0.01 }}>.</p>
           <div style={{ marginBottom: 30, marginTop: 80 }}>
             <Row>
               <Col span={6}>
-                <AccountPage />
+                <AccountPage i={2} />
               </Col>
               <Col span={17} offset={1}>
                 <h1
@@ -36,13 +36,13 @@ function Template(pros: Pros) {
                     textAlign: "center",
                     marginTop: 10,
                     marginBottom: 20,
-                    fontSize: 23,
+                    fontSize: 21,
                   }}
                 >
                   {pros.title}
                 </h1>
                 <div className="khung">
-                  <p style={{ fontSize: 20, padding: 15 }}>{pros.title1}</p>
+                  <p style={{ fontSize: 17, padding: 15 }}>{pros.title1}</p>
                   <div
                     style={{
                       width: "100%",

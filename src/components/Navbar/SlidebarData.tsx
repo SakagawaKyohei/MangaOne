@@ -26,7 +26,7 @@ export const SlidebarData = [
   },
   {
     title: "Điểm thưởng",
-    path: "/diem-thuong",
+    path: "/diem-dich-truyen",
     cName: "nav-button",
   },
   {
@@ -47,7 +47,7 @@ export const SlidebarData = [
   },
   {
     title: "Chọn ngẫu nhiên",
-    path: "/chon-ngau-nhien",
+    path: "/noi-dung",
     cName: "nav-button",
   },
   {

@@ -10,6 +10,7 @@ import {
   Button,
   Flex,
 } from "antd";
+import { Link } from "react-router-dom";
 
 //chuyển sang component
 function Search() {
@@ -262,7 +263,7 @@ function Search() {
             </Col>
             {/*cần chỉnh lại button đa màn hình*/}
             <Col offset={15} span={3}>
-              <a href="/ket-qua">
+              <Link to="/ket-qua">
                 <Button
                   style={{
                     backgroundColor: "#FF9040",
@@ -273,7 +274,7 @@ function Search() {
                 >
                   Tìm truyện
                 </Button>
-              </a>
+              </Link>
             </Col>
           </Row>
         </div>

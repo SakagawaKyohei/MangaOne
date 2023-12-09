@@ -19,22 +19,23 @@ function QLTComponent(pros: Pros) {
           height: 40,
           display: "flex",
           alignItems: "center",
-          fontSize: 20,
+          fontSize: 15,
         }}
       >
         <Col span={5}>
-          <Checkbox style={{ marginLeft: 10, fontSize: 16 }}>
-            {pros.tentruyen}
+          <Checkbox style={{ marginLeft: 10 }}>
+            <p style={{ fontSize: 15 }}>{pros.tentruyen}</p>
           </Checkbox>
         </Col>
         <Col
           span={3}
           offset={6}
           style={{
-            fontSize: 16,
-            padding: 0.001,
+            fontSize: 15,
+
             display: "flex",
             justifyContent: "center",
+            fontFamily: "Arial, Helvetica, sans-serif",
           }}
         >
           {pros.sochuong}
@@ -42,10 +43,11 @@ function QLTComponent(pros: Pros) {
         <Col
           span={3}
           style={{
-            fontSize: 16,
-            padding: 0.001,
+            fontSize: 15,
+
             display: "flex",
             justifyContent: "center",
+            fontFamily: "Arial, Helvetica, sans-serif",
           }}
         >
           {pros.nguoidang}
@@ -54,10 +56,11 @@ function QLTComponent(pros: Pros) {
           <div
             style={{
               paddingLeft: 10,
-              fontSize: 16,
-              padding: 0.001,
+              fontSize: 15,
+
               display: "flex",
               justifyContent: "center",
+              fontFamily: "Arial, Helvetica, sans-serif",
             }}
           >
             {pros.soluotxem}

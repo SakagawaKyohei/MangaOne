@@ -21,6 +21,7 @@ import { ConfigProvider } from "antd";
 import Timkiemnangcaoresult from "./pages/Timkiemnangcaoresult";
 import NoiDungTruyen from "./pages/NoiDungTruyen";
 import Login from "./pages/Login";
+import TruyenTheoDoi2 from "./pages/TruyenTheoDoi2";
 
 //sau khi code xong component chinh lai font, router
 
@@ -46,9 +47,10 @@ function App() {
             <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
             <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
             <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
-            <Route path="/diem-thuong" element={<Diemthuong />} />
+            <Route path="/diem-dich-truyen" element={<Diemthuong />} />
             <Route path="/*" element={<Notfound />} />
             <Route path="/dang-nhap" element={<Login />} />
+            <Route path="/truyen-theo-doi-2" element={<TruyenTheoDoi2 />} />
             <Route path="/noi-dung" element={<NoiDungTruyen />} />
           </Routes>
         </Router>

@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import "./AccountPage.css";
 import { AccountbarData } from "./AccountbarData";
+import { Link } from "react-router-dom";
 
 //lam position fixed nhung khong loi
+interface Pros {
+  i: number;
+}
 
-function AccountPage() {
-  const handleclick = (i: number) => {
-    seti(i);
-  };
-  const [i, seti] = useState(0);
+function AccountPage(pros: Pros) {
   return (
     <div>
       {AccountbarData.map((item, index) => (
-        <div
-          className={index == i ? "navbutton seleted" : "navbutton"}
-          onClick={() => handleclick(index)}
+        <Link
+          to={item.path}
+          className={index == pros.i ? "navbutton selected" : "navbutton"}
         >
           <div
             style={{
@@ -26,7 +26,7 @@ function AccountPage() {
             {item.icon}
             <p style={{ fontSize: 16 }}>{item.title}</p>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

@@ -3,6 +3,7 @@ import React from "react";
 import AdvanceSearchCart from "../components/AdvanceSearchCart";
 import Navbar from "../components/Navbar/navbar";
 import Footer from "../components/Footer/footer";
+import { Link } from "react-router-dom";
 
 function Timkiemnangcaoresult() {
   return (
@@ -29,11 +30,11 @@ function Timkiemnangcaoresult() {
           >
             Tìm kiếm nâng cao
           </p>
-          <a href="/tim-kiem-nang-cao" style={{ textDecoration: "none" }}>
+          <Link to="/tim-kiem-nang-cao" style={{ textDecoration: "none" }}>
             <p style={{ color: "#FF4040", paddingBottom: 10, fontSize: 20 }}>
               Nhấn vào đây để tìm với từ khóa khác
             </p>
-          </a>
+          </Link>
           <div
             style={{
               width: "100%",

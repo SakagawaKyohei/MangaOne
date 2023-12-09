@@ -8,14 +8,14 @@ import Footer from "../components/Footer/footer";
 
 function Trangcanhan() {
   const style: React.CSSProperties = {
-    fontSize: 18,
+    fontSize: 16,
     paddingBottom: 10,
   };
 
   const style2: React.CSSProperties = {
     marginBottom: 12,
     marginRight: 20,
-    fontSize: 18,
+    fontSize: 16,
     display: "flex",
     flexDirection: "row",
   };
@@ -27,7 +27,7 @@ function Trangcanhan() {
       <div style={{ marginBottom: 30, marginTop: 80 }}>
         <Row>
           <Col span={6}>
-            <AccountPage />
+            <AccountPage i={0} />
           </Col>
           <Col span={17} offset={1}>
             <h1
@@ -35,7 +35,7 @@ function Trangcanhan() {
                 textAlign: "center",
                 marginTop: 10,
                 marginBottom: 20,
-                fontSize: 23,
+                fontSize: 21,
               }}
             >
               THÔNG TIN TÀI KHOẢN
