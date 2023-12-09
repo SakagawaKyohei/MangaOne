@@ -3,6 +3,8 @@ import AccountPage from "../components/AccountPage/AccountPage";
 import { Col, ConfigProvider, Form, Input, Row } from "antd";
 import chualogin from "../images/Chualogin.svg";
 import { InputInfo } from "./Data/InputData";
+import Navbar from "../components/Navbar/navbar";
+import Footer from "../components/Footer/footer";
 
 function Trangcanhan() {
   const style: React.CSSProperties = {
@@ -20,6 +22,7 @@ function Trangcanhan() {
 
   return (
     <div>
+      <Navbar />
       <p style={{ fontSize: 0.01 }}>.</p>
       <div style={{ marginBottom: 30, marginTop: 80 }}>
         <Row>
@@ -79,6 +82,7 @@ function Trangcanhan() {
           </Col>
         </Row>
       </div>
+      <Footer />
     </div>
   );
 }

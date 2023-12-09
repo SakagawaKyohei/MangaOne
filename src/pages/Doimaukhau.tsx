@@ -2,6 +2,8 @@ import React from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
 import { Col, Form, Row } from "antd";
 import { InputChangePass } from "./Data/InputData";
+import Navbar from "../components/Navbar/navbar";
+import Footer from "../components/Footer/footer";
 
 function Doimaukhau() {
   const style2: React.CSSProperties = {
@@ -13,6 +15,7 @@ function Doimaukhau() {
   };
   return (
     <div>
+      <Navbar />
       <p style={{ fontSize: 0.01 }}>.</p>
       <div style={{ marginBottom: 30, marginTop: 80 }}>
         <Row>
@@ -68,6 +71,7 @@ function Doimaukhau() {
           </Col>
         </Row>
       </div>
+      <Footer />
     </div>
   );
 }

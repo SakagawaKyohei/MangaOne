@@ -51,7 +51,6 @@ function App() {
             <Route path="/dang-nhap" element={<Login />} />
             <Route path="/noi-dung" element={<NoiDungTruyen />} />
           </Routes>
-          <Footer />
         </Router>
       </div>
     </ConfigProvider>

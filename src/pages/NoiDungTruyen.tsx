@@ -6,8 +6,8 @@ import ChapterList from "../components/ChapterList";
 import TextArea from "antd/es/input/TextArea";
 import Navbar from "../components/Navbar/navbar";
 import { useEffect, useState } from "react";
-import { Footer } from "antd/es/layout/layout";
 import Navbar2 from "../components/Navbar/navbar2";
+import Footer from "../components/Footer/footer";
 function NoiDungTruyen() {
   return (
     <div>
@@ -198,6 +198,7 @@ function NoiDungTruyen() {
           ></img>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

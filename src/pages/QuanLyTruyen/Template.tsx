@@ -1,6 +1,8 @@
 import { Col, ConfigProvider, Row } from "antd";
 import React from "react";
 import AccountPage from "../../components/AccountPage/AccountPage";
+import Navbar from "../../components/Navbar/navbar";
+import Footer from "../../components/Footer/footer";
 interface Pros {
   title: string;
   title1: string;
@@ -19,39 +21,43 @@ function Template(pros: Pros) {
         },
       }}
     >
-      <div style={{ marginRight: 35 }}>
-        <p style={{ fontSize: 0.01 }}>.</p>
-        <div style={{ marginBottom: 30, marginTop: 80 }}>
-          <Row>
-            <Col span={6}>
-              <AccountPage />
-            </Col>
-            <Col span={17} offset={1}>
-              <h1
-                style={{
-                  textAlign: "center",
-                  marginTop: 10,
-                  marginBottom: 20,
-                  fontSize: 23,
-                }}
-              >
-                {pros.title}
-              </h1>
-              <div className="khung">
-                <p style={{ fontSize: 20, padding: 15 }}>{pros.title1}</p>
-                <div
+      <div>
+        <Navbar />
+        <div style={{ marginRight: 35 }}>
+          <p style={{ fontSize: 0.01 }}>.</p>
+          <div style={{ marginBottom: 30, marginTop: 80 }}>
+            <Row>
+              <Col span={6}>
+                <AccountPage />
+              </Col>
+              <Col span={17} offset={1}>
+                <h1
                   style={{
-                    width: "100%",
-                    height: 3,
-                    backgroundColor: "#D9D9D9",
+                    textAlign: "center",
+                    marginTop: 10,
+                    marginBottom: 20,
+                    fontSize: 23,
                   }}
-                />
-                {pros.components}
-              </div>
-            </Col>
-          </Row>
+                >
+                  {pros.title}
+                </h1>
+                <div className="khung">
+                  <p style={{ fontSize: 20, padding: 15 }}>{pros.title1}</p>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: 3,
+                      backgroundColor: "#D9D9D9",
+                    }}
+                  />
+                  {pros.components}
+                </div>
+              </Col>
+            </Row>
+          </div>
         </div>
       </div>
+      <Footer />
     </ConfigProvider>
   );
 }
