@@ -22,40 +22,51 @@ import Timkiemnangcaoresult from "./pages/Timkiemnangcaoresult";
 import NoiDungTruyen from "./pages/NoiDungTruyen";
 import Login from "./pages/Login";
 import TruyenTheoDoi2 from "./pages/TruyenTheoDoi2";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+    },
+  },
+});
 
 //sau khi code xong component chinh lai font, router
 
 function App() {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#FF9040",
-        },
-      }}
-    >
-      <div className="App">
-        <Router>
-          <Routes>
-            <Route path="/" element={<Trangchu />} />
-            <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
-            <Route path="/doi-mat-khau" element={<Doimaukhau />} />
-            <Route path="/lich-su" element={<Lichsudoc />} />
-            <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
-            <Route path="/ket-qua" element={<Timkiemnangcaoresult />} />
-            <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
-            <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
-            <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
-            <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
-            <Route path="/diem-dich-truyen" element={<Diemthuong />} />
-            <Route path="/*" element={<Notfound />} />
-            <Route path="/dang-nhap" element={<Login />} />
-            <Route path="/truyen-theo-doi-2" element={<TruyenTheoDoi2 />} />
-            <Route path="/noi-dung" element={<NoiDungTruyen />} />
-          </Routes>
-        </Router>
-      </div>
-    </ConfigProvider>
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#FF9040",
+          },
+        }}
+      >
+        <div className="App">
+          <Router>
+            <Routes>
+              <Route path="/" element={<Trangchu />} />
+              <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
+              <Route path="/doi-mat-khau" element={<Doimaukhau />} />
+              <Route path="/lich-su" element={<Lichsudoc />} />
+              <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
+              <Route path="/ket-qua" element={<Timkiemnangcaoresult />} />
+              <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
+              <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
+              <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
+              <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
+              <Route path="/diem-dich-truyen" element={<Diemthuong />} />
+              <Route path="/*" element={<Notfound />} />
+              <Route path="/dang-nhap" element={<Login />} />
+              <Route path="/truyen-theo-doi-2" element={<TruyenTheoDoi2 />} />
+              <Route path="/noi-dung" element={<NoiDungTruyen />} />
+            </Routes>
+          </Router>
+        </div>
+      </ConfigProvider>
+    </QueryClientProvider>
   );
 }
 
