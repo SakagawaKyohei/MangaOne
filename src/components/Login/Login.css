@@ -32,6 +32,10 @@
     align-items: center ;
     flex-direction: column;
 }
+.loginBorder.signup
+{
+    height: 550px;
+}
 .MangaOne{
     color: white;
     font-size: 40px;

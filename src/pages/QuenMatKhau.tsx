@@ -5,7 +5,7 @@ import "../components/Login/Login.css";
 import logo from "../images/logos.svg";
 import { Link } from "react-router-dom";
 import { relative } from "path";
-function Login() {
+function QuenMatKhau() {
   const InputStyle: React.CSSProperties = {
     border: "none",
     borderRadius: 5,
@@ -149,4 +149,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default QuenMatKhau;

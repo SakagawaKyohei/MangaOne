@@ -23,6 +23,8 @@ import NoiDungTruyen from "./pages/NoiDungTruyen";
 import Login from "./pages/Login";
 import TruyenTheoDoi2 from "./pages/TruyenTheoDoi2";
 import { QueryClient, QueryClientProvider } from "react-query";
+import DangKy from "./pages/DangKy";
+import QuenMatKhau from "./pages/QuenMatKhau";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -62,6 +64,9 @@ function App() {
               <Route path="/dang-nhap" element={<Login />} />
               <Route path="/truyen-theo-doi-2" element={<TruyenTheoDoi2 />} />
               <Route path="/noi-dung" element={<NoiDungTruyen />} />
+              <Route path="/dang-ky" element={<DangKy />} />
+              <Route path="/noi-dung" element={<NoiDungTruyen />} />
+              <Route path="/quen-mat-khau" element={<QuenMatKhau />} />
             </Routes>
           </Router>
         </div>

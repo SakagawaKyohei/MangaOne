@@ -103,13 +103,20 @@ function Navbar() {
                   style={{ marginTop: 13 }}
                 />
 
-                <Dropdown menu={{ items }} trigger={["click"]}>
+                {/*<Dropdown menu={{ items }} trigger={["click"]} >
                   <Avatar
                     size={"large"}
                     src={chualogin}
                     style={{ marginTop: 10, marginLeft: 40 }}
                   ></Avatar>
-                </Dropdown>
+                </Dropdown>*/}
+                <Link to="/dang-nhap">
+                  <Avatar
+                    size={"large"}
+                    src={chualogin}
+                    style={{ marginTop: 10, marginLeft: 40 }}
+                  ></Avatar>
+                </Link>
               </Col>
             </Row>
           </div>

@@ -4,8 +4,7 @@ import { Button, Form, Input } from "antd";
 import "../components/Login/Login.css";
 import logo from "../images/logos.svg";
 import { Link } from "react-router-dom";
-import { relative } from "path";
-function Login() {
+function DangKy() {
   const InputStyle: React.CSSProperties = {
     border: "none",
     borderRadius: 5,
@@ -48,16 +47,16 @@ function Login() {
             height={60}
             style={{
               marginRight: 10,
-              marginTop: 50,
-              marginBottom: 40,
+              marginTop: 20,
+              marginBottom: 10,
               zIndex: 6,
             }}
           />
           <h1
             style={{
               fontSize: 30,
-              marginBottom: 55,
-              marginTop: 65,
+              marginBottom: 25,
+              marginTop: 35,
               marginRight: 10,
               zIndex: 6,
               color: "white",
@@ -66,7 +65,7 @@ function Login() {
             MangaOne
           </h1>
         </Link>
-        <div style={{ order: 2 }} className="loginBorder">
+        <div style={{ order: 2 }} className="loginBorder signup">
           <h1
             style={{
               color: "white",
@@ -75,7 +74,7 @@ function Login() {
               fontSize: 30,
             }}
           >
-            Đăng nhập
+            Đăng ký
           </h1>
           <Form>
             <div>
@@ -93,6 +92,20 @@ function Login() {
                 <Input type="password" name="MatKhau" style={InputStyle} />
                 <br />
               </div>
+              <div style={{ marginTop: 20 }}>
+                <span style={{ color: "white", fontSize: 15 }}>
+                  Xác nhận mật khẩu
+                </span>
+                <br />
+                <Input type="text" name="XacNhan" style={InputStyle} />
+                <br />
+              </div>
+              <div style={{ marginTop: 20 }}>
+                <span style={{ color: "white", fontSize: 15 }}>Email</span>
+                <br />
+                <Input type="text" name="Email" style={InputStyle} />
+                <br />
+              </div>
             </div>
             <div
               style={{
@@ -103,44 +116,18 @@ function Login() {
               }}
             >
               <Link
-                to="/dang-ky"
+                to="/dang-nhap"
                 style={{
                   color: "rgba(235, 190, 101, 1)",
                   textDecoration: "none",
                   fontSize: 15,
                 }}
               >
-                Đăng ký
-              </Link>
-              <Link
-                to="/quen-mat-khau"
-                style={{
-                  color: "rgba(235, 190, 101, 1)",
-                  textDecoration: "none",
-                  fontSize: 15,
-                }}
-              >
-                Quên mật khẩu
+                Quay lại đăng nhập {/*co thoi gian them back icon*/}
               </Link>
             </div>
             <Button className="font" style={ButtonStyle}>
-              Đăng nhập
-            </Button>
-            <br />
-            <Button
-              className="font GoogleIcon"
-              style={{
-                borderRadius: 0,
-                marginTop: 20,
-                border: "none",
-                fontSize: 17,
-                width: 350,
-                height: 33,
-                fontWeight: "bold",
-                backgroundColor: "rgba(221, 75, 57, 1)",
-              }}
-            >
-              Đăng nhập bằng Google
+              Đăng ký
             </Button>
           </Form>
         </div>
@@ -149,4 +136,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default DangKy;
