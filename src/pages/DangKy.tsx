@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import useCreateUser from "../hooks/useCreateUser";
 
 import { Button, Form, Input } from "antd";
 import "../components/Login/Login.css";
 import logo from "../images/logos.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import supabase from "../app/supabase";
 function DangKy() {
+  async function a() {
+    const { data, error } = await supabase.auth.getSession();
+    const b = data.session?.user.id;
+    console.log(b);
+  }
+  //class css
   const InputStyle: React.CSSProperties = {
     border: "none",
     borderRadius: 5,
@@ -28,6 +36,23 @@ function DangKy() {
     fontWeight: "bold",
     backgroundColor: "rgba(235, 190, 101, 1)",
   };
+  //class css
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+
+  const createUserMutation = useCreateUser({
+    email,
+    password,
+    username,
+  });
+
+  const navigate = useNavigate();
+  if (createUserMutation.isSuccess) {
+    navigate("/");
+  }
 
   return (
     <div className="Black">
@@ -83,13 +108,23 @@ function DangKy() {
                   Tên đăng nhập
                 </span>
                 <br />
-                <Input type="text" name="TenDangNhap" style={InputStyle} />
+                <Input
+                  type="text"
+                  name="TenDangNhap"
+                  style={InputStyle}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
                 <br />
               </div>
               <div style={{ marginTop: 20 }}>
                 <span style={{ color: "white", fontSize: 15 }}>Mật khẩu</span>
                 <br />
-                <Input type="password" name="MatKhau" style={InputStyle} />
+                <Input
+                  type="password"
+                  name="MatKhau"
+                  style={InputStyle}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
                 <br />
               </div>
               <div style={{ marginTop: 20 }}>
@@ -103,7 +138,12 @@ function DangKy() {
               <div style={{ marginTop: 20 }}>
                 <span style={{ color: "white", fontSize: 15 }}>Email</span>
                 <br />
-                <Input type="text" name="Email" style={InputStyle} />
+                <Input
+                  type="text"
+                  name="Email"
+                  style={InputStyle}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
                 <br />
               </div>
             </div>
@@ -126,8 +166,16 @@ function DangKy() {
                 Quay lại đăng nhập {/*co thoi gian them back icon*/}
               </Link>
             </div>
-            <Button className="font" style={ButtonStyle}>
-              Đăng ký
+            <Button
+              className="font"
+              style={ButtonStyle}
+              onClick={() => createUserMutation.mutate()}
+            >
+              {createUserMutation.error ? (
+                <span>{(createUserMutation.error as any).message}</span>
+              ) : (
+                <span>Sign up</span>
+              )}
             </Button>
           </Form>
         </div>

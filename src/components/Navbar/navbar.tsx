@@ -9,13 +9,13 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logos.svg";
 import chualogin from "../../images/Chualogin.svg";
 import noti from "../../images/Noti.svg";
-import { Input, Avatar, Row, Col } from "antd";
+import { Input, Avatar, Row, Col, Dropdown } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color
-
-import { Dropdown } from "antd";
+import { useUser } from "@supabase/auth-helpers-react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 function Navbar() {
+  const user = useUser();
   const { Search } = Input;
   const [slidebar, setslidebar] = useState(false);
   const showSlidebar = () => setslidebar(!slidebar);
@@ -102,21 +102,23 @@ function Navbar() {
                   fontSize={35}
                   style={{ marginTop: 13 }}
                 />
-
-                {/*<Dropdown menu={{ items }} trigger={["click"]} >
-                  <Avatar
-                    size={"large"}
-                    src={chualogin}
-                    style={{ marginTop: 10, marginLeft: 40 }}
-                  ></Avatar>
-                </Dropdown>*/}
-                <Link to="/dang-nhap">
-                  <Avatar
-                    size={"large"}
-                    src={chualogin}
-                    style={{ marginTop: 10, marginLeft: 40 }}
-                  ></Avatar>
-                </Link>
+                {user === null ? (
+                  <Link to="/dang-nhap">
+                    <Avatar
+                      size={"large"}
+                      src={chualogin}
+                      style={{ marginTop: 10, marginLeft: 40 }}
+                    ></Avatar>
+                  </Link>
+                ) : (
+                  <Dropdown menu={{ items }} trigger={["click"]}>
+                    <Avatar
+                      size={"large"}
+                      src={chualogin}
+                      style={{ marginTop: 10, marginLeft: 40 }}
+                    ></Avatar>
+                  </Dropdown>
+                )}
               </Col>
             </Row>
           </div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar/navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Chonngaunhien from "./pages/Chonngaunhien";
 import Doimaukhau from "./pages/Doimaukhau";
@@ -25,6 +24,7 @@ import TruyenTheoDoi2 from "./pages/TruyenTheoDoi2";
 import { QueryClient, QueryClientProvider } from "react-query";
 import DangKy from "./pages/DangKy";
 import QuenMatKhau from "./pages/QuenMatKhau";
+import supabase from "./app/supabase";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +37,7 @@ const queryClient = new QueryClient({
 //sau khi code xong component chinh lai font, router
 
 function App() {
+  const [user, setUser] = useState();
   return (
     <QueryClientProvider client={queryClient}>
       <ConfigProvider
