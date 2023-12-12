@@ -4,8 +4,7 @@ import MangaCart from "../components/MangaCart/MangaCart";
 import star from "../images/StarIcon.png";
 import TimeManga from "../components/TopTimeManga/TimeManga";
 import Top1time from "../components/TopTimeManga/Top1time";
-import Navbar from "../components/Navbar/navbar";
-import Footer from "../components/Footer/footer";
+
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
@@ -23,7 +22,6 @@ function XemNhieuNhat() {
       }}
     >
       <div>
-        <Navbar />
         <div
           style={{
             marginLeft: 35,
@@ -111,7 +109,6 @@ function XemNhieuNhat() {
           </Row>
         </div>
       </div>
-      <Footer />
     </ConfigProvider>
   );
 }

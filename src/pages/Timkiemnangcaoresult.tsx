@@ -1,8 +1,6 @@
 import { Col, ConfigProvider, Pagination, Row } from "antd";
 import React from "react";
 import AdvanceSearchCart from "../components/AdvanceSearchCart";
-import Navbar from "../components/Navbar/navbar";
-import Footer from "../components/Footer/footer";
 import { Link } from "react-router-dom";
 
 function Timkiemnangcaoresult() {
@@ -17,7 +15,6 @@ function Timkiemnangcaoresult() {
       }}
     >
       <div>
-        <Navbar />
         <div style={{ marginLeft: 35, marginRight: 40 }}>
           <p style={{ fontSize: 0.01 }}>.</p>
           <p
@@ -82,7 +79,6 @@ function Timkiemnangcaoresult() {
           </div>
         </div>
       </div>
-      <Footer />
     </ConfigProvider>
   );
 }

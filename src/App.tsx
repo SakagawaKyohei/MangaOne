@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import Chonngaunhien from "./pages/Chonngaunhien";
 import Doimaukhau from "./pages/Doimaukhau";
 import Lichsudoc from "./pages/LichSu";
@@ -24,7 +29,7 @@ import TruyenTheoDoi2 from "./pages/TruyenTheoDoi2";
 import { QueryClient, QueryClientProvider } from "react-query";
 import DangKy from "./pages/DangKy";
 import QuenMatKhau from "./pages/QuenMatKhau";
-import supabase from "./app/supabase";
+import Navbar from "./components/Navbar/Navbar";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +43,7 @@ const queryClient = new QueryClient({
 
 function App() {
   const [user, setUser] = useState();
+
   return (
     <QueryClientProvider client={queryClient}>
       <ConfigProvider
@@ -49,6 +55,7 @@ function App() {
       >
         <div className="App">
           <Router>
+            <Navbar />
             <Routes>
               <Route path="/" element={<Trangchu />} />
               <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
@@ -69,6 +76,7 @@ function App() {
               <Route path="/noi-dung" element={<NoiDungTruyen />} />
               <Route path="/quen-mat-khau" element={<QuenMatKhau />} />
             </Routes>
+            <Footer />
           </Router>
         </div>
       </ConfigProvider>

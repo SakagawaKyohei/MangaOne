@@ -1,8 +1,7 @@
 import React from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
 import { Button, Col, Form, Input, Pagination, Row } from "antd";
-import Navbar from "../components/Navbar/navbar";
-import Footer from "../components/Footer/footer";
+
 import MangaCart from "../components/MangaCart/MangaCart";
 import * as mdIcons from "react-icons/md";
 
@@ -22,7 +21,6 @@ function TruyenTheoDoi2() {
   };
   return (
     <div>
-      <Navbar />
       <p style={{ fontSize: 0.01 }}>.</p>
       <div style={{ marginBottom: 30, marginTop: 80 }}>
         <Row>
@@ -104,7 +102,6 @@ function TruyenTheoDoi2() {
           </Col>
         </Row>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -6,8 +6,6 @@ import star from "../images/StarIcon.png";
 import TimeManga from "../components/TopTimeManga/TimeManga";
 import Top1time from "../components/TopTimeManga/Top1time";
 import * as mdIcons from "react-icons/md";
-import Navbar from "../components/Navbar/navbar";
-import Footer from "../components/Footer/footer";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
@@ -25,7 +23,6 @@ function Trangchu() {
         },
       }}
     >
-      <Navbar />
       {/*top manga*/}
       <div
         style={{
@@ -156,7 +153,6 @@ function Trangchu() {
           </Col>
         </Row>
       </div>
-      <Footer />
     </ConfigProvider>
   );
 }

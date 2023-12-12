@@ -4,14 +4,10 @@ import content from "../images/content.svg";
 import { Button } from "antd";
 import ChapterList from "../components/ChapterList";
 import TextArea from "antd/es/input/TextArea";
-import Navbar from "../components/Navbar/navbar";
 import { useEffect, useState } from "react";
-import Navbar2 from "../components/Navbar/navbar2";
-import Footer from "../components/Footer/footer";
 function NoiDungTruyen() {
   return (
     <div>
-      <Navbar2 />
       <div style={{ height: 1750 }}>
         {/*can fix height*/}
         <div style={{ height: "40vh" }}>
@@ -198,7 +194,6 @@ function NoiDungTruyen() {
           ></img>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

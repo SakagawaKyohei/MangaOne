@@ -1,8 +1,6 @@
 import React from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
 import { Button, Col, Form, Input, Row } from "antd";
-import Navbar from "../components/Navbar/navbar";
-import Footer from "../components/Footer/footer";
 
 function Diemthuong() {
   const style2: React.CSSProperties = {
@@ -23,7 +21,6 @@ function Diemthuong() {
   };
   return (
     <div>
-      <Navbar />
       <p style={{ fontSize: 0.01 }}>.</p>
       <div style={{ marginBottom: 30, marginTop: 80 }}>
         <Row>
@@ -108,7 +105,6 @@ function Diemthuong() {
           </Col>
         </Row>
       </div>
-      <Footer />
     </div>
   );
 }

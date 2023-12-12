@@ -1,8 +1,6 @@
 import { Col, ConfigProvider, Row } from "antd";
 import React from "react";
 import AccountPage from "../../components/AccountPage/AccountPage";
-import Navbar from "../../components/Navbar/navbar";
-import Footer from "../../components/Footer/footer";
 interface Pros {
   title: string;
   title1: string;
@@ -22,7 +20,6 @@ function Template(pros: Pros) {
       }}
     >
       <div>
-        <Navbar />
         <div>
           <p style={{ fontSize: 0.01 }}>.</p>
           <div style={{ marginBottom: 30, marginTop: 80 }}>
@@ -57,7 +54,6 @@ function Template(pros: Pros) {
           </div>
         </div>
       </div>
-      <Footer />
     </ConfigProvider>
   );
 }
