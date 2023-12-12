@@ -19,13 +19,18 @@ const getUser = async ({ userId }: any) => {
   return data;
 };
 
-const userid = async () => {
+const GetCurrentUser = async () => {
   const { data, error } = await supabase.auth.getSession();
-  return data.session?.user.id;
+  if (error) {
+    throw new Error(error.message);
+  }
+  const userId = data.session?.user.id;
+  if (userId == null) {
+    throw new Error("User not found");
+  }
+  const userData = await getUser(userId);
+  return userData;
 };
-{
-  /*loi use user*/
-}
 export default function useUser() {
-  return useQuery("user", () => getUser(userid));
+  return useQuery("user", () => GetCurrentUser);
 }
