@@ -1,7 +1,13 @@
 import Template from "./Template";
 import { TruyenDaDangData } from "../Data/ComponentData";
+import useUser from "../../hooks/useUser";
+import NeedLogin from "../NeedLogin";
 
 function TruyenDaDang() {
+  const user = useUser();
+  if (user.data == null) {
+    return <NeedLogin />;
+  }
   return (
     <div>
       <Template

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import supabase from "../app/supabase";
+import supabase from "../../app/supabase";
 
 const logout = async () => {
   const { error } = await supabase.auth.signOut();

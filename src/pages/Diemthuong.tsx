@@ -1,6 +1,8 @@
 import React from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
 import { Button, Col, Form, Input, Row } from "antd";
+import useUser from "../hooks/useUser";
+import NeedLogin from "./NeedLogin";
 
 function Diemthuong() {
   const style2: React.CSSProperties = {
@@ -19,6 +21,10 @@ function Diemthuong() {
     display: "flex",
     flexDirection: "row",
   };
+  const user = useUser();
+  if (user.data == null) {
+    return <NeedLogin />;
+  }
   return (
     <div>
       <p style={{ fontSize: 0.01 }}>.</p>

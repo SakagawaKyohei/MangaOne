@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useCreateUser from "../hooks/useCreateUser";
+import useCreateUser from "../hooks/LoginSystem/useCreateUser";
 
 import { Button, Form, Input } from "antd";
 import "../components/Login/Login.css";
@@ -49,9 +49,8 @@ function DangKy() {
     username,
   });
 
-  const navigate = useNavigate();
   if (createUserMutation.isSuccess) {
-    navigate("/");
+    console.log("a");
   }
 
   return (

@@ -3,6 +3,8 @@ import AccountPage from "../components/AccountPage/AccountPage";
 import { Col, ConfigProvider, Form, Input, Row } from "antd";
 import chualogin from "../images/Chualogin.svg";
 import { InputInfo } from "./Data/InputData";
+import useUser from "../hooks/useUser";
+import NeedLogin from "./NeedLogin";
 
 function Trangcanhan() {
   const style: React.CSSProperties = {
@@ -17,6 +19,10 @@ function Trangcanhan() {
     display: "flex",
     flexDirection: "row",
   };
+  const user = useUser();
+  if (user.data == null) {
+    return <NeedLogin />;
+  }
 
   return (
     <div>

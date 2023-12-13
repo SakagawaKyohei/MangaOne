@@ -12,11 +12,19 @@ import noti from "../../images/Noti.svg";
 import { Input, Avatar, Row, Col, Dropdown } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color
-import { useUser } from "@supabase/auth-helpers-react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import React from "react";
+import useUser from "../../hooks/useUser";
+import supabase from "../../app/supabase";
 function Navbar1() {
   const user = useUser();
+  async function signout() {
+    const { error } = await supabase.auth.signOut();
+    window.location.reload();
+    if (error) {
+      throw error;
+    }
+  }
   const [p, setPath] = useState("");
   const loca = useLocation();
   React.useEffect(() => {
@@ -109,13 +117,15 @@ function Navbar1() {
                   fontSize={35}
                   style={{ marginTop: 13 }}
                 />
-                {user === null ? (
+                {user.data == null ? (
                   <Link to="/dang-nhap">
                     <Avatar
                       size={"large"}
                       src={chualogin}
                       style={{ marginTop: 10, marginLeft: 40 }}
-                    ></Avatar>
+                    >
+                      {" "}
+                    </Avatar>
                   </Link>
                 ) : (
                   <Dropdown menu={{ items }} trigger={["click"]}>
@@ -167,18 +177,20 @@ function Navbar1() {
                 <li key={index}>{TitleOrButton(item)}</li>
               </div>
             ))}
-            <li key={0} className="nav-title" style={{ paddingLeft: 0 }}>
-              <Link to="">
+            {user.data != null ? (
+              <li key={0} className="nav-title" style={{ paddingLeft: 0 }}>
                 <button
                   className="nav-title-button"
-                  onClick={showSlidebar}
+                  onClick={() => signout()}
                   style={{ paddingLeft: 35 }}
                 >
                   <IOIcons.IoLogOut style={{ fontSize: 25 }} />
                   <span>Đăng xuất</span>
                 </button>
-              </Link>
-            </li>
+              </li>
+            ) : (
+              <></>
+            )}
           </ul>
         </nav>
       </div>

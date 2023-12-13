@@ -2,6 +2,8 @@ import React from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
 import { Col, Form, Row } from "antd";
 import { InputChangePass } from "./Data/InputData";
+import useUser from "../hooks/useUser";
+import NeedLogin from "./NeedLogin";
 
 function Doimaukhau() {
   const style2: React.CSSProperties = {
@@ -11,6 +13,10 @@ function Doimaukhau() {
     display: "flex",
     flexDirection: "row",
   };
+  const user = useUser();
+  if (user.data == null) {
+    return <NeedLogin />;
+  }
   return (
     <div>
       <p style={{ fontSize: 0.01 }}>.</p>

@@ -1,13 +1,8 @@
 import { useQuery } from "react-query";
 import supabase from "../app/supabase";
 
-const getUser = async ({ userId }: any) => {
-  const { data, error } = await supabase
-    .from("users")
-    .select()
-    .eq("id", userId)
-    .single();
-
+const getUser = async (userId: string) => {
+  const { data, error } = await supabase.auth.getUser();
   if (error) {
     throw new Error(error.message);
   }
@@ -16,7 +11,7 @@ const getUser = async ({ userId }: any) => {
     throw new Error("User not found");
   }
 
-  return data;
+  return data.user;
 };
 
 const GetCurrentUser = async () => {
@@ -29,8 +24,9 @@ const GetCurrentUser = async () => {
     throw new Error("User not found");
   }
   const userData = await getUser(userId);
+  console.log(userData);
   return userData;
 };
 export default function useUser() {
-  return useQuery("user", () => GetCurrentUser);
+  return useQuery("user", () => GetCurrentUser());
 }

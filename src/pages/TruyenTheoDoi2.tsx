@@ -4,6 +4,8 @@ import { Button, Col, Form, Input, Pagination, Row } from "antd";
 
 import MangaCart from "../components/MangaCart/MangaCart";
 import * as mdIcons from "react-icons/md";
+import useUser from "../hooks/useUser";
+import NeedLogin from "./NeedLogin";
 
 function TruyenTheoDoi2() {
   const style2: React.CSSProperties = {
@@ -19,6 +21,10 @@ function TruyenTheoDoi2() {
     display: "flex",
     flexDirection: "row",
   };
+  const user = useUser();
+  if (user.data == null) {
+    return <NeedLogin />;
+  }
   return (
     <div>
       <p style={{ fontSize: 0.01 }}>.</p>

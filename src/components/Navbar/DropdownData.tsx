@@ -7,7 +7,6 @@ import { ImBook } from "react-icons/im";
 import { IoLogOut } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import supabase from "../../app/supabase";
-import { error } from "console";
 const style: React.CSSProperties = {
   marginTop: 5,
   marginBottom: 5,
@@ -18,6 +17,7 @@ const style: React.CSSProperties = {
 };
 async function signout() {
   const { error } = await supabase.auth.signOut();
+  window.location.reload();
   if (error) {
     throw error;
   }

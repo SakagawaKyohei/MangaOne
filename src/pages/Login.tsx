@@ -3,12 +3,10 @@ import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import "../components/Login/Login.css";
 import logo from "../images/logos.svg";
-import { Link } from "react-router-dom";
-import useLogin from "../hooks/useLogin";
-import useOLogin from "../hooks/useOLogin";
-import { useSession } from "@supabase/auth-helpers-react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import useLogin from "../hooks/LoginSystem/useLogin";
+import useOLogin from "../hooks/LoginSystem/useOLogin";
 import supabase from "../app/supabase";
-import useUser from "../hooks/useUser";
 function Login() {
   async function a() {
     const { data, error } = await supabase.auth.getSession();
@@ -43,7 +41,11 @@ function Login() {
   const [password, setPassword] = useState("");
   const loginMutation = useLogin({ email, password });
   const OloginMutation = useOLogin();
-  const session = useUser();
+  const navigate = useNavigate();
+  if (loginMutation.isSuccess) {
+    navigate("/");
+    //tim cach de navigate trang login khi da dang nhap sang home ma khong can load, khi dang o trang khac thi khong navigate
+  }
 
   return (
     <div className="Black">
@@ -82,20 +84,17 @@ function Login() {
           </h1>
         </Link>
         <div style={{ order: 2 }} className="loginBorder">
-          {session == null ? (
-            <h1
-              style={{
-                color: "white",
-                textAlign: "center",
-                marginTop: 10,
-                fontSize: 30,
-              }}
-            >
-              Đăng nhập
-            </h1>
-          ) : (
-            <div>a</div>
-          )}
+          <h1
+            style={{
+              color: "white",
+              textAlign: "center",
+              marginTop: 10,
+              fontSize: 30,
+            }}
+          >
+            Đăng nhập
+          </h1>
+
           <Form>
             <div>
               <div style={{ marginTop: 20 }}>
@@ -152,7 +151,11 @@ function Login() {
                 Quên mật khẩu
               </Link>
             </div>
-            <Button className="font" style={ButtonStyle} onClick={() => a}>
+            <Button
+              className="font"
+              style={ButtonStyle}
+              onClick={() => loginMutation.mutate()}
+            >
               Đăng nhập
             </Button>
             <br />
@@ -160,12 +163,6 @@ function Login() {
               <p className="text-sm mb-8 text-red-500">
                 {(loginMutation.error as any)?.message}
               </p>
-            )}
-            {loginMutation.isSuccess && (
-              <p className="text-sm mb-8 text-red-500">tc</p>
-            )}
-            {loginMutation.isLoading && (
-              <p className="text-sm mb-8 text-red-500">l</p>
             )}
             <Button
               className="font GoogleIcon"
