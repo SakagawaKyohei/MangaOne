@@ -10,10 +10,14 @@ const createUser = async (user: User) => {
   const { data, error: signUpError } = await supabase.auth.signUp({
     email: user.email,
     password: user.password,
+
     options: {
       data: {
-        first_name: "John",
-        age: 27,
+        ten: user.username,
+        avt: "",
+        stk: "",
+        sdt: "",
+        coin: 0,
       },
     },
   });

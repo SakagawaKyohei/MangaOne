@@ -22,6 +22,8 @@ function Navbar() {
         return <></>;
       case "/quen-mat-khau":
         return <></>;
+      case "/reset-password":
+        return <></>;
       default:
         return (
           <>

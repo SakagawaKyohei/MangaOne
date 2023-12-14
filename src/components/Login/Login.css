@@ -36,6 +36,11 @@
 {
     height: 550px;
 }
+.loginBorder.f
+{
+    height: 400px;
+    justify-content: end;
+}
 .MangaOne{
     color: white;
     font-size: 40px;

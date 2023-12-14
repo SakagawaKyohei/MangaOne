@@ -93,6 +93,10 @@ transition: 250ms;
     border: none;
 }
 
+.nav-title-button:hover{
+    background-color: #999999;
+}
+
 .nav-title{
     padding-left: 35px;
     font-weight: bold;
@@ -125,6 +129,9 @@ transition: 250ms;
 }
 
 .nav-title a :hover{
+    background-color: #999999;
+}
+.nav-title Button :hover{
     background-color: #999999;
 }
 .nav-menu-items{

@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import useUser from "../hooks/useUser";
 
 function Notfound() {
-  return <div>Không tìm thấy trang</div>;
+  const [data, setdata] = useState();
+  const user = useUser();
+  function a() {
+    console.log(user.data?.user_metadata);
+  }
+
+  return (
+    <div>
+      <button onClick={() => a()} style={{ paddingTop: 90 }}>
+        a
+      </button>
+    </div>
+  );
 }
 
 export default Notfound;

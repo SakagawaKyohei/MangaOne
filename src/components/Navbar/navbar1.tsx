@@ -9,7 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/logos.svg";
 import chualogin from "../../images/Chualogin.svg";
 import noti from "../../images/Noti.svg";
-import { Input, Avatar, Row, Col, Dropdown } from "antd";
+import { Input, Avatar, Row, Col, Dropdown, Button } from "antd";
 import { ConfigProvider } from "antd";
 //thêm màu cho selected color
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -18,6 +18,7 @@ import useUser from "../../hooks/useUser";
 import supabase from "../../app/supabase";
 function Navbar1() {
   const user = useUser();
+  const metadata = user.data?.app_metadata.picture;
   async function signout() {
     const { error } = await supabase.auth.signOut();
     window.location.reload();
@@ -25,6 +26,7 @@ function Navbar1() {
       throw error;
     }
   }
+
   const [p, setPath] = useState("");
   const loca = useLocation();
   React.useEffect(() => {
@@ -165,7 +167,10 @@ function Navbar1() {
                 <button
                   className="nav-title-button"
                   onClick={showSlidebar}
-                  style={{ paddingLeft: 35 }}
+                  style={{
+                    paddingLeft: 35,
+                    width: "170%",
+                  }}
                 >
                   <FaIcons.FaHome style={{ fontSize: 25 }} />
                   <span>Trang chủ</span>
@@ -182,7 +187,10 @@ function Navbar1() {
                 <button
                   className="nav-title-button"
                   onClick={() => signout()}
-                  style={{ paddingLeft: 35 }}
+                  style={{
+                    paddingLeft: 35,
+                    width: "90%",
+                  }}
                 >
                   <IOIcons.IoLogOut style={{ fontSize: 25 }} />
                   <span>Đăng xuất</span>

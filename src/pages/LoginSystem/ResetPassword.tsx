@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Button, Form, Input } from "antd";
-import "../components/Login/Login.css";
-import logo from "../images/logos.svg";
-import { Link } from "react-router-dom";
-import { relative } from "path";
-function QuenMatKhau() {
+import "../../components/Login/Login.css";
+import logo from "../../images/logos.svg";
+import { Link, useNavigate } from "react-router-dom";
+import useResetPassword from "../../hooks/PasswordManagement/useResetPassword";
+import { error } from "console";
+
+function ResetPassword() {
   const InputStyle: React.CSSProperties = {
     border: "none",
     borderRadius: 5,
@@ -30,6 +32,18 @@ function QuenMatKhau() {
     backgroundColor: "rgba(235, 190, 101, 1)",
   };
 
+  const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const resetpassword = useResetPassword(password);
+  if (resetpassword.isSuccess) {
+    navigate("/");
+  }
+  if (resetpassword.isError) {
+    return <>{(resetpassword.error as any).message}</>;
+  }
+  if (resetpassword.isLoading) {
+    return <>loading</>;
+  }
   return (
     <div className="Black">
       <div className="center1">
@@ -66,31 +80,30 @@ function QuenMatKhau() {
             MangaOne
           </h1>
         </Link>
-        <div style={{ order: 2 }} className="loginBorder">
+        <div style={{ order: 2 }} className="loginBorder f">
           <h1
             style={{
               color: "white",
               textAlign: "center",
-              marginTop: 10,
+
               fontSize: 30,
             }}
           >
-            Đăng nhập
+            Đổi mật khẩu
           </h1>
           <Form>
             <div>
               <div style={{ marginTop: 20 }}>
                 <span style={{ color: "white", fontSize: 15 }}>
-                  Tên đăng nhập
+                  Mật khẩu mới
                 </span>
                 <br />
-                <Input type="text" name="TenDangNhap" style={InputStyle} />
-                <br />
-              </div>
-              <div style={{ marginTop: 20 }}>
-                <span style={{ color: "white", fontSize: 15 }}>Mật khẩu</span>
-                <br />
-                <Input type="password" name="MatKhau" style={InputStyle} />
+                <Input
+                  type="text"
+                  name="TenDangNhap"
+                  style={InputStyle}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
                 <br />
               </div>
             </div>
@@ -101,52 +114,35 @@ function QuenMatKhau() {
                 display: "flex",
                 justifyContent: "space-between",
               }}
+            ></div>
+            <Button
+              className="font"
+              style={ButtonStyle}
+              onClick={() => resetpassword.mutate()}
             >
-              <Link
-                to="/dang-ky"
-                style={{
-                  color: "rgba(235, 190, 101, 1)",
-                  textDecoration: "none",
-                  fontSize: 15,
-                }}
-              >
-                Đăng ký
-              </Link>
-              <Link
-                to="/quen-mat-khau"
-                style={{
-                  color: "rgba(235, 190, 101, 1)",
-                  textDecoration: "none",
-                  fontSize: 15,
-                }}
-              >
-                Quên mật khẩu
-              </Link>
-            </div>
-            <Button className="font" style={ButtonStyle}>
-              Đăng nhập
+              Xác nhận
             </Button>
             <br />
-            <Button
-              className="font GoogleIcon"
-              style={{
-                borderRadius: 0,
-                marginTop: 20,
-                border: "none",
-                fontSize: 17,
-                width: 350,
-                height: 33,
-                fontWeight: "bold",
-                backgroundColor: "rgba(221, 75, 57, 1)",
-              }}
-            >
-              Đăng nhập bằng Google
-            </Button>
           </Form>
+          <div
+            style={{
+              marginTop: 60,
+              height: 70,
+              backgroundColor: "#2e2f37",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#b2b2b2",
+            }}
+          >
+            Mật khẩu mới sẽ được cập nhật
+            {/*chinh ui lai sau*/}
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default QuenMatKhau;
+export default ResetPassword;

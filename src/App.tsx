@@ -24,12 +24,14 @@ import ChapterDaDang from "./pages/QuanLyTruyen/ChapterDaDang";
 import { ConfigProvider } from "antd";
 import Timkiemnangcaoresult from "./pages/Timkiemnangcaoresult";
 import NoiDungTruyen from "./pages/NoiDungTruyen";
-import Login from "./pages/Login";
+import Login from "./pages/LoginSystem/Login";
 import TruyenTheoDoi2 from "./pages/TruyenTheoDoi2";
 import { QueryClient, QueryClientProvider } from "react-query";
-import DangKy from "./pages/DangKy";
-import QuenMatKhau from "./pages/QuenMatKhau";
+import DangKy from "./pages/LoginSystem/DangKy";
+import QuenMatKhau from "./pages/LoginSystem/QuenMatKhau";
 import Navbar from "./components/Navbar/Navbar";
+import AdminPage from "./pages/AdminPage";
+import ResetPassword from "./pages/LoginSystem/ResetPassword";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -73,8 +75,10 @@ function App() {
               <Route path="/truyen-theo-doi-2" element={<TruyenTheoDoi2 />} />
               <Route path="/noi-dung" element={<NoiDungTruyen />} />
               <Route path="/dang-ky" element={<DangKy />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="/noi-dung" element={<NoiDungTruyen />} />
               <Route path="/quen-mat-khau" element={<QuenMatKhau />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
             </Routes>
             <Footer />
           </Router>

@@ -10,7 +10,10 @@ function Footer() {
   }, [loca]);
   return (
     <>
-      {p == "/dang-nhap" || p == "/dang-ky" || p == "/quen-mat-khau" ? (
+      {p == "/dang-nhap" ||
+      p == "/dang-ky" ||
+      p == "/quen-mat-khau" ||
+      p == "/reset-password" ? (
         <></>
       ) : (
         <div className="containerF">Footer</div>

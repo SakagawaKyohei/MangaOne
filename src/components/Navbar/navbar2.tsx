@@ -169,7 +169,7 @@ function Navbar2() {
                 <button
                   className="nav-title-button"
                   onClick={showSlidebar}
-                  style={{ paddingLeft: 35 }}
+                  style={{ paddingLeft: 35, color: "black", width: "90%" }}
                 >
                   <FaIcons.FaHome style={{ fontSize: 25 }} />
                   <span>Trang chủ</span>
@@ -186,7 +186,7 @@ function Navbar2() {
                 <button
                   className="nav-title-button"
                   onClick={showSlidebar}
-                  style={{ paddingLeft: 35 }}
+                  style={{ paddingLeft: 35, width: "90%" }}
                 >
                   <IOIcons.IoLogOut style={{ fontSize: 25 }} />
                   <span>Đăng xuất</span>
