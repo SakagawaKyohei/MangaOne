@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
 import { Col, ConfigProvider, Form, Input, Row } from "antd";
 import chualogin from "../images/Chualogin.svg";
 import { InputInfo } from "./Data/InputData";
 import useUser from "../hooks/useUser";
 import NeedLogin from "./NeedLogin";
+import useUpdateMetadata from "../hooks/useUpdateMetadata";
 
 function Trangcanhan() {
   const style: React.CSSProperties = {
@@ -57,27 +58,7 @@ function Trangcanhan() {
               <div>
                 <Form>
                   <div>
-                    {InputInfo.map((items, index) => (
-                      <div
-                        style={{
-                          marginBottom: 20,
-                        }}
-                      >
-                        <Row>
-                          <Col span={24}>
-                            <div style={style2}>
-                              {items.title}
-                              {items.batbuoc ? (
-                                <p style={{ color: "red", marginLeft: 5 }}>*</p>
-                              ) : (
-                                <p></p>
-                              )}
-                            </div>
-                          </Col>
-                          <Col span={24}>{items.label}</Col>
-                        </Row>
-                      </div>
-                    ))}
+                    <InputInfo />
                   </div>
                 </Form>
               </div>

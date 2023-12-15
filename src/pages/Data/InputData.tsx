@@ -1,4 +1,4 @@
-import { Button, ConfigProvider, Input } from "antd";
+import { Button, Col, ConfigProvider, Input, Row } from "antd";
 import {
   LoadingOutlined,
   PlusOutlined,
@@ -9,6 +9,9 @@ import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
+import useUpdateMetadata from "../../hooks/useUpdateMetadata";
+import useUser from "../../hooks/useUser";
+import { get } from "http";
 function UpAnh() {
   const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
@@ -242,14 +245,232 @@ export const InputTruyenDaDang = [
   },
 ];
 
-export const InputInfo = [
-  {
+const style: React.CSSProperties = {
+  fontSize: 16,
+  paddingBottom: 10,
+};
+
+const style2: React.CSSProperties = {
+  marginBottom: 12,
+  marginRight: 20,
+  fontSize: 16,
+  display: "flex",
+  flexDirection: "row",
+};
+
+interface User {
+  avt: string;
+  ten: string;
+  ho: string;
+  sdt: string;
+  stk: string;
+  coin: number;
+}
+
+export function InputInfo() {
+  const getu = useUser();
+  const [ten, setten] = useState(getu.data?.user_metadata.ten);
+  const [ho, setho] = useState(getu.data?.user_metadata.ho);
+  const [sdt, setsdt] = useState(getu.data?.user_metadata.sdt);
+  const [stk, setstk] = useState(getu.data?.user_metadata.stk);
+  const [coin, setcoin] = useState(getu.data?.user_metadata.coin);
+  const [avt, setavt] = useState(getu.data?.user_metadata.avt);
+  const user = {
+    ten: ten,
+    ho: ho,
+    sdt: sdt,
+    stk: stk,
+    coin: coin,
+    avt: avt,
+  };
+  const updatemetadata = useUpdateMetadata(user);
+  if (updatemetadata.isSuccess) {
+    return <>tc</>;
+  }
+  if (updatemetadata.error) {
+    return <>tb</>;
+  }
+  return (
+    <>
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={style2}>
+              Email
+              {false ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={24}>
+            <Input style={input2} disabled value={getu.data?.email}></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={style2}>
+              Tên
+              {true ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={24}>
+            {" "}
+            <Input
+              style={input2}
+              onChange={(e) => setten(e.target.value)}
+              defaultValue={getu.data?.user_metadata.ten}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={style2}>
+              Họ
+              {false ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={24}>
+            <Input
+              style={input2}
+              onChange={(e) => setho(e.target.value)}
+              defaultValue={getu.data?.user_metadata.ho}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={style2}>
+              Điện thoại
+              {false ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={24}>
+            {" "}
+            <Input
+              style={input2}
+              onChange={(e) => setsdt(e.target.value)}
+              defaultValue={getu.data?.user_metadata.sdt}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={style2}>
+              Số tài khoản
+              {false ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={24}>
+            {" "}
+            <Input
+              style={input2}
+              defaultValue={getu.data?.user_metadata.stk}
+              onChange={(e) => setstk(e.target.value)}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={style2}>
+              {false ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={24}>
+            {" "}
+            <div style={{ display: "flex", justifyContent: "end" }}>
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 0,
+                  backgroundColor: "#FF9040",
+                  color: "white",
+                  fontSize: 18,
+                  height: 38,
+                  paddingTop: 20,
+                  paddingBottom: 20,
+                  paddingLeft: 30,
+                  paddingRight: 30,
+                }}
+                onClick={() => updatemetadata.mutate()}
+              >
+                <p>Cập nhật</p>
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </>
+  );
+}
+/* {
     title: "UserName",
     batbuoc: true,
     label: <Input style={input2} disabled></Input>,
   },
 
-  {
+*/ //thêm user name sau
+
+{
+  /*  {
     title: "Tên",
     batbuoc: true,
     label: <Input style={input2}></Input>,
@@ -301,6 +522,8 @@ export const InputInfo = [
     ),
   },
 ];
+*/
+}
 
 export const InputChangePass = [
   {

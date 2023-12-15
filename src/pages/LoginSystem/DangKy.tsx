@@ -4,7 +4,10 @@ import useCreateUser from "../../hooks/LoginSystem/useCreateUser";
 import { Button, Form, Input } from "antd";
 import "../../components/Login/Login.css";
 import logo from "../../images/logos.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+{
+  /*them rang buoc cho cac truong*/
+}
 function DangKy() {
   //class css
   const InputStyle: React.CSSProperties = {
@@ -32,6 +35,12 @@ function DangKy() {
   };
   //class css
 
+  {
+    /*Lỗi nếu gửi mail nhưng chưa xác nhận và đăng ký lần 2 bằng mail đó nhưng thông tin khác và xác nhận thì vẫn giữ thông tin lần đăng ký đầu tiên (ý tưởng: xóa mail lần đăng ký thứ nhất)
+  code UI để hiển thị thông báo đăng ký thành công, thất bại hoặc thiếu trường dữ liệu
+*/
+  }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -42,10 +51,6 @@ function DangKy() {
     password,
     username,
   });
-
-  if (createUserMutation.isSuccess) {
-    setName("Link kích hoạt đã được gửi đến mail của bạn");
-  }
 
   return (
     <div className="Black">
@@ -165,11 +170,7 @@ function DangKy() {
               style={ButtonStyle}
               onClick={() => createUserMutation.mutate()}
             >
-              {createUserMutation.error ? (
-                <span>{(createUserMutation.error as any).message}</span>
-              ) : (
-                <span>Sign up</span>
-              )}
+              <span>Đăng ký</span>
             </Button>
           </Form>
         </div>

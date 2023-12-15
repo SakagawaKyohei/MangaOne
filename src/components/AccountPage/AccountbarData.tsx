@@ -36,9 +36,4 @@ export const AccountbarData = [
     icon: <FaIcons.FaLock style={style} />,
     path: "/doi-mat-khau",
   },
-  {
-    title: "Đăng xuất",
-    icon: <FaIcons.FaSignOutAlt style={style} />,
-    path: "/thong-tin-tai-khoan",
-  },
 ];

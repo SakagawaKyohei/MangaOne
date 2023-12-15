@@ -14,6 +14,7 @@ const createUser = async (user: User) => {
     options: {
       data: {
         ten: user.username,
+        ho: "",
         avt: "",
         stk: "",
         sdt: "",

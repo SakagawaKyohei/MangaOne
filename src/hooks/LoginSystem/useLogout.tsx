@@ -14,6 +14,7 @@ export default function useLogOut() {
   return useMutation(() => logout(), {
     onSuccess: () => {
       queryClient.removeQueries();
+      window.location.reload();
     },
   });
 }
