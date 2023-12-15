@@ -12,6 +12,7 @@ import { useState } from "react";
 import useUpdateMetadata from "../../hooks/useUpdateMetadata";
 import useUser from "../../hooks/useUser";
 import { get } from "http";
+import useResetPassword from "../../hooks/PasswordManagement/useResetPassword";
 function UpAnh() {
   const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
@@ -525,47 +526,98 @@ export function InputInfo() {
 */
 }
 
-export const InputChangePass = [
-  {
+export function InputChangePass() {
+  const [password, setPassword] = useState("");
+  const resetpassword = useResetPassword(password);
+  if (resetpassword.isSuccess) {
+    return <>a</>;
+  }
+  if (resetpassword.isError) {
+    return <>{(resetpassword.error as any)?.message};</>;
+  }
+  return (
+    <>
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={style2}>
+              Mật khẩu mới
+              {true ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={24}>
+            <Input
+              style={input2}
+              onChange={(e) => setPassword(e.target.value)}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={style2}>
+              Xác nhận mật khẩu mới
+              {true ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={24}>
+            <Input style={input2}></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Row>
+          <Col span={24}>
+            <div style={{ display: "flex", justifyContent: "end" }}>
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 0,
+                  backgroundColor: "#FF9040",
+                  color: "white",
+                  fontSize: 18,
+                  height: 38,
+                  paddingTop: 20,
+                  paddingBottom: 20,
+                  paddingLeft: 30,
+                  paddingRight: 30,
+                }}
+                onClick={() => resetpassword.mutate()}
+              >
+                <p>Cập nhật</p>
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </>
+  );
+}
+/*{
     title: "Mật khẩu hiện tại",
     batbuoc: true,
     label: <Input style={input2}></Input>,
-  },
-
-  {
-    title: "Mật khẩu mới",
-    batbuoc: true,
-    label: <Input style={input2}></Input>,
-  },
-
-  {
-    title: "Xác nhận mật khẩu mới",
-    batbuoc: true,
-    label: <Input style={input2}></Input>,
-  },
-
-  {
-    label: (
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <Button
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 0,
-            backgroundColor: "#FF9040",
-            color: "white",
-            fontSize: 18,
-            height: 38,
-            paddingTop: 20,
-            paddingBottom: 20,
-            paddingLeft: 30,
-            paddingRight: 30,
-          }}
-        >
-          <p>Cập nhật</p>
-        </Button>
-      </div>
-    ),
-  },
-];
+  },*/

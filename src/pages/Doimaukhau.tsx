@@ -46,27 +46,7 @@ function Doimaukhau() {
               <div>
                 <Form>
                   <div>
-                    {InputChangePass.map((items, index) => (
-                      <div
-                        style={{
-                          marginBottom: 20,
-                        }}
-                      >
-                        <Row>
-                          <Col span={24}>
-                            <div style={style2}>
-                              {items.title}
-                              {items.batbuoc ? (
-                                <p style={{ color: "red", marginLeft: 5 }}>*</p>
-                              ) : (
-                                <p></p>
-                              )}
-                            </div>
-                          </Col>
-                          <Col span={24}>{items.label}</Col>
-                        </Row>
-                      </div>
-                    ))}
+                    <InputChangePass />
                   </div>
                 </Form>
               </div>
