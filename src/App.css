@@ -36,6 +36,12 @@ padding-right: 40px;
   /* Center horizontally*/
   margin: 0 auto;
 }
+.centeravt {
+  width: 7%;
+/*chinh lai center khong can dung div*/
+  /* Center horizontally*/
+  margin: 0 45% 0 41%;
+}
 .title{
   font-size: 30px;
   margin: 30px;

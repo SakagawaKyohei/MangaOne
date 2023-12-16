@@ -67,6 +67,7 @@ function App() {
               <Route path="/ket-qua" element={<Timkiemnangcaoresult />} />
               <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
               <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
+              <Route path="/them-moi-truyen" element={<ThemMoiTruyen />} />
               <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
               <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
               <Route path="/diem-dich-truyen" element={<Diemthuong />} />

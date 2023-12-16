@@ -1,6 +1,5 @@
 import { useMutation } from "react-query";
 import supabase from "../../app/supabase";
-import { useEffect } from "react";
 
 const login = async ({
   email,

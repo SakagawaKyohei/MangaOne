@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import AccountPage from "../components/AccountPage/AccountPage";
 import { Col, ConfigProvider, Form, Input, Row } from "antd";
 import chualogin from "../images/Chualogin.svg";
@@ -6,6 +6,7 @@ import { InputInfo } from "./Data/InputData";
 import useUser from "../hooks/useUser";
 import NeedLogin from "./NeedLogin";
 import useUpdateMetadata from "../hooks/useUpdateMetadata";
+import mangaimage from "../images/mangaimage.jpg";
 
 function Trangcanhan() {
   const style: React.CSSProperties = {
@@ -21,10 +22,20 @@ function Trangcanhan() {
     flexDirection: "row",
   };
   const user = useUser();
+
+  const inputref = useRef<HTMLInputElement | null>(null);
+  const [image, setImage] = useState<Blob | null>(null);
   if (user.data == null) {
     return <NeedLogin />;
   }
 
+  const handleImageChange = (e: any) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+  const handleInputClick = () => {
+    inputref.current?.click();
+  };
   return (
     <div>
       <p style={{ fontSize: 0.01 }}>.</p>
@@ -52,9 +63,43 @@ function Trangcanhan() {
               }}
             >
               <div style={style}>Ảnh đại diện</div>
-              <div className="center">
-                <img src={chualogin} style={{ height: 80, marginBottom: 30 }} />
+
+              <div className="centeravt">
+                <div onClick={handleInputClick}>
+                  {image == null ? (
+                    <img
+                      src={mangaimage}
+                      style={{
+                        marginRight: 10,
+                        marginTop: 25,
+                        height: 200,
+                        marginBottom: 50,
+                        borderRadius: "100%",
+                        width: 200,
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={URL.createObjectURL(image)}
+                      style={{
+                        marginRight: 10,
+                        marginTop: 25,
+                        height: 200,
+                        marginBottom: 50,
+                        borderRadius: "100%",
+                        width: 200,
+                      }}
+                    />
+                  )}
+                  <input
+                    type="file"
+                    onChange={handleImageChange}
+                    style={{ display: "none" }}
+                    ref={inputref}
+                  ></input>
+                </div>
               </div>
+
               <div>
                 <Form>
                   <div>

@@ -11,6 +11,7 @@ function AdminPage() {
   if (dele.isError) {
     return <>{(dele.error as any).message}</>;
   }
+  
   return (
     <>
       <div

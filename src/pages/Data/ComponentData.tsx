@@ -2,6 +2,7 @@ import { Button, Checkbox, Col, ConfigProvider, Flex, Input, Row } from "antd";
 import { InputThemMoiTruyen, InputThemMoiChuong } from "./InputData";
 import QLTComponent from "../QuanLyTruyen/QLTComponent";
 import QLCComponent from "../QuanLyTruyen/QLCComponent";
+import { Link } from "react-router-dom";
 
 const style: React.CSSProperties = {
   marginTop: 3,
@@ -176,23 +177,25 @@ export const TruyenDaDangData = {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "end" }}>
-        <Button
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 0,
-            backgroundColor: "#FF9040",
-            color: "white",
-            fontSize: 15,
-            height: 32,
-            marginBottom: 25,
-            marginTop: 25,
-            marginRight: 20,
-          }}
-        >
-          <p>Thêm chương</p>
-        </Button>
+        <Link to={"/them-moi-truyen"}>
+          <Button
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 0,
+              backgroundColor: "#FF9040",
+              color: "white",
+              fontSize: 15,
+              height: 32,
+              marginBottom: 25,
+              marginTop: 25,
+              marginRight: 20,
+            }}
+          >
+            <p>Thêm truyện</p>
+          </Button>
+        </Link>
         <Button
           style={{
             display: "flex",
@@ -207,7 +210,7 @@ export const TruyenDaDangData = {
             marginTop: 25,
           }}
         >
-          <p>Xóa chương</p>
+          <p>Xóa truyện</p>
         </Button>
       </div>
     </div>
