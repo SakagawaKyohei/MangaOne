@@ -1,4 +1,5 @@
 import { Button, Col, ConfigProvider, Input, Row } from "antd";
+import mangaimage from "../../images/mangaimage.jpg";
 import {
   LoadingOutlined,
   PlusOutlined,
@@ -8,11 +9,11 @@ import { message, Upload } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import TextArea from "antd/es/input/TextArea";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useUpdateMetadata from "../../hooks/useUpdateMetadata";
 import useUser from "../../hooks/useUser";
-import { get } from "http";
 import useResetPassword from "../../hooks/PasswordManagement/useResetPassword";
+import useUploadAvt from "../../hooks/Avt/useUploadAvt";
 function UpAnh() {
   const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
@@ -276,6 +277,12 @@ export function InputInfo() {
   const [stk, setstk] = useState(getu.data?.user_metadata.stk);
   const [coin, setcoin] = useState(getu.data?.user_metadata.coin);
   const [avt, setavt] = useState(getu.data?.user_metadata.avt);
+  const user1 = useUser();
+
+  const inputref = useRef<HTMLInputElement | null>(null);
+  const [image, setImage] = useState<Blob | null>(null);
+  const [change, setchange] = useState(false);
+  const upload = useUploadAvt(image);
   const user = {
     ten: ten,
     ho: ho,
@@ -286,10 +293,29 @@ export function InputInfo() {
   };
   const updatemetadata = useUpdateMetadata(user);
   if (updatemetadata.isSuccess) {
-    return <>tc</>;
+    console.log("tc");
   }
   if (updatemetadata.error) {
-    return <>tb</>;
+    console.log("tb");
+  }
+
+  const handleImageChange = (e: any) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setchange(true);
+  };
+  const handleInputClick = () => {
+    inputref.current?.click();
+  };
+  {
+    /*nghien cuu cach crop cho hop vi tri sau*/
+  }
+  if (upload.isError) {
+    return <>{(upload.error as any)?.message as string}</>;
+  }
+
+  if (upload.isSuccess) {
+    console.log("done");
   }
   return (
     <>
@@ -298,6 +324,43 @@ export function InputInfo() {
           marginBottom: 20,
         }}
       >
+        <div style={style}>Ảnh đại diện</div>
+
+        <div className="centeravt">
+          <div onClick={handleInputClick}>
+            {image == null ? (
+              <img
+                src={user1.data?.user_metadata.avt}
+                style={{
+                  marginRight: 10,
+                  marginTop: 25,
+                  height: 200,
+                  marginBottom: 50,
+                  borderRadius: "100%",
+                  width: 200,
+                }}
+              />
+            ) : (
+              <img
+                src={URL.createObjectURL(image)}
+                style={{
+                  marginRight: 10,
+                  marginTop: 25,
+                  height: 200,
+                  marginBottom: 50,
+                  borderRadius: "100%",
+                  width: 200,
+                }}
+              />
+            )}
+            <input
+              type="file"
+              onChange={handleImageChange}
+              style={{ display: "none" }}
+              ref={inputref}
+            ></input>
+          </div>
+        </div>
         <Row>
           <Col span={24}>
             <div style={style2}>
@@ -433,31 +496,36 @@ export function InputInfo() {
               )}
             </div>
           </Col>
-          <Col span={24}>
-            {" "}
-            <div style={{ display: "flex", justifyContent: "end" }}>
-              <Button
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 0,
-                  backgroundColor: "#FF9040",
-                  color: "white",
-                  fontSize: 18,
-                  height: 38,
-                  paddingTop: 20,
-                  paddingBottom: 20,
-                  paddingLeft: 30,
-                  paddingRight: 30,
-                }}
-                onClick={() => updatemetadata.mutate()}
-              >
-                <p>Cập nhật</p>
-              </Button>
-            </div>
-          </Col>
         </Row>
+        <Col span={24}>
+          {" "}
+          <div style={{ display: "flex", justifyContent: "end" }}>
+            <Button
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 0,
+                backgroundColor: "#FF9040",
+                color: "white",
+                fontSize: 18,
+                height: 38,
+                paddingTop: 20,
+                paddingBottom: 20,
+                paddingLeft: 30,
+                paddingRight: 30,
+              }}
+              onClick={() => {
+                updatemetadata.mutate();
+                if (change) {
+                  upload.mutate();
+                }
+              }}
+            >
+              <p>Cập nhật</p>
+            </Button>
+          </div>
+        </Col>
       </div>
     </>
   );

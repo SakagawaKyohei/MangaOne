@@ -15,13 +15,14 @@ const createUser = async (user: User) => {
       data: {
         ten: user.username,
         ho: "",
-        avt: "",
+        avt: "https://zrhhzqtaizoqtwmnzzbi.supabase.co/storage/v1/object/public/avt/public/Chualogin.svg",
         stk: "",
         sdt: "",
         coin: 0,
       },
     },
   });
+  //avt mac dinh, nua doi anh sau
 
   console.log(data.user?.email_confirmed_at);
   // User exists, but is fake. See https://supabase.com/docs/reference/javascript/auth-signup

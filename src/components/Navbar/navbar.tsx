@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar1 from "./navbar1";
 import Navbar2 from "./navbar2";
-import useUser from "../../hooks/useUser";
 
 function Navbar() {
   const [p, setPath] = useState("");

@@ -18,7 +18,10 @@ import { ConfigProvider } from "antd";
 //tìm cách gộp chung navbar, thay đổi trạng thái tùy theo độ cao chứ không phải giây
 
 import { Dropdown } from "antd";
+import useUser from "../../hooks/useUser";
 function Navbar2() {
+  const user = useUser();
+  const avt = user.data?.user_metadata.avt;
   const { Search } = Input;
   const [slidebar, setslidebar] = useState(false);
   const showSlidebar = () => setslidebar(!slidebar);
@@ -133,13 +136,25 @@ function Navbar2() {
                   className={navbarBackground ? "textnav t" : "texnav"}
                 />
 
-                <Dropdown menu={{ items }} trigger={["click"]}>
-                  <Avatar
-                    size={"large"}
-                    src={chualogin}
-                    style={{ marginTop: 10, marginLeft: 40 }}
-                  ></Avatar>
-                </Dropdown>
+                {user.data == null ? (
+                  <Link to="/dang-nhap">
+                    <Avatar
+                      size={"large"}
+                      src={chualogin}
+                      style={{ marginTop: 10, marginLeft: 40 }}
+                    >
+                      {" "}
+                    </Avatar>
+                  </Link>
+                ) : (
+                  <Dropdown menu={{ items }} trigger={["click"]}>
+                    <Avatar
+                      size={"large"}
+                      src={avt}
+                      style={{ marginTop: 10, marginLeft: 40 }}
+                    ></Avatar>
+                  </Dropdown>
+                )}
               </Col>
             </Row>
           </div>
