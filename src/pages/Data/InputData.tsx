@@ -405,6 +405,7 @@ export function InputInfo() {
               onChange={(e) => setten(e.target.value)}
               defaultValue={getu.data?.user_metadata.ten}
             ></Input>
+            {/*trường name bắt buộc không được để trống nếu không sẽ gây lỗi undefined*/}
           </Col>
         </Row>
       </div>
