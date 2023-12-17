@@ -25,16 +25,18 @@ const style: React.CSSProperties = {
   flexDirection: "row",
   color: "black",
 };
-async function signout() {
-  const { error } = await supabase.auth.signOut();
-  window.location.reload();
-  if (error) {
-    throw error;
-  }
-}
 function Navbar1() {
   const user = useUser();
-  const avt = user.data?.user_metadata.avt;
+  let avt = user.data?.user_metadata.avt;
+  let ten = user.data?.user_metadata.ten;
+  let ho = user.data?.user_metadata.ho;
+  if (avt == null) {
+    avt =
+      "https://zrhhzqtaizoqtwmnzzbi.supabase.co/storage/v1/object/public/avt/public/Chualogin.svg";
+    ho = "Tên ";
+    ten = "người dùng";
+    //avt=null => login bằng gg (login bằng email có truyền data)
+  }
 
   const items: MenuProps["items"] = [
     {
@@ -61,9 +63,7 @@ function Navbar1() {
               marginRight: 75,
             }}
           ></Avatar>
-          <h3 style={{ marginBottom: 15, fontSize: 19 }}>
-            {user.data?.user_metadata.ten + " " + user.data?.user_metadata.ho}
-          </h3>
+          <h3 style={{ marginBottom: 15, fontSize: 19 }}>{ho + " " + ten}</h3>
           <div
             className="line"
             style={{ width: "100%", background: "rgba(0, 0, 0, 0.12)" }}

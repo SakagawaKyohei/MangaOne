@@ -277,6 +277,11 @@ export function InputInfo() {
   const [stk, setstk] = useState(getu.data?.user_metadata.stk);
   const [coin, setcoin] = useState(getu.data?.user_metadata.coin);
   const [avt, setavt] = useState(getu.data?.user_metadata.avt);
+  if (avt == null) {
+    setavt(
+      "https://zrhhzqtaizoqtwmnzzbi.supabase.co/storage/v1/object/public/avt/public/Chualogin.svg"
+    );
+  }
   const user1 = useUser();
 
   const inputref = useRef<HTMLInputElement | null>(null);
@@ -330,7 +335,7 @@ export function InputInfo() {
           <div onClick={handleInputClick}>
             {image == null ? (
               <img
-                src={user1.data?.user_metadata.avt}
+                src={avt}
                 style={{
                   marginRight: 10,
                   marginTop: 25,
