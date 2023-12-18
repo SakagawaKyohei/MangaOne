@@ -50,8 +50,16 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ConfigProvider
         theme={{
+          components: {
+            Select: {
+              /* here is your component tokens */ borderRadius: 0,
+              fontSize: 12,
+            },
+          },
           token: {
             colorPrimary: "#FF9040",
+            fontFamily: "Arial, Helvetica, sans-seri",
+            fontSize: 14,
           },
         }}
       >

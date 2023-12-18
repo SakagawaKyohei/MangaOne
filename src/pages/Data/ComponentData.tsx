@@ -15,36 +15,7 @@ const style: React.CSSProperties = {
 export const ThemMoiTruyenData = {
   label: (
     <div style={{ width: "92%" }}>
-      {InputThemMoiTruyen.map((items, index) => (
-        <div
-          style={{
-            marginTop: 25,
-            marginBottom: 25,
-          }}
-        >
-          <Row>
-            <Col
-              span={6}
-              style={{
-                display: "flex",
-                alignItems: "end",
-                flexDirection: "column",
-                paddingTop: 4,
-              }}
-            >
-              <div style={style}>
-                <p style={{ fontSize: 16 }}>{items.title}</p>
-                {items.batbuoc ? (
-                  <p style={{ color: "red", marginLeft: 5 }}>*</p>
-                ) : (
-                  <p></p>
-                )}
-              </div>
-            </Col>
-            <Col span={18}>{items.label}</Col>
-          </Row>
-        </div>
-      ))}
+      <InputThemMoiTruyen />
     </div>
   ),
   title: "THÊM MỚI TRUYỆN",

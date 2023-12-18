@@ -37,6 +37,9 @@ function Navbar1() {
     ten = "người dùng";
     //avt=null => login bằng gg (login bằng email có truyền data)
   }
+  if (ho == null) {
+    ho = "";
+  }
 
   const items: MenuProps["items"] = [
     {
