@@ -51,6 +51,10 @@ function App() {
       <ConfigProvider
         theme={{
           components: {
+            Input: {
+              hoverBorderColor: "#FF9040",
+              activeBorderColor: "#FF9040",
+            },
             Select: {
               /* here is your component tokens */ borderRadius: 0,
               fontSize: 12,

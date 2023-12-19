@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "react-query";
-import supabase from "../app/supabase";
+import supabase from "../../app/supabase";
 import { v4 as uuidv4 } from "uuid";
-import useUser from "./useUser";
+import useUser from "../useUser";
 
 interface Manga {
   ten: string;

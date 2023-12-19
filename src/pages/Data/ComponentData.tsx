@@ -3,6 +3,9 @@ import { InputThemMoiTruyen, InputThemMoiChuong } from "./InputData";
 import QLTComponent from "../QuanLyTruyen/QLTComponent";
 import QLCComponent from "../QuanLyTruyen/QLCComponent";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import useGetMangaTrans from "../../hooks/GetMangaInfo/useGetMangaTrans";
+import useUser from "../../hooks/useUser";
 
 const style: React.CSSProperties = {
   marginTop: 3,
@@ -60,8 +63,13 @@ export const ThemMoiChapterData = {
   title1: "Tên truyện - Thêm mới chương",
 };
 
-export const TruyenDaDangData = {
-  label: (
+//tất cả thành phần của truyện đã đăng bao gồm cả danh sách truyện đã đăng và khung và search bar
+export function TruyenDaDangData() {
+  const user = useUser();
+  const manga = useGetMangaTrans(user.data?.id as string);
+
+  const [checkall, setcheckall] = useState(false);
+  return (
     <div style={{ width: "92%" }}>
       <Row style={{ paddingTop: 25, paddingBottom: 25 }}>
         <Col offset={10} span={10}>
@@ -88,6 +96,9 @@ export const TruyenDaDangData = {
               height: 32,
               width: "100%",
             }}
+            onClick={() => {
+              console.log(manga.data);
+            }}
           >
             <p>Tìm kiếm</p>
           </Button>
@@ -97,7 +108,10 @@ export const TruyenDaDangData = {
         <div style={{ marginLeft: 20, margin: 5, fontSize: 15 }}>
           <Row style={{ marginBottom: 10, marginTop: 10 }}>
             <Col span={5}>
-              <Checkbox style={{ marginLeft: 10 }}>
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                onChange={() => setcheckall(!checkall)}
+              >
                 <p style={{ fontSize: 15 }}>Tên truyện</p>
               </Checkbox>
             </Col>
@@ -138,13 +152,17 @@ export const TruyenDaDangData = {
               <div style={{ paddingLeft: 10, fontSize: 15 }}>Số lượt xem</div>
             </Col>
           </Row>
-          <QLTComponent
-            tentruyen={"Conan"}
-            sochuong={3}
-            nguoidang={"Kyohei"}
-            soluotxem={1000}
-            manga={false}
-          />
+          {manga.data?.map((item) => (
+            <>
+              <QLTComponent
+                tentruyen={item.name}
+                mangaid={item.id}
+                nguoidang={user.data?.user_metadata.ten}
+                soluotxem={1000}
+                checkall={checkall}
+              />
+            </>
+          ))}
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "end" }}>
@@ -185,10 +203,8 @@ export const TruyenDaDangData = {
         </Button>
       </div>
     </div>
-  ),
-  title: "TRUYỆN ĐÃ ĐĂNG",
-  title1: "Danh sách truyện đã đăng",
-};
+  );
+}
 
 export const ChapterDaDangData = {
   label: (

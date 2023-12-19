@@ -15,7 +15,7 @@ import useUser from "../../hooks/useUser";
 import useResetPassword from "../../hooks/PasswordManagement/useResetPassword";
 import useUploadAvt from "../../hooks/Avt/useUploadAvt";
 import { Theloai } from "./TheLoai";
-import useCreateManga from "../../hooks/useCreateManga";
+import useCreateManga from "../../hooks/MangaManagement/useCreateManga";
 import { error } from "console";
 const input: React.CSSProperties = {
   fontSize: 16,

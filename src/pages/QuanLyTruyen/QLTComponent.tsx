@@ -1,16 +1,21 @@
 import { Checkbox, Col, Row } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import capnhat from "../../images/CapNhat.svg";
 import danhsach from "../../images/DanhSach.svg";
+import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
 interface Pros {
   tentruyen: string;
-  sochuong: number;
+  mangaid: string;
   nguoidang: string;
   soluotxem: number;
-  manga: boolean;
+  checkall: boolean;
 }
 
+//component cho mỗi truyện đã đăng
+
 function QLTComponent(pros: Pros) {
+  const chapter = useGetChapter(pros.mangaid);
+  const [checked, setchecked] = useState(pros.checkall);
   return (
     <div style={{ backgroundColor: "rgba(217, 217, 217, 0.20)" }}>
       <Row
@@ -23,7 +28,11 @@ function QLTComponent(pros: Pros) {
         }}
       >
         <Col span={5}>
-          <Checkbox style={{ marginLeft: 10 }}>
+          <Checkbox
+            style={{ marginLeft: 10 }}
+            checked={checked}
+            onChange={() => setchecked(!checked)}
+          >
             <p style={{ fontSize: 15 }}>{pros.tentruyen}</p>
           </Checkbox>
         </Col>
@@ -38,7 +47,7 @@ function QLTComponent(pros: Pros) {
             fontFamily: "Arial, Helvetica, sans-serif",
           }}
         >
-          {pros.sochuong}
+          {chapter.data?.count}
         </Col>
         <Col
           span={3}
