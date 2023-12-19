@@ -152,7 +152,7 @@ export function TruyenDaDangData() {
               <div style={{ paddingLeft: 10, fontSize: 15 }}>Số lượt xem</div>
             </Col>
           </Row>
-          {manga.data?.map((item) => (
+          {manga.data?.map((item, index) => (
             <>
               <QLTComponent
                 tentruyen={item.name}
@@ -160,6 +160,7 @@ export function TruyenDaDangData() {
                 nguoidang={user.data?.user_metadata.ten}
                 soluotxem={1000}
                 checkall={checkall}
+                keyy={index.toString()}
               />
             </>
           ))}
@@ -281,7 +282,6 @@ export const ChapterDaDangData = {
           </Row>
           <QLCComponent
             tentruyen={"Chapter 1"}
-            sochuong={3}
             nguoidang={"Kyohei"}
             soluotxem={1000}
             manga={false}

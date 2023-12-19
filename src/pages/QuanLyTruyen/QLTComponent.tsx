@@ -9,13 +9,22 @@ interface Pros {
   nguoidang: string;
   soluotxem: number;
   checkall: boolean;
+  keyy: string;
 }
 
 //component cho mỗi truyện đã đăng
 
 function QLTComponent(pros: Pros) {
-  const chapter = useGetChapter(pros.mangaid);
+  const chapter = useGetChapter(pros.mangaid, pros.keyy);
+  console.log(pros.keyy); //undefined?
+  const [prev, setprev] = useState(false);
   const [checked, setchecked] = useState(pros.checkall);
+  if (prev != pros.checkall) {
+    setchecked(pros.checkall);
+    setprev(pros.checkall);
+    console.log(pros.mangaid);
+    console.log(chapter.data?.data);
+  }
   return (
     <div style={{ backgroundColor: "rgba(217, 217, 217, 0.20)" }}>
       <Row

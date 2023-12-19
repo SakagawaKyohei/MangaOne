@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import supabase from "../../app/supabase";
+import { v4 as uuidv4 } from "uuid";
 
 //tìm hiểu thêm về rls và tăng bảo mật
 
@@ -19,6 +20,6 @@ const GetChapter = async (mangaId: string) => {
   console.log(count);
   return { data, count };
 };
-export default function useGetChapter(mangaId: string) {
-  return useQuery("chapter", () => GetChapter(mangaId));
+export default function useGetChapter(mangaId: string, key: string) {
+  return useQuery(key, () => GetChapter(mangaId));
 }

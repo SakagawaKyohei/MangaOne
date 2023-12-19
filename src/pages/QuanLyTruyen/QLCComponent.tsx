@@ -1,9 +1,8 @@
 import { Checkbox, Col, Row } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import capnhat from "../../images/CapNhat.svg";
 interface Pros {
   tentruyen: string;
-  sochuong: number;
   nguoidang: string;
   soluotxem: number;
   manga: boolean;
