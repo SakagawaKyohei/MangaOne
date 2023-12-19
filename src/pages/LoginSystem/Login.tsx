@@ -8,11 +8,6 @@ import useLogin from "../../hooks/LoginSystem/useLogin";
 import useOLogin from "../../hooks/LoginSystem/useOLogin";
 import supabase from "../../app/supabase";
 function Login() {
-  async function a() {
-    const { data, error } = await supabase.auth.getSession();
-    const b = data.session?.user.id;
-    console.log(b);
-  }
   const InputStyle: React.CSSProperties = {
     border: "none",
     borderRadius: 5,

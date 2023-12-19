@@ -69,17 +69,22 @@ export function TruyenDaDangData() {
   const manga = useGetMangaTrans(user.data?.id as string);
 
   const [checkall, setcheckall] = useState(false);
+  const [search, setsearch] = useState("");
+  const [search1, setsearch1] = useState(""); //khi bấm tìm kiếm mới xử lý search
   return (
     <div style={{ width: "92%" }}>
       <Row style={{ paddingTop: 25, paddingBottom: 25 }}>
         <Col offset={10} span={10}>
           <Input
-            placeholder="Nhập từ khóa"
+            placeholder="Nhập tên truyện"
             style={{
               borderRadius: 5,
               width: "100%",
               height: 32,
               fontSize: 15,
+            }}
+            onChange={(e) => {
+              setsearch(e.target.value);
             }}
           />
         </Col>
@@ -97,7 +102,7 @@ export function TruyenDaDangData() {
               width: "100%",
             }}
             onClick={() => {
-              console.log(manga.data);
+              setsearch1(search);
             }}
           >
             <p>Tìm kiếm</p>
@@ -152,18 +157,24 @@ export function TruyenDaDangData() {
               <div style={{ paddingLeft: 10, fontSize: 15 }}>Số lượt xem</div>
             </Col>
           </Row>
-          {manga.data?.map((item, index) => (
-            <>
-              <QLTComponent
-                tentruyen={item.name}
-                mangaid={item.id}
-                nguoidang={user.data?.user_metadata.ten}
-                soluotxem={1000}
-                checkall={checkall}
-                keyy={index.toString()}
-              />
-            </>
-          ))}
+          {manga.data
+            ?.filter((item) => {
+              return search1.toLowerCase() == ""
+                ? item
+                : item.name.toLowerCase().includes(search1);
+            })
+            .map((item, index) => (
+              <>
+                <QLTComponent
+                  tentruyen={item.name}
+                  mangaid={item.id}
+                  nguoidang={user.data?.user_metadata.ten}
+                  soluotxem={1000}
+                  checkall={checkall}
+                  keyy={index.toString()}
+                />
+              </>
+            ))}
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "end" }}>
