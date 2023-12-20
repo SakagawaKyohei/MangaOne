@@ -1,9 +1,8 @@
 import { useMutation, useQueryClient } from "react-query";
 import supabase from "../../app/supabase";
 
-const deleteManga = async (id: any) => {
+const deleteManga = async (id: string[]) => {
   // Comment chapter later
-  id = ["391f863f-a2ff-4027-aae0-cfb5ba69cd2e"];
   for (const mangaId of id) {
     try {
       const { error: chapterError } = await supabase

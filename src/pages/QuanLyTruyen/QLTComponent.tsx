@@ -10,6 +10,7 @@ interface Pros {
   soluotxem: number;
   checkall: boolean;
   keyy: string;
+  setmangaid: any;
 }
 
 //component cho mỗi truyện đã đăng
@@ -18,12 +19,12 @@ function QLTComponent(pros: Pros) {
   const chapter = useGetChapter(pros.mangaid, pros.keyy);
   const [prev, setprev] = useState(false);
   const [checked, setchecked] = useState(pros.checkall);
+
   if (prev != pros.checkall) {
     setchecked(pros.checkall);
     setprev(pros.checkall);
-    console.log(pros.mangaid);
-    console.log(chapter.data?.data);
   }
+
   return (
     <div style={{ backgroundColor: "rgba(217, 217, 217, 0.20)" }}>
       <Row
@@ -39,7 +40,20 @@ function QLTComponent(pros: Pros) {
           <Checkbox
             style={{ marginLeft: 10 }}
             checked={checked}
-            onChange={() => setchecked(!checked)}
+            onChange={(e) => {
+              setchecked(!checked);
+              if (e.target.checked) {
+                pros.setmangaid((prevArray: any) => [
+                  ...prevArray,
+                  pros.mangaid,
+                ]);
+              }
+              if (!e.target.checked) {
+                pros.setmangaid((prevArray: any[]) =>
+                  prevArray.filter((item) => item !== pros.mangaid)
+                );
+              }
+            }}
           >
             <p style={{ fontSize: 15 }}>{pros.tentruyen}</p>
           </Checkbox>
@@ -84,7 +98,6 @@ function QLTComponent(pros: Pros) {
           </div>
         </Col>
         <Col span={4}>
-          {" "}
           <img src={capnhat} style={{ marginLeft: 35, height: 18 }} />
           <img
             src={danhsach}

@@ -69,10 +69,22 @@ export const ThemMoiChapterData = {
 export function TruyenDaDangData() {
   const user = useUser();
   const manga = useGetMangaTrans(user.data?.id as string);
-  const [mangaid, setmangaid] = useState([""]); //id manga duoc chon de delete
+  const [mangaid, setmangaid] = useState<string[]>([]); //id manga duoc chon de delete
+  const addValue = (value: string) => {
+    // Thêm giá trị vào mảng
+    setmangaid((prevArray) => [...prevArray, value]);
+  };
+
+  const removeValue = (value: string) => {
+    // Xóa giá trị khỏi mảng
+    setmangaid((prevArray) => prevArray.filter((item) => item !== value));
+  };
   const deletemanga = useDeleteManga(mangaid);
   if (deletemanga.isError) {
     console.log((deletemanga.error as any).message);
+  }
+  if (deletemanga.isSuccess) {
+    window.location.reload(); //tìm cách mỗi lần thay đổi data trong database là load chứ không cần ra lệnh reload
   }
 
   const [checkall, setcheckall] = useState(false);
@@ -110,6 +122,7 @@ export function TruyenDaDangData() {
             }}
             onClick={() => {
               setsearch1(search);
+              console.log(mangaid);
             }}
           >
             <p>Tìm kiếm</p>
@@ -130,7 +143,37 @@ export function TruyenDaDangData() {
             <Col span={5}>
               <Checkbox
                 style={{ marginLeft: 10 }}
-                onChange={() => setcheckall(!checkall)}
+                onChange={(e) => {
+                  setcheckall(!checkall);
+                  if (e.target.checked) {
+                    {
+                      manga.data
+                        ?.filter((item) => {
+                          return search1.toLowerCase() == ""
+                            ? item
+                            : item.name.toLowerCase().includes(search1);
+                        })
+                        .map((item, index) => removeValue(item.id)); //xóa tất cả id đang được chọn và chọn tất cả
+                      manga.data
+                        ?.filter((item) => {
+                          return search1.toLowerCase() == ""
+                            ? item
+                            : item.name.toLowerCase().includes(search1);
+                        })
+                        .map((item, index) => addValue(item.id));
+                    }
+                  } else {
+                    {
+                      manga.data
+                        ?.filter((item) => {
+                          return search1.toLowerCase() == ""
+                            ? item
+                            : item.name.toLowerCase().includes(search1);
+                        })
+                        .map((item, index) => removeValue(item.id));
+                    }
+                  }
+                }}
               >
                 <p style={{ fontSize: 15 }}>Tên truyện</p>
               </Checkbox>
@@ -187,6 +230,7 @@ export function TruyenDaDangData() {
                   soluotxem={1000}
                   checkall={checkall}
                   keyy={index.toString()}
+                  setmangaid={setmangaid}
                 />
               </>
             ))}
