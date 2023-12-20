@@ -58,6 +58,7 @@ function App() {
               /* here is your component tokens */ borderRadius: 0,
               fontSize: 12,
             },
+            Tooltip: { fontSize: 12 },
           },
           token: {
             colorPrimary: "#FF9040",
@@ -78,6 +79,7 @@ function App() {
               <Route path="/ket-qua" element={<Timkiemnangcaoresult />} />
               <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
               <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
+              <Route path="/truyen-da-dang/:id" element={<ChapterDaDang />} />
               <Route path="/them-moi-truyen" element={<ThemMoiTruyen />} />
               <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
               <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />

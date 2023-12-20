@@ -130,7 +130,7 @@ export function TruyenDaDangData() {
         </Col>
       </Row>
       <div
-        className="khung"
+        className="khung2"
         style={{
           marginLeft: "8%",
           height: "50vh",
@@ -278,18 +278,44 @@ export function TruyenDaDangData() {
   );
 }
 
-export const ChapterDaDangData = {
-  label: (
+export function ChapterDaDangData() {
+  const user = useUser();
+  const manga = useGetMangaTrans(user.data?.id as string);
+  const [mangaid, setmangaid] = useState<string[]>([]); //id manga duoc chon de delete
+  const addValue = (value: string) => {
+    // Thêm giá trị vào mảng
+    setmangaid((prevArray) => [...prevArray, value]);
+  };
+
+  const removeValue = (value: string) => {
+    // Xóa giá trị khỏi mảng
+    setmangaid((prevArray) => prevArray.filter((item) => item !== value));
+  };
+  const deletemanga = useDeleteManga(mangaid);
+  if (deletemanga.isError) {
+    console.log((deletemanga.error as any).message);
+  }
+  if (deletemanga.isSuccess) {
+    window.location.reload(); //tìm cách mỗi lần thay đổi data trong database là load chứ không cần ra lệnh reload
+  }
+
+  const [checkall, setcheckall] = useState(false);
+  const [search, setsearch] = useState("");
+  const [search1, setsearch1] = useState(""); //khi bấm tìm kiếm mới xử lý search
+  return (
     <div style={{ width: "92%" }}>
       <Row style={{ paddingTop: 25, paddingBottom: 25 }}>
         <Col offset={10} span={10}>
           <Input
-            placeholder="Nhập từ khóa"
+            placeholder="Nhập tên chương"
             style={{
               borderRadius: 5,
               width: "100%",
               height: 32,
               fontSize: 15,
+            }}
+            onChange={(e) => {
+              setsearch(e.target.value);
             }}
           />
         </Col>
@@ -306,77 +332,142 @@ export const ChapterDaDangData = {
               height: 32,
               width: "100%",
             }}
+            onClick={() => {
+              setsearch1(search);
+              console.log(mangaid);
+            }}
           >
             <p>Tìm kiếm</p>
           </Button>
         </Col>
       </Row>
-      <div className="khung" style={{ marginLeft: "8%", height: "50vh" }}>
-        <div style={{ marginLeft: 20, margin: 5, fontSize: 16 }}>
+      <div
+        className="khung2"
+        style={{
+          marginLeft: "8%",
+          height: "50vh",
+
+          overflow: "hidden",
+          overflowY: "auto",
+        }}
+      >
+        <div style={{ marginLeft: 20, margin: 5, fontSize: 15 }}>
           <Row style={{ marginBottom: 10, marginTop: 10 }}>
             <Col span={5}>
-              <Checkbox style={{ marginLeft: 10, fontSize: 16 }}>
-                Tên chương
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                onChange={(e) => {
+                  setcheckall(!checkall);
+                  if (e.target.checked) {
+                    {
+                      manga.data
+                        ?.filter((item) => {
+                          return search1.toLowerCase() == ""
+                            ? item
+                            : item.name.toLowerCase().includes(search1);
+                        })
+                        .map((item, index) => removeValue(item.id)); //xóa tất cả id đang được chọn và chọn tất cả
+                      manga.data
+                        ?.filter((item) => {
+                          return search1.toLowerCase() == ""
+                            ? item
+                            : item.name.toLowerCase().includes(search1);
+                        })
+                        .map((item, index) => addValue(item.id));
+                    }
+                  } else {
+                    {
+                      manga.data
+                        ?.filter((item) => {
+                          return search1.toLowerCase() == ""
+                            ? item
+                            : item.name.toLowerCase().includes(search1);
+                        })
+                        .map((item, index) => removeValue(item.id));
+                    }
+                  }
+                }}
+              >
+                <p style={{ fontSize: 15 }}>Tên chương</p>
               </Checkbox>
             </Col>
             <Col
               span={3}
-              offset={6}
+              offset={5}
               style={{
-                fontSize: 16,
+                fontSize: 15,
                 padding: 0.001,
                 display: "flex",
                 justifyContent: "center",
               }}
-            ></Col>
+            >
+              <p style={{ fontFamily: "Arial, Helvetica, sans-serif" }}></p>
+            </Col>
             <Col
               span={3}
               style={{
-                fontSize: 16,
+                fontSize: 15,
                 padding: 0.001,
                 display: "flex",
                 justifyContent: "center",
+                fontFamily: "Arial, Helvetica, sans-serif",
               }}
             >
-              Người đăng
+              <p> Người đăng</p>
             </Col>
             <Col
+              offset={1}
               style={{
-                fontSize: 16,
+                fontSize: 15,
                 padding: 0.001,
                 display: "flex",
                 justifyContent: "center",
               }}
             >
-              <div style={{ paddingLeft: 10 }}>Số lượt xem</div>
+              <div style={{ paddingLeft: 10, fontSize: 15 }}>Số lượt xem</div>
             </Col>
           </Row>
-          <QLCComponent
-            tentruyen={"Chapter 1"}
-            nguoidang={"Kyohei"}
-            soluotxem={1000}
-            manga={false}
-          />
+          {manga.data
+            ?.filter((item) => {
+              return search1.toLowerCase() == ""
+                ? item
+                : item.name.toLowerCase().includes(search1);
+            })
+            .map((item, index) => (
+              <>
+                <QLCComponent
+                  tentruyen={item.name}
+                  mangaid={item.id}
+                  nguoidang={user.data?.user_metadata.ten}
+                  soluotxem={1000}
+                  checkall={checkall}
+                  keyy={index.toString()}
+                  setmangaid={setmangaid}
+                />
+              </>
+            ))}
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "end" }}>
-        <Button
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 0,
-            backgroundColor: "#FF9040",
-            color: "white",
-            fontSize: 16,
-            height: 38,
-            marginBottom: 25,
-            marginTop: 25,
-            marginRight: 20,
-          }}
-        >
-          <p>Thêm chương</p>
-        </Button>
+        <Link to={"/them-moi-truyen"}>
+          <Button
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 0,
+              backgroundColor: "#FF9040",
+              color: "white",
+              fontSize: 15,
+              height: 32,
+              marginBottom: 25,
+              marginTop: 25,
+              marginRight: 20,
+            }}
+          >
+            <p>Thêm chương</p>
+          </Button>
+        </Link>
         <Button
           style={{
             display: "flex",
@@ -385,17 +476,16 @@ export const ChapterDaDangData = {
             borderRadius: 0,
             backgroundColor: "red",
             color: "white",
-            fontSize: 16,
-            height: 38,
+            height: 32,
+            fontSize: 15,
             marginBottom: 25,
             marginTop: 25,
           }}
+          onClick={() => deletemanga.mutate()}
         >
           <p>Xóa chương</p>
         </Button>
       </div>
     </div>
-  ),
-  title: "QUẢN LÝ CHƯƠNG",
-  title1: "Tên truyện - Quản lý chương",
-};
+  );
+}

@@ -108,6 +108,9 @@ transition: 250ms;
     padding-top: 25px;
     padding-bottom: 25px;
 }
+::-webkit-scrollbar {
+    display:none
+  } 
 .nav-button{
     padding-left:25px ;
     display: flex;

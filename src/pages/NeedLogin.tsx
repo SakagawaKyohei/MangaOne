@@ -8,7 +8,7 @@ function NeedLogin() {
       <div
         style={{
           marginLeft: 35,
-          marginRight: 35,
+          marginRight: 45,
         }}
       >
         <p style={{ fontSize: 0.01 }}>.</p>{" "}

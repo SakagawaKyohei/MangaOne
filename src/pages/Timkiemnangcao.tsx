@@ -5,7 +5,7 @@ function Timkiemnangcao() {
   return (
     <div>
       {" "}
-      <div style={{ marginLeft: 35, marginRight: 35 }}>
+      <div style={{ marginLeft: 35, marginRight: 50 }}>
         <p style={{ fontSize: 0.01 }}>a</p>
         <p
           style={{

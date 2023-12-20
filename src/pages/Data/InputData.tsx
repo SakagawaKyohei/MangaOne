@@ -475,7 +475,7 @@ export function InputInfo() {
     <>
       <div
         style={{
-          marginBottom: 20,
+          marginBottom: 50,
         }}
       >
         <div style={style}>Ảnh đại diện</div>

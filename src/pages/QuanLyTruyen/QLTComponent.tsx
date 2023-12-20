@@ -1,4 +1,4 @@
-import { Checkbox, Col, Row } from "antd";
+import { Checkbox, Col, Row, Tooltip } from "antd";
 import React, { useState } from "react";
 import capnhat from "../../images/CapNhat.svg";
 import danhsach from "../../images/DanhSach.svg";
@@ -98,11 +98,15 @@ function QLTComponent(pros: Pros) {
           </div>
         </Col>
         <Col span={4}>
-          <img src={capnhat} style={{ marginLeft: 35, height: 18 }} />
-          <img
-            src={danhsach}
-            style={{ marginLeft: 20, height: 18, width: 18 }}
-          />
+          <Tooltip title="Chỉnh sửa truyện">
+            <img src={capnhat} style={{ marginLeft: 35, height: 18 }} />
+          </Tooltip>
+          <Tooltip title="Danh sách chương">
+            <img
+              src={danhsach}
+              style={{ marginLeft: 20, height: 18, width: 18 }}
+            />
+          </Tooltip>
         </Col>
       </Row>
     </div>

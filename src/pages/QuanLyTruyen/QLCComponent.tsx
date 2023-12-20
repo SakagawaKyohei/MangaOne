@@ -1,14 +1,30 @@
-import { Checkbox, Col, Row } from "antd";
+import { Checkbox, Col, Row, Tooltip } from "antd";
 import React, { useState } from "react";
 import capnhat from "../../images/CapNhat.svg";
+import danhsach from "../../images/DanhSach.svg";
+import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
 interface Pros {
   tentruyen: string;
+  mangaid: string;
   nguoidang: string;
   soluotxem: number;
-  manga: boolean;
+  checkall: boolean;
+  keyy: string;
+  setmangaid: any;
 }
 
+//component cho mỗi truyện đã đăng
+
 function QLCComponent(pros: Pros) {
+  const chapter = useGetChapter(pros.mangaid, pros.keyy);
+  const [prev, setprev] = useState(false);
+  const [checked, setchecked] = useState(pros.checkall);
+
+  if (prev != pros.checkall) {
+    setchecked(pros.checkall);
+    setprev(pros.checkall);
+  }
+
   return (
     <div style={{ backgroundColor: "rgba(217, 217, 217, 0.20)" }}>
       <Row
@@ -17,51 +33,72 @@ function QLCComponent(pros: Pros) {
           height: 40,
           display: "flex",
           alignItems: "center",
-          fontSize: 16,
+          fontSize: 15,
         }}
       >
         <Col span={5}>
-          <Checkbox style={{ marginLeft: 10, fontSize: 16 }}>
-            {pros.tentruyen}
+          <Checkbox
+            style={{ marginLeft: 10 }}
+            checked={checked}
+            onChange={(e) => {
+              setchecked(!checked);
+              if (e.target.checked) {
+                pros.setmangaid((prevArray: any) => [
+                  ...prevArray,
+                  pros.mangaid,
+                ]);
+              }
+              if (!e.target.checked) {
+                pros.setmangaid((prevArray: any[]) =>
+                  prevArray.filter((item) => item !== pros.mangaid)
+                );
+              }
+            }}
+          >
+            <p style={{ fontSize: 15 }}>{pros.tentruyen}</p>
           </Checkbox>
         </Col>
         <Col
           span={3}
-          offset={6}
+          offset={5}
           style={{
-            fontSize: 16,
-            padding: 0.001,
+            fontSize: 15,
+
             display: "flex",
             justifyContent: "center",
+            fontFamily: "Arial, Helvetica, sans-serif",
           }}
         ></Col>
         <Col
           span={3}
           style={{
-            fontSize: 16,
-            padding: 0.001,
+            fontSize: 15,
+
             display: "flex",
             justifyContent: "center",
+            fontFamily: "Arial, Helvetica, sans-serif",
           }}
         >
           {pros.nguoidang}
         </Col>
-        <Col span={3}>
+        <Col span={3} offset={1}>
           <div
             style={{
               paddingLeft: 10,
-              fontSize: 16,
-              padding: 0.001,
+              fontSize: 15,
+
               display: "flex",
               justifyContent: "center",
+              fontFamily: "Arial, Helvetica, sans-serif",
             }}
           >
             {pros.soluotxem}
           </div>
         </Col>
-        <Col span={4} style={{ display: "flex", justifyContent: "center" }}>
-          {" "}
-          <img src={capnhat} style={{ height: 18 }} />
+        <Col span={4}>
+          <Tooltip title="Chỉnh sửa chương">
+            <img src={capnhat} style={{ marginLeft: 35, height: 18 }} />
+          </Tooltip>
         </Col>
       </Row>
     </div>

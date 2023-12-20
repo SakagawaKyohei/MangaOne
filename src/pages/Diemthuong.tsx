@@ -101,7 +101,7 @@ function Diemthuong() {
                     paddingTop: 20,
                     paddingBottom: 20,
                     paddingLeft: 30,
-                    paddingRight: 30,
+                    paddingRight: 50,
                   }}
                 >
                   <p>Cập nhật</p>

@@ -39,7 +39,7 @@ function Trangcanhan() {
               style={{
                 marginTop: 25,
                 marginBottom: 25,
-                marginRight: 30,
+                marginRight: 50,
               }}
             >
               <div>

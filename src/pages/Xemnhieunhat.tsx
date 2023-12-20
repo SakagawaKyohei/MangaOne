@@ -25,7 +25,7 @@ function XemNhieuNhat() {
         <div
           style={{
             marginLeft: 35,
-            marginRight: 35,
+            marginRight: 50,
           }}
         >
           {/*truyen moi cap nhat*/}

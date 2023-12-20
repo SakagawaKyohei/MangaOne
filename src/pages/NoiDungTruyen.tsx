@@ -23,7 +23,7 @@ function NoiDungTruyen() {
             <div
               style={{
                 marginLeft: 35,
-                marginRight: 35,
+                marginRight: 50,
 
                 position: "relative",
               }}
