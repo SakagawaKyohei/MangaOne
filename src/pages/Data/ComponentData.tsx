@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import useGetMangaTrans from "../../hooks/GetMangaInfo/useGetMangaTrans";
 import useUser from "../../hooks/useUser";
+import useDeleteManga from "../../hooks/MangaManagement/useDeleteManga";
+import { error } from "console";
 
 const style: React.CSSProperties = {
   marginTop: 3,
@@ -67,6 +69,11 @@ export const ThemMoiChapterData = {
 export function TruyenDaDangData() {
   const user = useUser();
   const manga = useGetMangaTrans(user.data?.id as string);
+  const [mangaid, setmangaid] = useState([""]); //id manga duoc chon de delete
+  const deletemanga = useDeleteManga(mangaid);
+  if (deletemanga.isError) {
+    console.log((deletemanga.error as any).message);
+  }
 
   const [checkall, setcheckall] = useState(false);
   const [search, setsearch] = useState("");
@@ -109,7 +116,15 @@ export function TruyenDaDangData() {
           </Button>
         </Col>
       </Row>
-      <div className="khung" style={{ marginLeft: "8%", height: "50vh" }}>
+      <div
+        className="khung"
+        style={{
+          marginLeft: "8%",
+          height: "50vh",
+          overflow: "hidden",
+          overflowY: "auto",
+        }}
+      >
         <div style={{ marginLeft: 20, margin: 5, fontSize: 15 }}>
           <Row style={{ marginBottom: 10, marginTop: 10 }}>
             <Col span={5}>
@@ -210,6 +225,7 @@ export function TruyenDaDangData() {
             marginBottom: 25,
             marginTop: 25,
           }}
+          onClick={() => deletemanga.mutate()}
         >
           <p>Xóa truyện</p>
         </Button>

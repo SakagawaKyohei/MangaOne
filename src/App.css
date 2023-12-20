@@ -42,6 +42,10 @@ padding-right: 40px;
   /* Center horizontally*/
   margin: 0 45% 0 41%;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
 .title{
   font-size: 30px;
   margin: 30px;

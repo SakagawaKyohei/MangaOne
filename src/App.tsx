@@ -32,6 +32,7 @@ import QuenMatKhau from "./pages/LoginSystem/QuenMatKhau";
 import Navbar from "./components/Navbar/Navbar";
 import AdminPage from "./pages/AdminPage";
 import ResetPassword from "./pages/LoginSystem/ResetPassword";
+import useUser from "./hooks/useUser";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,8 +45,6 @@ const queryClient = new QueryClient({
 //sau khi code xong component chinh lai font, router
 
 function App() {
-  const [user, setUser] = useState();
-
   return (
     <QueryClientProvider client={queryClient}>
       <ConfigProvider

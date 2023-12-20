@@ -251,7 +251,10 @@ function Navbar1() {
           </div>
           <div className="line" />
         </div>
-        <nav className={slidebar ? "nav-menu active" : "nav-menu"}>
+        <nav
+          className={slidebar ? "nav-menu active" : "nav-menu"}
+          style={{ overflowY: "auto" }}
+        >
           <ul className="nav-menu-items">
             <li className="menu-toggle">
               <Link to="/" style={{ display: "flex" }} onClick={showSlidebar}>

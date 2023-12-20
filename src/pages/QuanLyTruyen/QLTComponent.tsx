@@ -16,7 +16,6 @@ interface Pros {
 
 function QLTComponent(pros: Pros) {
   const chapter = useGetChapter(pros.mangaid, pros.keyy);
-  console.log(pros.keyy); //undefined?
   const [prev, setprev] = useState(false);
   const [checked, setchecked] = useState(pros.checkall);
   if (prev != pros.checkall) {
