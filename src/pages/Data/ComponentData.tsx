@@ -9,6 +9,7 @@ import {
   Upload,
 } from "antd";
 import { InputThemMoiTruyen, InputChinhSuaTruyen } from "./InputData";
+import { v4 as uuidv4 } from "uuid";
 import {
   LoadingOutlined,
   PlusOutlined,
@@ -34,6 +35,8 @@ import { CSS } from "@dnd-kit/utilities";
 
 import type { UploadFile, UploadProps } from "antd/es/upload/interface";
 import useCreateChapter from "../../hooks/ChapterManagement/useCreateChapter";
+import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
+import useDeleteChapter from "../../hooks/GetMangaInfo/useDeleteChapter";
 
 interface DraggableUploadListItemProps {
   originNode: React.ReactElement<
@@ -528,18 +531,21 @@ export function TruyenDaDangData() {
 export function ChapterDaDangData() {
   const user = useUser();
   const { id: mid } = useParams();
-  const manga = useGetMangaTrans(user.data?.id as string); //chinh thanh get chapter
-  const [mangaid, setmangaid] = useState<string[]>([]); //id manga duoc chon de delete
+
+  const key = uuidv4();
+  const chapter = useGetChapter(mid as string, "chapterlist"); //chinh thanh get chapter
+  const [chapterid, setchapterid] = useState<string[]>([]); //id chapter duoc chon de delete
+
   const addValue = (value: string) => {
     // Thêm giá trị vào mảng
-    setmangaid((prevArray) => [...prevArray, value]);
+    setchapterid((prevArray) => [...prevArray, value]);
   };
 
   const removeValue = (value: string) => {
     // Xóa giá trị khỏi mảng
-    setmangaid((prevArray) => prevArray.filter((item) => item !== value));
+    setchapterid((prevArray) => prevArray.filter((item) => item !== value));
   };
-  const deletemanga = useDeleteManga(mangaid);
+  const deletemanga = useDeleteChapter(chapterid);
   if (deletemanga.isError) {
     console.log((deletemanga.error as any).message);
   }
@@ -582,7 +588,6 @@ export function ChapterDaDangData() {
             }}
             onClick={() => {
               setsearch1(search);
-              console.log(mangaid);
             }}
           >
             <p>Tìm kiếm</p>
@@ -608,14 +613,14 @@ export function ChapterDaDangData() {
                   setcheckall(!checkall);
                   if (e.target.checked) {
                     {
-                      manga.data
+                      chapter.data?.data
                         ?.filter((item) => {
                           return search1.toLowerCase() == ""
                             ? item
                             : item.name.toLowerCase().includes(search1);
                         })
                         .map((item, index) => removeValue(item.id)); //xóa tất cả id đang được chọn và chọn tất cả
-                      manga.data
+                      chapter.data?.data
                         ?.filter((item) => {
                           return search1.toLowerCase() == ""
                             ? item
@@ -625,7 +630,7 @@ export function ChapterDaDangData() {
                     }
                   } else {
                     {
-                      manga.data
+                      chapter.data?.data
                         ?.filter((item) => {
                           return search1.toLowerCase() == ""
                             ? item
@@ -675,7 +680,7 @@ export function ChapterDaDangData() {
               <div style={{ paddingLeft: 10, fontSize: 15 }}>Số lượt xem</div>
             </Col>
           </Row>
-          {manga.data
+          {chapter.data?.data
             ?.filter((item) => {
               return search1.toLowerCase() == ""
                 ? item
@@ -690,7 +695,7 @@ export function ChapterDaDangData() {
                   soluotxem={1000}
                   checkall={checkall}
                   keyy={index.toString()}
-                  setmangaid={setmangaid}
+                  setmangaid={setchapterid}
                 />
               </>
             ))}

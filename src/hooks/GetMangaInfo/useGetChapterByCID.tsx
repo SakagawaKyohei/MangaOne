@@ -16,6 +16,6 @@ const GetChapter = async (chapterId: string) => {
 
   return data;
 };
-export default function useGetChapter(chapterId: string) {
+export default function useGetChapterByCID(chapterId: string) {
   return useQuery("chapterCID", () => GetChapter(chapterId));
 }
