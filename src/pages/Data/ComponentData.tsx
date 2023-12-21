@@ -1,5 +1,9 @@
 import { Button, Checkbox, Col, ConfigProvider, Flex, Input, Row } from "antd";
-import { InputThemMoiTruyen, InputThemMoiChuong } from "./InputData";
+import {
+  InputThemMoiTruyen,
+  InputThemMoiChuong,
+  InputChinhSuaTruyen,
+} from "./InputData";
 import QLTComponent from "../QuanLyTruyen/QLTComponent";
 import QLCComponent from "../QuanLyTruyen/QLCComponent";
 import { Link } from "react-router-dom";
@@ -25,6 +29,16 @@ export const ThemMoiTruyenData = {
   ),
   title: "THÊM MỚI TRUYỆN",
   title1: "Thêm mới truyện",
+};
+
+export const ChinhSuaTruyenData = {
+  label: (
+    <div style={{ width: "92%" }}>
+      <InputChinhSuaTruyen />
+    </div>
+  ),
+  title: "CHỈNH SỬA TRUYỆN",
+  title1: "Chỉnh sửa truyên",
 };
 
 export const ThemMoiChapterData = {
@@ -280,7 +294,7 @@ export function TruyenDaDangData() {
 
 export function ChapterDaDangData() {
   const user = useUser();
-  const manga = useGetMangaTrans(user.data?.id as string);
+  const manga = useGetMangaTrans(user.data?.id as string); //chinh thanh get chapter
   const [mangaid, setmangaid] = useState<string[]>([]); //id manga duoc chon de delete
   const addValue = (value: string) => {
     // Thêm giá trị vào mảng

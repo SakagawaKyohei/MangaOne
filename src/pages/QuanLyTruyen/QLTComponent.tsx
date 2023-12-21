@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import capnhat from "../../images/CapNhat.svg";
 import danhsach from "../../images/DanhSach.svg";
 import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
+import { Link } from "react-router-dom";
 interface Pros {
   tentruyen: string;
   mangaid: string;
@@ -98,15 +99,19 @@ function QLTComponent(pros: Pros) {
           </div>
         </Col>
         <Col span={4}>
-          <Tooltip title="Chỉnh sửa truyện">
-            <img src={capnhat} style={{ marginLeft: 35, height: 18 }} />
-          </Tooltip>
-          <Tooltip title="Danh sách chương">
-            <img
-              src={danhsach}
-              style={{ marginLeft: 20, height: 18, width: 18 }}
-            />
-          </Tooltip>
+          <Link to={`/chinh-sua-truyen/${pros.mangaid}`}>
+            <Tooltip title="Chỉnh sửa truyện">
+              <img src={capnhat} style={{ marginLeft: 35, height: 18 }} />
+            </Tooltip>
+          </Link>
+          <Link to={`/danh-sach-chuong/${pros.mangaid}`}>
+            <Tooltip title="Danh sách chương">
+              <img
+                src={danhsach}
+                style={{ marginLeft: 20, height: 18, width: 18 }}
+              />
+            </Tooltip>
+          </Link>
         </Col>
       </Row>
     </div>

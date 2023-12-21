@@ -97,7 +97,7 @@ function QLCComponent(pros: Pros) {
         </Col>
         <Col span={4}>
           <Tooltip title="Chỉnh sửa chương">
-            <img src={capnhat} style={{ marginLeft: 35, height: 18 }} />
+            <img src={capnhat} style={{ marginLeft: 50, height: 18 }} />
           </Tooltip>
         </Col>
       </Row>

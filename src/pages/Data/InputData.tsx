@@ -9,7 +9,7 @@ import { message, Upload } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import TextArea from "antd/es/input/TextArea";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useUpdateMetadata from "../../hooks/useUpdateMetadata";
 import useUser from "../../hooks/useUser";
 import useResetPassword from "../../hooks/PasswordManagement/useResetPassword";
@@ -17,6 +17,8 @@ import useUploadAvt from "../../hooks/Avt/useUploadAvt";
 import { Theloai } from "./TheLoai";
 import useCreateManga from "../../hooks/MangaManagement/useCreateManga";
 import { error } from "console";
+import useGetManga from "../../hooks/GetMangaInfo/useGetManga";
+import { useParams } from "react-router-dom";
 const input: React.CSSProperties = {
   fontSize: 16,
   width: "100%",
@@ -85,7 +87,7 @@ export function InputThemMoiTruyen() {
   const [name, setName] = useState("");
   const [othername, setOthernName] = useState("");
   const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState([""]); //the loai cua truyen sap dang
+  const [genre, setGenre] = useState([]); //the loai cua truyen sap dang
   const [detail, setDetail] = useState("");
   const [image, setImage] = useState<Blob | null>(null);
   const user = useUser();
@@ -98,7 +100,8 @@ export function InputThemMoiTruyen() {
       tacgia: author,
       biatruyen: image,
     },
-    user.data?.id
+    user.data?.id,
+    ""
   );
   const theloai = Theloai; //tat ca the loai
 
@@ -387,6 +390,356 @@ export function InputThemMoiTruyen() {
                 onClick={() => createmanga.mutate()}
               >
                 <p>Thêm mới</p>
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </>
+  );
+}
+
+export function InputChinhSuaTruyen() {
+  const { id } = useParams();
+  const manga = useGetManga(id as string);
+  const [name, setName] = useState("");
+  const [othername, setOthernName] = useState("");
+  const [author, setAuthor] = useState("");
+  const [genre, setGenre] = useState([]); //the loai cua truyen sap dang
+  const [detail, setDetail] = useState("");
+  const [image, setImage] = useState<Blob | null>(null);
+  const [imageURL, setImageURL] = useState("");
+  useEffect(() => {
+    if (manga.data != null) {
+      setName(manga.data.name as string);
+      setOthernName(manga.data.other_name);
+      setAuthor(manga.data.author);
+      setGenre(manga.data.genre);
+      setDetail(manga.data.detail);
+      setImageURL(manga.data.biatruyen);
+    }
+  }, [manga.data]);
+  const user = useUser();
+
+  const createmanga = useCreateManga(
+    {
+      ten: name,
+      tenkhac: othername,
+      theloai: genre,
+      detail: detail,
+      tacgia: author,
+      biatruyen: image,
+    },
+    user.data?.id,
+    id as string
+  );
+  const theloai = Theloai; //tat ca the loai
+
+  const handleImageChange = (e: any) => {
+    const file = e.file;
+    setImage(file.originFileObj);
+  };
+  const uploadButton = (
+    <div>
+      {false ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
+  const handleSelectChange = (selectedValues: any) => {
+    setGenre(selectedValues); // Cập nhật state genre khi có giá trị được chọn
+  };
+  if (createmanga.isSuccess) {
+    console.log("done");
+  }
+  if (createmanga.isLoading) {
+    console.log("load");
+  }
+  if (createmanga.isError) {
+    console.log((createmanga.error as any).message);
+  }
+  return (
+    <>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+              paddingTop: 4,
+            }}
+          >
+            <div style={style2}>
+              <p style={{ fontSize: 16 }}>Tên truyện</p>
+              {true ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={18}>
+            <Input
+              style={input}
+              placeholder="Tên truyện"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                console.log(manga.data);
+              }}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+              paddingTop: 4,
+            }}
+          >
+            <div style={style2}>
+              <p style={{ fontSize: 16 }}>Bìa truyện</p>
+              {true ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={18}>
+            <Upload
+              name="avatar"
+              listType="picture-card"
+              className="avatar-uploader"
+              showUploadList={false}
+              onChange={handleImageChange}
+            >
+              {image != null ? (
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt="avatar"
+                  style={{ width: "100%", height: "100%" }}
+                />
+              ) : (
+                <>
+                  {imageURL != "" ? (
+                    <>
+                      <img
+                        src={imageURL}
+                        alt="avatar"
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    </>
+                  ) : (
+                    uploadButton
+                  )}
+                </>
+              )}
+            </Upload>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+              paddingTop: 4,
+            }}
+          >
+            <div style={style2}>
+              <p style={{ fontSize: 16 }}>Tên khác</p>
+              {false ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={18}>
+            {" "}
+            <Input
+              style={input}
+              placeholder="Tên khác"
+              value={othername}
+              onChange={(e) => setOthernName(e.target.value)}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+              paddingTop: 4,
+            }}
+          >
+            <div style={style2}>
+              <p style={{ fontSize: 16 }}>Tác giả</p>
+              {false ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={18}>
+            <Input
+              style={input}
+              placeholder="Tác giả"
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+              paddingTop: 4,
+            }}
+          >
+            <div style={style2}>
+              <p style={{ fontSize: 16 }}>Thể loại</p>
+              {true ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={18}>
+            {" "}
+            <Select
+              mode="multiple"
+              value={genre}
+              style={{
+                width: "100%",
+                fontFamily: "arial",
+              }}
+              onChange={handleSelectChange} // Gắn sự kiện onChange để theo dõi các giá trị được chọn
+              placeholder="Nhập tên và chọn thể loại"
+            >
+              {theloai.map((tl, i) => {
+                return (
+                  <Select.Option key={i} value={tl}>
+                    {tl}
+                  </Select.Option>
+                );
+              })}
+            </Select>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+              paddingTop: 4,
+            }}
+          >
+            <div style={style2}>
+              <p style={{ fontSize: 16 }}>Tóm tắt truyện</p>
+              {true ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={18}>
+            <TextArea
+              value={detail}
+              style={{ height: 175, fontSize: 16, borderRadius: 0 }}
+              onChange={(e) => setDetail(e.target.value)}
+            ></TextArea>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+              paddingTop: 4,
+            }}
+          ></Col>
+          <Col span={18}>
+            <div style={{ display: "flex", justifyContent: "end" }}>
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 0,
+                  backgroundColor: "#FF9040",
+                  color: "white",
+                  fontSize: 18,
+                  height: 38,
+                }}
+                onClick={() => createmanga.mutate()}
+              >
+                <p>Xác nhận</p>
               </Button>
             </div>
           </Col>

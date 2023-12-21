@@ -6,7 +6,6 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import Chonngaunhien from "./pages/Chonngaunhien";
 import Doimaukhau from "./pages/Doimaukhau";
 import Lichsudoc from "./pages/LichSu";
 import Timkiemnangcao from "./pages/Timkiemnangcao";
@@ -33,6 +32,7 @@ import Navbar from "./components/Navbar/Navbar";
 import AdminPage from "./pages/AdminPage";
 import ResetPassword from "./pages/LoginSystem/ResetPassword";
 import useUser from "./hooks/useUser";
+import ChinhSuaTruyen from "./pages/QuanLyTruyen/ChinhSuaTruyen";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,14 +72,16 @@ function App() {
             <Navbar />
             <Routes>
               <Route path="/" element={<Trangchu />} />
-              <Route path="/chon-ngau-nhien" element={<Chonngaunhien />} />
               <Route path="/doi-mat-khau" element={<Doimaukhau />} />
               <Route path="/lich-su" element={<Lichsudoc />} />
               <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
               <Route path="/ket-qua" element={<Timkiemnangcaoresult />} />
               <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
               <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
-              <Route path="/truyen-da-dang/:id" element={<ChapterDaDang />} />
+              <Route path="danh-sach-chuong/:id" element={<ChapterDaDang />} />
+              {/*id truyen*/}
+              <Route path="chinh-sua-truyen/:id" element={<ChinhSuaTruyen />} />
+              {/*id truyen*/}
               <Route path="/them-moi-truyen" element={<ThemMoiTruyen />} />
               <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
               <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
