@@ -34,55 +34,6 @@ const input2: React.CSSProperties = {
   flexDirection: "row",
 };
 
-export const InputThemMoiChuong = [
-  {
-    title: "Tên chương",
-    batbuoc: true,
-    label: <Input style={input} placeholder="Tên chương"></Input>,
-  },
-  {
-    label: (
-      <Upload
-        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-        directory
-      >
-        <Button icon={<UploadOutlined />}>Chọn thư mục</Button>
-      </Upload>
-    ),
-  },
-  {
-    title: "Nội dung",
-    batbuoc: true,
-    label: (
-      <TextArea
-        style={{ height: 275, fontSize: 16 }}
-        placeholder="Nội dung chương"
-        disabled
-      ></TextArea>
-    ),
-  },
-  {
-    label: (
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <Button
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 0,
-            backgroundColor: "#FF9040",
-            color: "white",
-            fontSize: 18,
-            height: 38,
-          }}
-        >
-          <p>Thêm mới</p>
-        </Button>
-      </div>
-    ),
-  },
-];
-
 export function InputThemMoiTruyen() {
   const [name, setName] = useState("");
   const [othername, setOthernName] = useState("");

@@ -6,11 +6,18 @@ import { Col, Row } from "antd";
 import AccountPage from "../../components/AccountPage/AccountPage";
 import { useParams } from "react-router-dom";
 import useGetManga from "../../hooks/GetMangaInfo/useGetManga";
+import { useEffect, useState } from "react";
 
 function ChapterDaDang() {
   const { id } = useParams();
   const manga = useGetManga(id as string);
   const user = useUser();
+  const [name, setname] = useState("");
+  useEffect(() => {
+    if (manga.data != null) {
+      setname(manga.data.name as string);
+    }
+  }, [manga.data]);
   if (user.data == null) {
     return <NeedLogin />;
   }
@@ -37,7 +44,7 @@ function ChapterDaDang() {
                 </h1>
                 <div className="khung">
                   <p style={{ fontSize: 17, padding: 15 }}>
-                    {manga.data.name} - Quản lý chương{" "}
+                    {name} - Quản lý chương{" "}
                   </p>
 
                   <div

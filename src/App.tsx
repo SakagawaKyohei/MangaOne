@@ -83,6 +83,7 @@ function App() {
               <Route path="chinh-sua-truyen/:id" element={<ChinhSuaTruyen />} />
               {/*id truyen*/}
               <Route path="/them-moi-truyen" element={<ThemMoiTruyen />} />
+              <Route path="/them-moi-chuong/:id" element={<ThemMoiChapter />} />
               <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
               <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
               <Route path="/diem-dich-truyen" element={<Diemthuong />} />

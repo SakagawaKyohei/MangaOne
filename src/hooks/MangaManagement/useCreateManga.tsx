@@ -25,7 +25,6 @@ const createManga = async (manga: Manga, uid: any, id: string) => {
       other_name: manga.tenkhac,
       genre: manga.theloai,
       author: manga.tacgia,
-      view: 0,
       detail: manga.detail,
       nguoi_dang: uid,
     });
@@ -53,7 +52,6 @@ const createManga = async (manga: Manga, uid: any, id: string) => {
       other_name: manga.tenkhac,
       genre: manga.theloai,
       author: manga.tacgia,
-      view: 0,
       detail: manga.detail,
       biatruyen:
         "https://zrhhzqtaizoqtwmnzzbi.supabase.co/storage/v1/object/public/avt/public/" +
