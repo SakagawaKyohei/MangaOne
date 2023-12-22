@@ -37,7 +37,7 @@ function QLTComponent(pros: Pros) {
           fontSize: 15,
         }}
       >
-        <Col span={5}>
+        <Col span={10}>
           <Checkbox
             style={{ marginLeft: 10 }}
             checked={checked}
@@ -61,7 +61,7 @@ function QLTComponent(pros: Pros) {
         </Col>
         <Col
           span={3}
-          offset={6}
+          offset={1}
           style={{
             fontSize: 15,
 

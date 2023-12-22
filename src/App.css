@@ -226,7 +226,6 @@ flex-direction: column;
   justify-content: end;
   filter: blur(17.5px);
 
-
   background-position: center -450px; /* căn giữa hình ảnh */
   background-size: cover; /* hoặc background-size: contain; */
 }

@@ -351,7 +351,7 @@ function NoiDungTruyen() {
                 <div style={{ border: "1px solid rgba(0, 0, 0, 0.15)" }}>
                   <div style={{ marginLeft: 5, marginRight: 10 }}>
                     {data &&
-                      data.map((item) => (
+                      data.map((item, i) => (
                         <div>
                           <div>
                             <Row style={{ marginBottom: 10, marginTop: 10 }}>
@@ -405,42 +405,54 @@ function NoiDungTruyen() {
                               </Col>
                             </Row>
                           </div>
-                          <div
-                            style={{
-                              background: "rgba(0, 0, 0, 0.20)",
-                              height: 1,
-                              marginLeft: 10,
-                              marginRight: 10,
-                            }}
-                          />
-                          {/*them dash cho line như thiết kế figma*/}
+
+                          {i !== data.length - 1 && ( // Check if it's not the last item
+                            <div
+                              style={{
+                                background: "rgba(0, 0, 0, 0.20)",
+                                height: 1,
+                                marginLeft: 10,
+                                marginRight: 10,
+                              }}
+                            />
+                          )}
                         </div>
                       ))}
 
                     {chapter.data && chapter.data?.data.length > 20 && !more ? (
-                      <Button
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          height: 35,
-                          marginTop: 10,
-                          marginBottom: 10,
-                          borderRadius: 0,
-                          backgroundColor: "#FF9040",
-                          color: "white",
-                          width: "100%",
-                          fontSize: 18,
-                        }}
-                        onClick={() => {
-                          if (chapter.data != null) {
-                            setdata(chapter.data.data);
-                            setmore(true);
-                          }
-                        }}
-                      >
-                        Xem thêm
-                      </Button>
+                      <>
+                        <div
+                          style={{
+                            background: "rgba(0, 0, 0, 0.20)",
+                            height: 1,
+                            marginLeft: 10,
+                            marginRight: 10,
+                          }}
+                        />
+                        <Button
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: 35,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            borderRadius: 0,
+                            backgroundColor: "#FF9040",
+                            color: "white",
+                            width: "100%",
+                            fontSize: 18,
+                          }}
+                          onClick={() => {
+                            if (chapter.data != null) {
+                              setdata(chapter.data.data);
+                              setmore(true);
+                            }
+                          }}
+                        >
+                          Xem thêm
+                        </Button>
+                      </>
                     ) : (
                       <></>
                     )}

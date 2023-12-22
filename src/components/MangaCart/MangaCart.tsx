@@ -30,13 +30,21 @@ function MangaCart(pros: manga) {
   return (
     <div className="mangaitem">
       <Link to={`noi-dung/${pros.mangaid}`}>
-        <img
-          className="mangaimage"
-          src={bia}
-          onClick={() => {
-            console.log(chapterdata);
+        <div
+          style={{
+            overflow: "hidden",
+            width: "15vw",
+            height: "23vw",
           }}
-        />
+        >
+          <img
+            className="mangaimage"
+            src={bia}
+            onClick={() => {
+              console.log(chapterdata);
+            }}
+          />
+        </div>
       </Link>
       <Link to={`noi-dung/${pros.mangaid}`} className="mangaitemtitle">
         <p>{ten}</p>
