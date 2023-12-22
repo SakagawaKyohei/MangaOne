@@ -5,7 +5,7 @@ import NeedLogin from "../NeedLogin";
 import { Col, Row } from "antd";
 import AccountPage from "../../components/AccountPage/AccountPage";
 import { useParams } from "react-router-dom";
-import useGetManga from "../../hooks/GetMangaInfo/useGetManga";
+import useGetManga from "../../hooks/GetMangaInfo/useGetMangaByMID";
 import { useEffect, useState } from "react";
 
 function ChapterDaDang() {

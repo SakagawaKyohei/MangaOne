@@ -72,6 +72,7 @@ function App() {
           <Router>
             <Navbar />
             <Routes>
+              <Route path="/:page" element={<Trangchu />} />
               <Route path="/" element={<Trangchu />} />
               <Route path="/doi-mat-khau" element={<Doimaukhau />} />
               <Route path="/lich-su" element={<Lichsudoc />} />

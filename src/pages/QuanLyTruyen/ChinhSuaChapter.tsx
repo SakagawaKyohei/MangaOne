@@ -4,7 +4,7 @@ import { ChinhSuaChapterData, ThemMoiChapterData } from "../Data/ComponentData";
 import AccountPage from "../../components/AccountPage/AccountPage";
 import { Col, ConfigProvider, Row } from "antd";
 import { useParams } from "react-router-dom";
-import useGetManga from "../../hooks/GetMangaInfo/useGetManga";
+import useGetManga from "../../hooks/GetMangaInfo/useGetMangaByMID";
 import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
 import useGetChapterByCID from "../../hooks/GetMangaInfo/useGetChapterByCID";
 
