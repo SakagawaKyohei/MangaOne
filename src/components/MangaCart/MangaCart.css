@@ -17,6 +17,7 @@
   text-align: left;
   font-size: 15px;  color: black;
 }
+
 .mangaitemchapter:hover
 {
   color: blue;
@@ -31,6 +32,12 @@
     color: black;
   }
   .mangaitemtitle:hover{color: blue}
+  .mangaitemtitle1
+  {
+
+    color: black;
+  }
+  .mangaitemtitle1:hover{color: blue}
 .mangaitemtime
 {
   color: #c0c0c0;

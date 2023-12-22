@@ -8,7 +8,8 @@ const GetChapter = async (mangaId: string) => {
   const { data, error, count } = await supabase
     .from("chapter")
     .select("*", { count: "exact" })
-    .eq("manga_id", mangaId);
+    .eq("manga_id", mangaId)
+    .order("created_at", { ascending: false });
   if (error) {
     throw new Error(error.message);
   }
@@ -16,14 +17,27 @@ const GetChapter = async (mangaId: string) => {
   let start = 0;
   let end = 2;
 
+  let start20 = 0;
+  let end20 = 19;
+
   const { data: last, error: lasterror } = await supabase
     .from("chapter")
     .select("*")
     .eq("manga_id", mangaId)
     .range(start, end)
-    .order("name", { ascending: false });
+    .order("created_at", { ascending: false });
   if (lasterror) {
     throw new Error(lasterror.message);
+  }
+
+  const { data: last20, error: last20error } = await supabase
+    .from("chapter")
+    .select("*")
+    .eq("manga_id", mangaId)
+    .range(start20, end20)
+    .order("created_at", { ascending: false });
+  if (last20error) {
+    throw new Error(last20error.message);
   }
 
   if (!data) {
@@ -31,7 +45,7 @@ const GetChapter = async (mangaId: string) => {
   }
   console.log(data);
   console.log(count);
-  return { data, count, last };
+  return { data, count, last, last20 };
 };
 export default function useGetChapter(mangaId: string, key: string) {
   return useQuery(key, () => GetChapter(mangaId));

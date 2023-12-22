@@ -1,14 +1,14 @@
 import * as faIcons from "react-icons/fa";
 import mangaimage from "../images/mangaimage.jpg";
 import content from "../images/content.svg";
-import { Button } from "antd";
+import { Button, Col, Row } from "antd";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import ChapterList from "../components/ChapterList";
 import TextArea from "antd/es/input/TextArea";
 import { useEffect, useRef, useState } from "react";
 import useGetMangaByMID from "../hooks/GetMangaInfo/useGetMangaByMID";
 import useGetChapter from "../hooks/GetMangaInfo/useGetChapter";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Footer } from "antd/es/layout/layout";
 function NoiDungTruyen() {
   const { id } = useParams();
@@ -25,6 +25,14 @@ function NoiDungTruyen() {
   const pRef = useRef<HTMLParagraphElement>(null);
   const [pheight, setpheight] = useState(0);
   const [xemthem, setxemthem] = useState(false);
+
+  const [data, setdata] = useState<any[]>();
+  const [more, setmore] = useState(false);
+  useEffect(() => {
+    if (chapter.data != null) {
+      setdata(chapter.data.last20);
+    }
+  }, [chapter.data]);
   const [divheight, setdivheight] = useState(0);
   const dRef = useRef<HTMLParagraphElement>(null);
 
@@ -48,6 +56,16 @@ function NoiDungTruyen() {
   //check div overflow
   const [isOverflow, setIsOverflow] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (dRef.current) {
+      setdivheight(dRef.current.clientHeight);
+    }
+  }, []);
+  useEffect(() => {
+    if (dRef.current) {
+      setdivheight(dRef.current.clientHeight);
+    }
+  }, [chapterdata]);
 
   useEffect(() => {
     if (pRef.current) {
@@ -264,7 +282,7 @@ function NoiDungTruyen() {
                     }}
                   >
                     <FaAngleDoubleRight
-                      style={{ color: "#FF9040" }}
+                      style={{ color: "#FF9040", marginRight: 5 }}
                       onClick={() => setxemthem(true)}
                     />
                     <p
@@ -301,7 +319,134 @@ function NoiDungTruyen() {
                 <faIcons.FaList style={{ fontSize: 18, paddingBottom: 3 }} />
                 <p style={{ fontSize: 17, marginLeft: 10 }}>DANH SÁCH CHƯƠNG</p>
               </div>
-              <ChapterList />
+              <div>
+                <Row style={{ marginBottom: 10 }}>
+                  <Col span={10} style={{ fontSize: 18 }}>
+                    <p style={{ paddingLeft: 5 }}> Số chương</p>
+                  </Col>
+                  <Col
+                    span={8}
+                    style={{
+                      fontSize: 18,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Cập nhật
+                  </Col>
+                  <Col
+                    span={4}
+                    offset={2}
+                    style={{
+                      fontSize: 18,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Xem
+                  </Col>
+                </Row>
+                <div style={{ border: "1px solid rgba(0, 0, 0, 0.15)" }}>
+                  <div style={{ marginLeft: 5, marginRight: 10 }}>
+                    {data &&
+                      data.map((item) => (
+                        <div>
+                          <div>
+                            <Row style={{ marginBottom: 10, marginTop: 10 }}>
+                              <Col span={8} style={{ fontSize: 16 }}>
+                                <Link
+                                  to={`/doc-truyen/${id}/${item.id}`}
+                                  className="mangaitemtitle1"
+                                >
+                                  <p style={{ paddingLeft: 10 }}>{item.name}</p>
+                                </Link>
+                              </Col>
+                              <Col
+                                span={12}
+                                style={{
+                                  fontSize: 16,
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                }}
+                              >
+                                <p
+                                  style={{
+                                    marginLeft: 10,
+                                    fontWeight: 400,
+                                    fontStyle: "italic",
+                                    color: "rgba(153, 153, 153, 0.60)",
+                                  }}
+                                >
+                                  17 ngày trước
+                                </p>
+                              </Col>
+                              <Col
+                                span={4}
+                                style={{
+                                  fontSize: 16,
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                }}
+                              >
+                                <p
+                                  style={{
+                                    marginLeft: 20,
+                                    fontWeight: 400,
+                                    fontStyle: "italic",
+                                    color: "rgba(153, 153, 153, 0.60)",
+                                  }}
+                                >
+                                  35.846
+                                </p>
+                              </Col>
+                            </Row>
+                          </div>
+                          <div
+                            style={{
+                              background: "rgba(0, 0, 0, 0.20)",
+                              height: 1,
+                              marginLeft: 10,
+                              marginRight: 10,
+                            }}
+                          />
+                          {/*them dash cho line như thiết kế figma*/}
+                        </div>
+                      ))}
+
+                    {chapter.data && chapter.data?.data.length > 20 && !more ? (
+                      <Button
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: 35,
+                          marginTop: 10,
+                          marginBottom: 10,
+                          borderRadius: 0,
+                          backgroundColor: "#FF9040",
+                          color: "white",
+                          width: "100%",
+                          fontSize: 18,
+                        }}
+                        onClick={() => {
+                          if (chapter.data != null) {
+                            setdata(chapter.data.data);
+                            setmore(true);
+                          }
+                        }}
+                      >
+                        Xem thêm
+                      </Button>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </div>
+              </div>
               <div
                 style={{
                   display: "flex",
