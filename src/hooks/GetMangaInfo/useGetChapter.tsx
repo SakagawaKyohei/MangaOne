@@ -14,10 +14,7 @@ const GetChapter = async (mangaId: string) => {
   }
 
   let start = 0;
-  let end = Number(count) - 1;
-  if (Number(count) - 3 > 0) {
-    start = Number(count) - 3;
-  }
+  let end = 2;
 
   const { data: last, error: lasterror } = await supabase
     .from("chapter")
