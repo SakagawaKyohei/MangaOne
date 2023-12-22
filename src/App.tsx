@@ -33,6 +33,7 @@ import AdminPage from "./pages/AdminPage";
 import ResetPassword from "./pages/LoginSystem/ResetPassword";
 import useUser from "./hooks/useUser";
 import ChinhSuaTruyen from "./pages/QuanLyTruyen/ChinhSuaTruyen";
+import ChinhSuaChapter from "./pages/QuanLyTruyen/ChinhSuaChapter";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -84,6 +85,10 @@ function App() {
               {/*id truyen*/}
               <Route path="/them-moi-truyen" element={<ThemMoiTruyen />} />
               <Route path="/them-moi-chuong/:id" element={<ThemMoiChapter />} />
+              <Route
+                path="/chinh-sua-chuong/:id"
+                element={<ChinhSuaChapter />}
+              />
               <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
               <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
               <Route path="/diem-dich-truyen" element={<Diemthuong />} />

@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Template from "./Template";
-import { ThemMoiChapterData } from "../Data/ComponentData";
+import { ChinhSuaChapterData, ThemMoiChapterData } from "../Data/ComponentData";
 import AccountPage from "../../components/AccountPage/AccountPage";
 import { Col, ConfigProvider, Row } from "antd";
 import { useParams } from "react-router-dom";
 import useGetManga from "../../hooks/GetMangaInfo/useGetManga";
+import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
+import useGetChapterByCID from "../../hooks/GetMangaInfo/useGetChapterByCID";
 
-function ThemMoiChapter() {
+function ChinhSuaChapter() {
   const { id } = useParams();
-  const manga = useGetManga(id as string);
+  const chapter = useGetChapterByCID(id as string);
+  const [name, setname] = useState("");
+  useEffect(() => {
+    if (chapter.data != null) {
+      setname(chapter.data.name as any);
+    }
+  }, [chapter.data]);
   return (
     <div>
       <ConfigProvider
@@ -38,11 +46,11 @@ function ThemMoiChapter() {
                       fontSize: 21,
                     }}
                   >
-                    THÊM MỚI CHƯƠNG
+                    CHỈNH SỬA CHƯƠNG
                   </h1>
                   <div className="khung">
                     <p style={{ fontSize: 17, padding: 15 }}>
-                      {manga.data.name} - Thêm mới chương
+                      {name} - Chỉnh sửa chương
                     </p>
                     <div
                       style={{
@@ -51,7 +59,7 @@ function ThemMoiChapter() {
                         backgroundColor: "#D9D9D9",
                       }}
                     />
-                    <ThemMoiChapterData />
+                    <ChinhSuaChapterData />
                   </div>
                 </Col>
               </Row>
@@ -63,4 +71,4 @@ function ThemMoiChapter() {
   );
 }
 
-export default ThemMoiChapter;
+export default ChinhSuaChapter;

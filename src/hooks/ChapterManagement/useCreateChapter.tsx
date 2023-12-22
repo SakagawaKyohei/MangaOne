@@ -6,6 +6,7 @@ import { useState } from "react";
 interface Chapter {
   ten: string;
   content: any[] | null;
+  filelist: any[] | null;
   view: number;
   manga_id: any;
 }
@@ -42,6 +43,7 @@ const CreateChapter = async (chapter: Chapter, id: string) => {
     manga_id: chapter.manga_id,
     content: chapterurl, //url tất cả trang truyện
     view: chapter.view,
+    filelist: chapter.filelist,
   });
 
   if (InsertError) {

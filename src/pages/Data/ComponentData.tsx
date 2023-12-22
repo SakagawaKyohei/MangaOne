@@ -37,6 +37,7 @@ import type { UploadFile, UploadProps } from "antd/es/upload/interface";
 import useCreateChapter from "../../hooks/ChapterManagement/useCreateChapter";
 import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
 import useDeleteChapter from "../../hooks/GetMangaInfo/useDeleteChapter";
+import useGetChapterByCID from "../../hooks/GetMangaInfo/useGetChapterByCID";
 
 interface DraggableUploadListItemProps {
   originNode: React.ReactElement<
@@ -132,16 +133,17 @@ export function ThemMoiChapterData() {
   const { id } = useParams();
   const [images, setImages] = useState<Blob[] | null>(null);
   const [ten, setten] = useState("");
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
   const upchapter = useCreateChapter(
     {
       ten: ten,
       view: 0,
       manga_id: id,
       content: images,
+      filelist: fileList,
     },
     ""
   );
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
   useEffect(() => {
     if (fileList != null) {
       const newImages = fileList.map((item) => item.originFileObj);
@@ -306,6 +308,203 @@ export function ThemMoiChapterData() {
                 }}
               >
                 <p>Thêm mới</p>
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </div>
+  );
+}
+
+export function ChinhSuaChapterData() {
+  const { id } = useParams();
+  const chapter = useGetChapterByCID(id as string);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [name, setname] = useState("");
+  const [mangaid, setmangaid] = useState("");
+  useEffect(() => {
+    if (chapter.data != null) {
+      setname(chapter.data.name as any);
+      setFileList(chapter.data.filelist);
+      setmangaid(chapter.data.manga_id);
+    }
+  }, [chapter.data]);
+  const [images, setImages] = useState<Blob[] | null>(null);
+  const upchapter = useCreateChapter(
+    {
+      ten: name,
+      view: 0,
+
+      manga_id: mangaid,
+      content: images,
+      filelist: fileList,
+    },
+    id as string
+  );
+  useEffect(() => {
+    if (fileList != null) {
+      const newImages = fileList.map((item) => item.originFileObj);
+
+      setImages(newImages as any);
+    }
+  }, [fileList]); //cap nhat images khi file list cap nhat
+
+  const sensor = useSensor(PointerSensor, {
+    activationConstraint: { distance: 10 },
+  });
+
+  const onDragEnd = ({ active, over }: DragEndEvent) => {
+    if (active.id !== over?.id) {
+      setFileList((prev) => {
+        const activeIndex = prev.findIndex((i) => i.uid === active.id);
+        const overIndex = prev.findIndex((i) => i.uid === over?.id);
+        return arrayMove(prev, activeIndex, overIndex);
+      });
+    }
+  };
+
+  const onChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+  if (upchapter.isError) {
+    console.log((upchapter.error as any).message);
+  }
+  return (
+    <div style={{ width: "92%" }}>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+            }}
+          >
+            <div style={style}>
+              <p style={{ fontSize: 16 }}>Tên chương</p>
+              {true ? (
+                <p style={{ color: "red", marginLeft: 5 }}>*</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </Col>
+          <Col span={18}>
+            <Input
+              style={input}
+              placeholder="Tên chương"
+              value={name}
+              onChange={(e) => {
+                setname(e.target.value);
+              }}
+            ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+            }}
+          >
+            <div style={style}>
+              <p style={{ fontSize: 16 }}>Nội dung</p>
+            </div>
+          </Col>
+          <Col span={18}>
+            {" "}
+            <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
+              <SortableContext
+                items={fileList.map((i) => i.uid)}
+                strategy={verticalListSortingStrategy}
+              >
+                <Upload
+                  beforeUpload={(f) => {
+                    setFileList([...fileList, f]);
+
+                    return false;
+                  }}
+                  fileList={fileList}
+                  onChange={onChange}
+                  itemRender={(originNode, file) => (
+                    <DraggableUploadListItem
+                      originNode={originNode}
+                      file={file}
+                    />
+                  )}
+                >
+                  <Button
+                    icon={<UploadOutlined />}
+                    style={{ marginBottom: 15 }}
+                    className="upload"
+                    onClick={() => {
+                      fileList.map((item, index) => console.log(item));
+                    }}
+                  >
+                    Chọn ảnh
+                  </Button>
+                </Upload>
+              </SortableContext>
+            </DndContext>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      ></div>
+      <div
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+        }}
+      >
+        <Row>
+          <Col
+            span={6}
+            style={{
+              display: "flex",
+              alignItems: "end",
+              flexDirection: "column",
+            }}
+          ></Col>
+          <Col span={18}>
+            {" "}
+            <div style={{ display: "flex", justifyContent: "end" }}>
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 0,
+                  backgroundColor: "#FF9040",
+                  color: "white",
+                  fontSize: 18,
+                  height: 38,
+                }}
+                onClick={() => {
+                  upchapter.mutate();
+                }}
+              >
+                <p>Xác nhận</p>
               </Button>
             </div>
           </Col>
@@ -532,7 +731,6 @@ export function ChapterDaDangData() {
   const user = useUser();
   const { id: mid } = useParams();
 
-  const key = uuidv4();
   const chapter = useGetChapter(mid as string, "chapterlist"); //chinh thanh get chapter
   const [chapterid, setchapterid] = useState<string[]>([]); //id chapter duoc chon de delete
 

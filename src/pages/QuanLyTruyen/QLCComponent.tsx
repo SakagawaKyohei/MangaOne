@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import capnhat from "../../images/CapNhat.svg";
 import danhsach from "../../images/DanhSach.svg";
 import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
+import { Link, useParams } from "react-router-dom";
 interface Pros {
   tentruyen: string;
   mangaid: string;
@@ -17,6 +18,7 @@ interface Pros {
 
 function QLCComponent(pros: Pros) {
   const [prev, setprev] = useState(false);
+  const { id } = useParams();
   const [checked, setchecked] = useState(pros.checkall);
 
   if (prev != pros.checkall) {
@@ -95,9 +97,11 @@ function QLCComponent(pros: Pros) {
           </div>
         </Col>
         <Col span={4}>
-          <Tooltip title="Chỉnh sửa chương">
-            <img src={capnhat} style={{ marginLeft: 50, height: 18 }} />
-          </Tooltip>
+          <Link to={`/chinh-sua-chuong/${pros.mangaid}`}>
+            <Tooltip title="Chỉnh sửa chương">
+              <img src={capnhat} style={{ marginLeft: 50, height: 18 }} />
+            </Tooltip>
+          </Link>
         </Col>
       </Row>
     </div>

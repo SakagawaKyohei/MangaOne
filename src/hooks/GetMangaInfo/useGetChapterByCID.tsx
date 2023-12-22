@@ -11,10 +11,10 @@ const GetChapter = async (chapterId: string) => {
   }
 
   if (!data) {
-    throw new Error("Manga not found");
+    throw new Error("chapter not found");
   }
 
-  return data;
+  return data[0];
 };
 export default function useGetChapterByCID(chapterId: string) {
   return useQuery("chapterCID", () => GetChapter(chapterId));
