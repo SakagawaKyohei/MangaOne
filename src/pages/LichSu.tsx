@@ -37,40 +37,7 @@ function Lichsudoc() {
               <div style={{ marginTop: 20 }}>
                 <Row gutter={[16, 24]}>
                   <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
-                  </Col>
-                  <Col span={6}>
-                    <MangaCart />
+                    <MangaCart mangaid="" />
                   </Col>
                 </Row>
               </div>

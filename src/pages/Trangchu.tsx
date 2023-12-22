@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Flex, Row, Pagination, ConfigProvider, Button } from "antd";
 import mangaimage from "../images/mangaimage.jpg";
 import MangaCart from "../components/MangaCart/MangaCart";
@@ -6,12 +6,27 @@ import star from "../images/StarIcon.png";
 import TimeManga from "../components/TopTimeManga/TimeManga";
 import Top1time from "../components/TopTimeManga/Top1time";
 import * as mdIcons from "react-icons/md";
+import useGetMangaList from "../hooks/GetMangaInfo/useGetMangaList";
+import { useNavigate, useParams } from "react-router-dom";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
 //chinh top item thanh component
 //chuyen danh sach truyen vs top time sang component
 function Trangchu() {
+  const navigate = useNavigate();
+  const [pages, setpages] = useState<number>(1);
+  const { page } = useParams();
+  useEffect(() => {
+    if (page == undefined) {
+      setpages(1);
+    } else {
+      setpages(Number(page));
+    }
+  }, [page]);
+
+  const manga = useGetMangaList(pages);
+
   return (
     <ConfigProvider
       theme={{
@@ -82,46 +97,26 @@ function Trangchu() {
             </div>
             <div style={{ marginTop: 20 }}>
               <Row gutter={[16, 24]}>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
+                {manga.data?.pagemanga.map((item) => (
+                  <Col span={6}>
+                    <MangaCart mangaid={item.id} />
+                  </Col>
+                ))}
               </Row>
             </div>
             <div className="pagination">
-              <Pagination defaultCurrent={1} total={50} />
+              <Pagination
+                total={manga.data?.allmanga.length}
+                pageSize={12}
+                showSizeChanger={false}
+                showLessItems
+                current={pages}
+                onChange={(e) => {
+                  navigate(("/" + e) as string);
+                  setpages(e);
+                  console.log(manga.data?.pagemanga);
+                }}
+              />
             </div>
           </Col>
           {/*Xếp hạng theo mốc thời gian*/}

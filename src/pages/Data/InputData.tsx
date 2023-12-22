@@ -17,7 +17,7 @@ import useUploadAvt from "../../hooks/Avt/useUploadAvt";
 import { Theloai } from "./TheLoai";
 import useCreateManga from "../../hooks/MangaManagement/useCreateManga";
 import { error } from "console";
-import useGetManga from "../../hooks/GetMangaInfo/useGetManga";
+import useGetManga from "../../hooks/GetMangaInfo/useGetMangaByMID";
 import { useParams } from "react-router-dom";
 const input: React.CSSProperties = {
   fontSize: 16,

@@ -47,40 +47,7 @@ function TruyenTheoDoi2() {
             <div style={style2}>
               <Row gutter={[16, 24]}>
                 <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
-                </Col>
-                <Col span={6}>
-                  <MangaCart />
+                  <MangaCart mangaid="" />
                 </Col>
               </Row>
               <div

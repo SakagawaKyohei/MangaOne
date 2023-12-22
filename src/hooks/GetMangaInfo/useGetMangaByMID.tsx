@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import supabase from "../../app/supabase";
 
-const GetManga = async (mangaId: string) => {
+const GetMangaMID = async (mangaId: string) => {
   const { data, error } = await supabase
     .from("manga")
     .select("*")
@@ -16,6 +16,6 @@ const GetManga = async (mangaId: string) => {
 
   return data[0];
 };
-export default function useGetManga(mangaId: string) {
-  return useQuery(mangaId, () => GetManga(mangaId));
+export default function useGetMangaByMID(mangaId: string) {
+  return useQuery(mangaId, () => GetMangaMID(mangaId));
 }
