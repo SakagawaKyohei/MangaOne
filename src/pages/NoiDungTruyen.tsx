@@ -2,15 +2,90 @@ import * as faIcons from "react-icons/fa";
 import mangaimage from "../images/mangaimage.jpg";
 import content from "../images/content.svg";
 import { Button } from "antd";
+import { FaAngleDoubleRight } from "react-icons/fa";
 import ChapterList from "../components/ChapterList";
 import TextArea from "antd/es/input/TextArea";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import useGetMangaByMID from "../hooks/GetMangaInfo/useGetMangaByMID";
+import useGetChapter from "../hooks/GetMangaInfo/useGetChapter";
+import { useParams } from "react-router-dom";
+import { Footer } from "antd/es/layout/layout";
 function NoiDungTruyen() {
+  const { id } = useParams();
+  const mid = id ? id.toString() : "";
+  const manga = useGetMangaByMID(mid);
+  const chapter = useGetChapter(mid, "chapterlist" + mid);
+  const [chapterdata, setchapterdata] = useState<any[]>([]);
+  const [manganame, setmanganame] = useState("");
+  const [mangabia, setmangabia] = useState("");
+  const [mangadetail, setmangadetail] = useState("");
+  const [mangatenkhac, setmangatenkhac] = useState("");
+  const [mangatacgia, setmangatacgia] = useState("");
+  const [mangatheloai, setmangatheloai] = useState<string[]>([]);
+  const pRef = useRef<HTMLParagraphElement>(null);
+  const [pheight, setpheight] = useState(0);
+  const [xemthem, setxemthem] = useState(false);
+  const [divheight, setdivheight] = useState(0);
+  const dRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (manga.data != null) {
+      setmanganame(manga.data.name);
+      setmangabia(manga.data.biatruyen);
+      setmangadetail(manga.data.detail);
+      setmangatacgia(manga.data.author);
+      setmangatenkhac(manga.data.other_name);
+      setmangatheloai(manga.data.genre);
+    }
+  }, [manga]);
+  useEffect(() => {
+    if (chapter.data != null) {
+      console.log(chapter.data.last);
+      setchapterdata(chapter.data.last);
+    }
+  }, [chapter.data]);
+
+  //check div overflow
+  const [isOverflow, setIsOverflow] = useState(false);
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (pRef.current) {
+      setpheight(pRef.current.clientHeight);
+    }
+    if (dRef.current) {
+      setdivheight(dRef.current.clientHeight);
+    }
+    const checkOverflow = () => {
+      const divElement = divRef.current;
+
+      if (divElement) {
+        const isOverflowing =
+          divElement.scrollHeight > divElement.clientHeight ||
+          divElement.scrollWidth > divElement.clientWidth;
+
+        setIsOverflow(isOverflowing);
+      }
+    };
+
+    checkOverflow();
+
+    // Thêm sự kiện resize để kiểm tra lại khi cửa sổ thay đổi kích thước
+    window.addEventListener("resize", checkOverflow);
+
+    return () => {
+      window.removeEventListener("resize", checkOverflow);
+    };
+  }, [mangadetail]);
   return (
     <div>
-      <div style={{ height: 1750 }}>
-        {/*can fix height*/}
-        <div style={{ height: "40vh" }}>
+      <div
+        style={{
+          fontFamily: "Arial, Helvetica, sans-serif",
+          height: divheight + 175,
+        }}
+      >
+        <div>
           <div
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.40)",
@@ -27,6 +102,7 @@ function NoiDungTruyen() {
 
                 position: "relative",
               }}
+              ref={dRef}
             >
               <div
                 style={{
@@ -35,23 +111,26 @@ function NoiDungTruyen() {
                   flexDirection: "row",
                 }}
               >
-                <img
-                  src={mangaimage}
-                  style={{ height: 300, paddingRight: 18 }}
-                />
+                <img src={mangabia} style={{ height: 300, paddingRight: 18 }} />
                 <div>
                   <h1 style={{ color: "white", paddingBottom: 5 }}>
-                    TÊN TRUYỆN
+                    {manganame}
                   </h1>
+
                   <p
-                    style={{ color: "white", fontSize: 18, paddingBottom: 58 }}
+                    style={{
+                      color: "white",
+                      fontSize: 18,
+                      paddingBottom: 42,
+                      paddingTop: 8,
+                    }}
                   >
-                    Tên khác
+                    {mangatenkhac == "" ? manganame : mangatenkhac}
                   </p>
                   <p
-                    style={{ color: "white", fontSize: 18, paddingBottom: 55 }}
+                    style={{ color: "white", fontSize: 18, paddingBottom: 45 }}
                   >
-                    Tên tác giả
+                    {mangatacgia == "" ? "Tên tác giả" : mangatacgia}
                   </p>
                   <Button
                     style={{
@@ -64,35 +143,47 @@ function NoiDungTruyen() {
                       fontSize: 18,
                       height: 45,
                     }}
+                    onClick={() => {
+                      console.log(mid + "a");
+                    }}
                   >
                     <faIcons.FaHeart
                       style={{ color: "white", marginRight: 10 }}
                     />
                     <p>Theo dõi</p>
                   </Button>
-                  <button
-                    style={{
-                      backgroundColor: "#D9D9D9",
-                      borderRadius: 10,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      border: "none",
-                      marginTop: 30,
-                      marginBottom: 22,
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: 14,
-                        padding: 3,
-                        paddingLeft: 8,
-                        paddingRight: 8,
-                      }}
-                    >
-                      THỂ LOẠI
-                    </p>
-                  </button>
+
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    {mangatheloai.map((item) => (
+                      <div>
+                        <button
+                          style={{
+                            backgroundColor: "#D9D9D9",
+                            borderRadius: 10,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            border: "none",
+                            marginTop: 30,
+                            marginBottom: 22,
+                            marginRight: 15,
+                          }}
+                        >
+                          <p
+                            style={{
+                              fontSize: 14,
+                              padding: 3,
+                              paddingLeft: 8,
+                              paddingRight: 8,
+                            }}
+                          >
+                            {item.toLocaleUpperCase()}
+                          </p>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
                   <div style={{ display: "flex", flexDirection: "row" }}>
                     <div
                       style={{
@@ -151,10 +242,56 @@ function NoiDungTruyen() {
                 <p style={{ fontSize: 17, marginLeft: 10 }}>NỘI DUNG</p>
               </div>
               <div className="line2" style={{ marginBottom: 10 }} />
-              <p>Đây là nội dung</p>
+              {pheight > 95 && !xemthem ? (
+                <>
+                  <div
+                    style={{
+                      height: 95,
+                      overflow: "hidden",
+                    }}
+                    ref={divRef}
+                  >
+                    <p style={{ fontSize: 18 }} ref={pRef}>
+                      {mangadetail}
+                    </p>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      marginTop: 10,
+                    }}
+                  >
+                    <FaAngleDoubleRight
+                      style={{ color: "#FF9040" }}
+                      onClick={() => setxemthem(true)}
+                    />
+                    <p
+                      style={{
+                        color: "#FF9040",
+                      }}
+                      onClick={() => {
+                        setxemthem(true);
+                        console.log(xemthem);
+                      }}
+                    >
+                      Xem thêm
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div ref={divRef}>
+                    <p style={{ fontSize: 18 }} ref={pRef}>
+                      {mangadetail}
+                    </p>
+                  </div>
+                </>
+              )}
               <div
                 style={{
-                  paddingTop: 20,
+                  paddingTop: 16,
                   display: "flex",
                   flexDirection: "row",
                   paddingBottom: 15,
@@ -183,7 +320,7 @@ function NoiDungTruyen() {
             </div>
           </div>
           <img
-            src={mangaimage}
+            src={mangabia}
             style={{
               width: "100%",
               height: "40vh",

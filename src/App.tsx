@@ -28,12 +28,13 @@ import TruyenTheoDoi2 from "./pages/TruyenTheoDoi2";
 import { QueryClient, QueryClientProvider } from "react-query";
 import DangKy from "./pages/LoginSystem/DangKy";
 import QuenMatKhau from "./pages/LoginSystem/QuenMatKhau";
-import Navbar from "./components/Navbar/Navbar";
+
 import AdminPage from "./pages/AdminPage";
 import ResetPassword from "./pages/LoginSystem/ResetPassword";
 import useUser from "./hooks/useUser";
 import ChinhSuaTruyen from "./pages/QuanLyTruyen/ChinhSuaTruyen";
 import ChinhSuaChapter from "./pages/QuanLyTruyen/ChinhSuaChapter";
+import Navbar from "./components/Navbar/navbar";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -96,10 +97,10 @@ function App() {
               <Route path="/*" element={<Notfound />} />
               <Route path="/dang-nhap" element={<Login />} />
               <Route path="/truyen-theo-doi-2" element={<TruyenTheoDoi2 />} />
-              <Route path="/noi-dung" element={<NoiDungTruyen />} />
+
               <Route path="/dang-ky" element={<DangKy />} />
               <Route path="/admin" element={<AdminPage />} />
-              <Route path="/noi-dung" element={<NoiDungTruyen />} />
+              <Route path="/noi-dung/:id" element={<NoiDungTruyen />} />
               <Route path="/quen-mat-khau" element={<QuenMatKhau />} />
               <Route path="/reset-password" element={<ResetPassword />} />
             </Routes>

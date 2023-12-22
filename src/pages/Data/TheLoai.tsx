@@ -28,7 +28,7 @@ export const Theloai = [
   "Psychological",
   "Romance",
   "Samurai",
-  "School Lìe",
+  "School Life",
   "Sci-fi",
   "Seinen",
   "Shoujo",

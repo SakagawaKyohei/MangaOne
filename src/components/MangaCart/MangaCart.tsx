@@ -3,6 +3,7 @@ import "./MangaCart.css";
 import mangaimage from "../../images/mangaimage.jpg";
 import useGetMangaByMID from "../../hooks/GetMangaInfo/useGetMangaByMID";
 import useGetChapter from "../../hooks/GetMangaInfo/useGetChapter";
+import { Link } from "react-router-dom";
 
 interface manga {
   mangaid: string;
@@ -11,9 +12,7 @@ interface manga {
 function MangaCart(pros: manga) {
   const manga = useGetMangaByMID(pros.mangaid);
   const chapter = useGetChapter(pros.mangaid, "chapterlist" + pros.mangaid);
-  const [chaptername, setchaptername] = useState<any[]>([]);
-  const [chapterid, setchapterid] = useState<string[]>([]);
-  const [chaptertime, setchaptertime] = useState<string[]>([]);
+  const [chapterdata, setchapterdata] = useState<any[]>([]);
   const [bia, setbia] = useState();
   const [ten, setten] = useState("");
   useEffect(() => {
@@ -25,24 +24,33 @@ function MangaCart(pros: manga) {
   useEffect(() => {
     if (chapter.data != null) {
       console.log(chapter.data.last);
-      setchaptername(chapter.data.last);
+      setchapterdata(chapter.data.last);
     }
   }, [chapter.data]);
   return (
     <div className="mangaitem">
-      <img
-        className="mangaimage"
-        src={bia}
-        onClick={() => {
-          console.log(chaptername);
-        }}
-      />
-      <p className="mangaitemtitle">{ten}</p>
+      <Link to={`noi-dung/${pros.mangaid}`}>
+        <img
+          className="mangaimage"
+          src={bia}
+          onClick={() => {
+            console.log(chapterdata);
+          }}
+        />
+      </Link>
+      <Link to={`noi-dung/${pros.mangaid}`} className="mangaitemtitle">
+        <p>{ten}</p>
+      </Link>
 
-      {chaptername.map((item) => (
+      {chapterdata.map((item) => (
         <div className="chapterandtime">
           <div className="mangaitemchapter">
-            <p>{item.name}</p>
+            <Link
+              to={`doc-truyen/${pros.mangaid}/${item.id}`}
+              className="mangaitemchapter"
+            >
+              <p>{item.name}</p>
+            </Link>
           </div>
           <div className="mangaitemtime">
             <p>1 giờ trước</p>
