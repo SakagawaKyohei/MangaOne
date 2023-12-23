@@ -35,6 +35,7 @@ import useUser from "./hooks/useUser";
 import ChinhSuaTruyen from "./pages/QuanLyTruyen/ChinhSuaTruyen";
 import ChinhSuaChapter from "./pages/QuanLyTruyen/ChinhSuaChapter";
 import Navbar from "./components/Navbar/navbar";
+import DocTruyen from "./components/DocTruyen";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -103,6 +104,7 @@ function App() {
               <Route path="/noi-dung/:id" element={<NoiDungTruyen />} />
               <Route path="/quen-mat-khau" element={<QuenMatKhau />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/doc-truyen/:mid/:id" element={<DocTruyen />} />
             </Routes>
             <Footer />
           </Router>

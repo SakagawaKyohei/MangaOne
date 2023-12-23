@@ -9,7 +9,7 @@ import NeedLogin from "./NeedLogin";
 
 function TruyenTheoDoi2() {
   const style2: React.CSSProperties = {
-    marginRight: 50,
+    marginRight: 35,
     fontSize: 18,
   };
   const input2: React.CSSProperties = {

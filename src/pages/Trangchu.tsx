@@ -42,7 +42,7 @@ function Trangchu() {
       <div
         style={{
           marginLeft: 35,
-          marginRight: 50,
+          marginRight: 35,
         }}
       >
         <p style={{ fontSize: 0.01 }}>.</p>{" "}
