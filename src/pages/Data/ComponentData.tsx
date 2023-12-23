@@ -5,9 +5,11 @@ import {
   ConfigProvider,
   Flex,
   Input,
+  Modal,
   Row,
   Upload,
 } from "antd";
+import { ExclamationCircleFilled } from "@ant-design/icons";
 import { InputThemMoiTruyen, InputChinhSuaTruyen } from "./InputData";
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -17,7 +19,7 @@ import {
 } from "@ant-design/icons";
 import QLTComponent from "../QuanLyTruyen/QLTComponent";
 import QLCComponent from "../QuanLyTruyen/QLCComponent";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useGetMangaTrans from "../../hooks/GetMangaInfo/useGetMangaTrans";
 import useUser from "../../hooks/useUser";
@@ -134,6 +136,7 @@ export function ThemMoiChapterData() {
   const [images, setImages] = useState<Blob[] | null>(null);
   const [ten, setten] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+
   const upchapter = useCreateChapter(
     {
       ten: ten,
@@ -144,6 +147,11 @@ export function ThemMoiChapterData() {
     },
     ""
   );
+  const nav = useNavigate();
+  if (upchapter.isSuccess) {
+    nav(`/danh-sach-chuong/${id}`);
+  }
+
   useEffect(() => {
     if (fileList != null) {
       const newImages = fileList.map((item) => item.originFileObj);
@@ -172,6 +180,7 @@ export function ThemMoiChapterData() {
   if (upchapter.isError) {
     console.log((upchapter.error as any).message);
   }
+
   return (
     <div style={{ width: "92%" }}>
       <div
@@ -532,13 +541,31 @@ export function TruyenDaDangData() {
   if (deletemanga.isError) {
     console.log((deletemanga.error as any).message);
   }
-  if (deletemanga.isSuccess) {
-    window.location.reload(); //tìm cách mỗi lần thay đổi data trong database là load chứ không cần ra lệnh reload
-  }
 
   const [checkall, setcheckall] = useState(false);
   const [search, setsearch] = useState("");
   const [search1, setsearch1] = useState(""); //khi bấm tìm kiếm mới xử lý search
+
+  if (deletemanga.isSuccess) {
+    window.location.reload();
+  }
+  const { confirm } = Modal;
+  const showDeleteConfirm = () => {
+    confirm({
+      title: "Bạn muốn xóa truyện?",
+      icon: <ExclamationCircleFilled />,
+      content: "Các truyện được chọn sẽ bị xóa sau khi xác nhận",
+      okText: "Xác nhận",
+      okType: "danger",
+      cancelText: "Hủy bỏ",
+      onOk() {
+        deletemanga.mutate();
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
   return (
     <div style={{ width: "92%" }}>
       <Row style={{ paddingTop: 25, paddingBottom: 25 }}>
@@ -718,7 +745,7 @@ export function TruyenDaDangData() {
             marginBottom: 25,
             marginTop: 25,
           }}
-          onClick={() => deletemanga.mutate()}
+          onClick={showDeleteConfirm}
         >
           <p>Xóa truyện</p>
         </Button>
@@ -747,13 +774,32 @@ export function ChapterDaDangData() {
   if (deletemanga.isError) {
     console.log((deletemanga.error as any).message);
   }
-  if (deletemanga.isSuccess) {
-    window.location.reload(); //tìm cách mỗi lần thay đổi data trong database là load chứ không cần ra lệnh reload
-  }
 
   const [checkall, setcheckall] = useState(false);
   const [search, setsearch] = useState("");
   const [search1, setsearch1] = useState(""); //khi bấm tìm kiếm mới xử lý search
+  if (deletemanga.isSuccess) {
+    window.location.reload();
+  }
+
+  const { confirm } = Modal;
+  const showDeleteConfirm = () => {
+    confirm({
+      title: "Bạn muốn xóa chương?",
+      icon: <ExclamationCircleFilled />,
+      content: "Các chương được chọn sẽ bị xóa sau khi xác nhận",
+      okText: "Xác nhận",
+      okType: "danger",
+      cancelText: "Hủy bỏ",
+      onOk() {
+        deletemanga.mutate();
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
+
   return (
     <div style={{ width: "92%" }}>
       <Row style={{ paddingTop: 25, paddingBottom: 25 }}>
@@ -932,7 +978,10 @@ export function ChapterDaDangData() {
             marginBottom: 25,
             marginTop: 25,
           }}
-          onClick={() => deletemanga.mutate()}
+          onClick={() => {
+            showDeleteConfirm();
+            console.log("a");
+          }}
         >
           <p>Xóa chương</p>
         </Button>

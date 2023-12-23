@@ -145,6 +145,18 @@ function DangKy() {
                 <br />
               </div>
             </div>
+            {createUserMutation.error ? (
+              <>{(createUserMutation.error as any).message}</>
+            ) : (
+              <></>
+            )}
+            {createUserMutation.isSuccess ? (
+              <>Email kích hoạt đã được gửi đến tài khoản của bạn</>
+            ) : (
+              <></>
+            )}
+            {/*chưa test đăng ký không xác nhận xong dùng mail đó đk tiếp
+             */}
             <div
               style={{
                 marginTop: 15,

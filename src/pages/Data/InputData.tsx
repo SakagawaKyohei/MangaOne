@@ -18,7 +18,7 @@ import { Theloai } from "./TheLoai";
 import useCreateManga from "../../hooks/MangaManagement/useCreateManga";
 import { error } from "console";
 import useGetManga from "../../hooks/GetMangaInfo/useGetMangaByMID";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 const input: React.CSSProperties = {
   fontSize: 16,
   width: "100%",
@@ -69,8 +69,9 @@ export function InputThemMoiTruyen() {
   const handleSelectChange = (selectedValues: any) => {
     setGenre(selectedValues); // Cập nhật state genre khi có giá trị được chọn
   };
+  const nav = useNavigate();
   if (createmanga.isSuccess) {
-    console.log("done");
+    nav("/truyen-da-dang");
   }
   if (createmanga.isLoading) {
     console.log("load");
@@ -750,12 +751,6 @@ export function InputInfo() {
     avt: avt,
   };
   const updatemetadata = useUpdateMetadata(user);
-  if (updatemetadata.isSuccess) {
-    console.log("tc");
-  }
-  if (updatemetadata.error) {
-    console.log("tb");
-  }
 
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];
@@ -771,12 +766,26 @@ export function InputInfo() {
   if (upload.isError) {
     return <>{(upload.error as any)?.message as string}</>;
   }
+  //message
+  const [messageApi, contextHolder] = message.useMessage();
+  const successs = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
 
   if (upload.isSuccess) {
-    console.log("done");
+  }
+  if (updatemetadata.isSuccess && upload.isSuccess) {
+    message.success("Cập nhật thông tin thành công");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
   return (
     <>
+      {contextHolder}
       <div
         style={{
           marginBottom: 50,
@@ -1056,8 +1065,20 @@ export function InputInfo() {
 export function InputChangePass() {
   const [password, setPassword] = useState("");
   const resetpassword = useResetPassword(password);
+  const nav = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
   if (resetpassword.isSuccess) {
-    return <>a</>;
+    message.success("Đổi mật khẩu thành công, bạn sẽ quay lại trang chủ");
+    setTimeout(() => {
+      nav("/");
+    }, 500);
   }
   if (resetpassword.isError) {
     return <>{(resetpassword.error as any)?.message};</>;
