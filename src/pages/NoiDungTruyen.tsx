@@ -14,7 +14,7 @@ function NoiDungTruyen() {
   const { id } = useParams();
   const mid = id ? id.toString() : "";
   const manga = useGetMangaByMID(mid);
-  const chapter = useGetChapter(mid, "chapterlist" + mid);
+  const chapter = useGetChapter(mid);
   const [chapterdata, setchapterdata] = useState<any[]>([]);
   const [manganame, setmanganame] = useState("");
   const [mangabia, setmangabia] = useState("");

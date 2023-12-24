@@ -47,6 +47,6 @@ const GetChapter = async (mangaId: string) => {
   console.log(count);
   return { data, count, last, last20 };
 };
-export default function useGetChapter(mangaId: string, key: string) {
-  return useQuery(key, () => GetChapter(mangaId));
+export default function useGetChapter(mangaId: string) {
+  return useQuery(mangaId + "_chapter", () => GetChapter(mangaId));
 }

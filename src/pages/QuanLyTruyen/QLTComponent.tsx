@@ -17,7 +17,7 @@ interface Pros {
 //component cho mỗi truyện đã đăng
 
 function QLTComponent(pros: Pros) {
-  const chapter = useGetChapter(pros.mangaid, pros.keyy);
+  const chapter = useGetChapter(pros.mangaid);
   const [prev, setprev] = useState(false);
   const [checked, setchecked] = useState(pros.checkall);
 

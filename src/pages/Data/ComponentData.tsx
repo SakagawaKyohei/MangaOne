@@ -214,7 +214,7 @@ export function ThemMoiChapterData() {
               onChange={(e) => {
                 setten(e.target.value);
                 console.log(images);
-                console.log(fileList);
+                console.log("aa");
               }}
             ></Input>
           </Col>
@@ -326,6 +326,8 @@ export function ThemMoiChapterData() {
   );
 }
 
+export interface FileObject extends UploadFile {}
+
 export function ChinhSuaChapterData() {
   const { id } = useParams();
   const chapter = useGetChapterByCID(id as string);
@@ -411,6 +413,7 @@ export function ChinhSuaChapterData() {
               placeholder="Tên chương"
               value={name}
               onChange={(e) => {
+                console.log(fileList);
                 setname(e.target.value);
               }}
             ></Input>
@@ -758,7 +761,7 @@ export function ChapterDaDangData() {
   const user = useUser();
   const { id: mid } = useParams();
 
-  const chapter = useGetChapter(mid as string, "chapterlist"); //chinh thanh get chapter
+  const chapter = useGetChapter(mid as string); //chinh thanh get chapter
   const [chapterid, setchapterid] = useState<string[]>([]); //id chapter duoc chon de delete
 
   const addValue = (value: string) => {

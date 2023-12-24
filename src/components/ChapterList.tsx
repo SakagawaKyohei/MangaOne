@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 
 function ChapterList() {
   const { id } = useParams();
-  const chapter = useGetChapter(id as string, "chapter" + id);
+  const chapter = useGetChapter(id as string);
   const [data, setdata] = useState<any[]>();
   const [more, setmore] = useState(false);
   useEffect(() => {

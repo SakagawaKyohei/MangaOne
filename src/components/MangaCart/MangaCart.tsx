@@ -11,7 +11,7 @@ interface manga {
 
 function MangaCart(pros: manga) {
   const manga = useGetMangaByMID(pros.mangaid);
-  const chapter = useGetChapter(pros.mangaid, "chapterlist" + pros.mangaid);
+  const chapter = useGetChapter(pros.mangaid);
   const [chapterdata, setchapterdata] = useState<any[]>([]);
   const [bia, setbia] = useState();
   const [ten, setten] = useState("");

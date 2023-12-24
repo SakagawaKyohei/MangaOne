@@ -35,7 +35,7 @@ import useUser from "./hooks/useUser";
 import ChinhSuaTruyen from "./pages/QuanLyTruyen/ChinhSuaTruyen";
 import ChinhSuaChapter from "./pages/QuanLyTruyen/ChinhSuaChapter";
 import Navbar from "./components/Navbar/navbar";
-import DocTruyen from "./components/DocTruyen";
+import DocTruyen from "./pages/DocTruyen";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -59,7 +59,7 @@ function App() {
             },
             Select: {
               /* here is your component tokens */ borderRadius: 0,
-              fontSize: 12,
+              fontSize: 15,
             },
             Tooltip: { fontSize: 12 },
           },
