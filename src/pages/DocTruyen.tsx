@@ -119,7 +119,7 @@ function DocTruyen() {
                   }}
                   onClick={() => {}}
                 >
-                  - {chapter.data.name}
+                  - {naem}
                 </p>
               </div>
               <Row style={{ backgroundColor: "#f6f7f8" }}>
