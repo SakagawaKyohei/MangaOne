@@ -21,6 +21,7 @@ import useUser from "../hooks/useUser";
 import useDeleteFollow from "../hooks/Follow/useDeleteFollow";
 import useIsFollow from "../hooks/Follow/useIsFollow";
 import { setuid } from "process";
+import usePlusViewChapter from "../hooks/usePlusView";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
@@ -76,13 +77,21 @@ function DocTruyen() {
   if (manga.isSuccess) {
     manganame = manga.data.name;
   }
+  let view = 0;
+
+  if (chapter.isSuccess) {
+    view = chapter.data.view;
+    console.log(view);
+  }
+  const plusview = usePlusViewChapter(id, view);
 
   useEffect(() => {
     if (chapter.data != null) {
       console.log(chapter.data.content);
       setpages(chapter.data.content);
       setname(chapter.data.name);
-
+      console.log(chapter.data.view);
+      plusview.mutate();
       // updateSeenChap(id); > chap.seen += 1 > db
     }
   }, [chapter.data]);

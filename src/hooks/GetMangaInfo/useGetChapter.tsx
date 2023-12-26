@@ -30,6 +30,15 @@ const GetChapter = async (mangaId: string) => {
     throw new Error(lasterror.message);
   }
 
+  const { data: last1, error: last1error } = await supabase
+    .from("chapter")
+    .select("*")
+    .eq("manga_id", mangaId)
+    .range(0, 0)
+    .order("created_at", { ascending: false });
+  if (last1error) {
+    throw new Error(last1error.message);
+  }
   const { data: last20, error: last20error } = await supabase
     .from("chapter")
     .select("*")
@@ -43,9 +52,14 @@ const GetChapter = async (mangaId: string) => {
   if (!data) {
     throw new Error("Manga not found");
   }
-  console.log(data);
-  console.log(count);
-  return { data, count, last, last20 };
+
+  return {
+    data,
+    count,
+    last,
+    last20,
+    last1: Array.isArray(last1) && last1.length > 0 ? last1[0] : null,
+  };
 };
 export default function useGetChapter(mangaId: string) {
   return useQuery(mangaId + "_chapter", () => GetChapter(mangaId));

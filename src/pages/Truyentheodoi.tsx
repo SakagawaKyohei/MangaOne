@@ -13,10 +13,7 @@ import useUser from "../hooks/useUser";
 function Truyentheodoi() {
   const user = useUser();
   const mids = useGetMangaFollowId(user.data?.id);
-  if (mids.isSuccess) {
-    console.log(mids.data);
-    console.log(user.data?.id);
-  }
+
   return (
     <ConfigProvider
       theme={{
@@ -88,9 +85,9 @@ function Truyentheodoi() {
                 </Col>
               </Row>
               <Top1time />
-              <TimeManga />
-              <TimeManga />
-              <TimeManga />
+              <TimeManga keyy={1} />
+              <TimeManga keyy={3} />
+              <TimeManga keyy={5} />
             </div>
           </Col>
         </Row>

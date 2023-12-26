@@ -23,7 +23,6 @@ function MangaCart(pros: manga) {
   }, [manga]);
   useEffect(() => {
     if (chapter.data != null) {
-      console.log(chapter.data.last);
       setchapterdata(chapter.data.last);
     }
   }, [chapter.data]);

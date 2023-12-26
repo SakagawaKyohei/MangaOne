@@ -7,7 +7,9 @@ import TimeManga from "../components/TopTimeManga/TimeManga";
 import Top1time from "../components/TopTimeManga/Top1time";
 import * as mdIcons from "react-icons/md";
 import useGetMangaList from "../hooks/GetMangaInfo/useGetMangaList";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import useGetMangaTop from "../hooks/useGetTopManga";
+import useGetChapter from "../hooks/GetMangaInfo/useGetChapter";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
@@ -17,6 +19,28 @@ function Trangchu() {
   const navigate = useNavigate();
   const [pages, setpages] = useState<number>(1);
   const { page } = useParams();
+  //top 1 truyen
+  const top1 = useGetMangaTop(0);
+  let ten = "";
+  let avt = "";
+  let id = "";
+  let detail = "";
+  let theloai = ["a", "b"];
+  let author = "";
+  if (top1.isSuccess) {
+    ten = top1.data.name;
+    avt = top1.data.biatruyen;
+    id = top1.data.id;
+    detail = top1.data.detail;
+    theloai = top1.data.genre;
+    author = top1.data.author;
+  }
+  if (top1.isError) {
+    console.log((top1.error as any).message);
+  }
+
+  //
+
   useEffect(() => {
     if (page == undefined) {
       setpages(1);
@@ -52,40 +76,45 @@ function Trangchu() {
         </p>
         <Row>
           <Col span={24}>
-            <div className="topmanga">
-              <div className="topmangabg" />
-              <div className="topmangadetail">
-                <div className="topmangaavt">
-                  <img src={mangaimage} className="topmangaavt" />
-                </div>
-                <div className="topmangainfo">
-                  <p className="topmangatitle">TITLE</p>
-                  <Flex gap={10} style={{ marginBottom: 10 }}>
-                    <div className="buttontheloai">Thể loại</div>
-                    <div className="buttontheloai">Thể loại</div>
-                    <div className="buttontheloai">Thể loại</div>
-                    <div className="buttontheloai">Thể loại</div>
-                  </Flex>
-                  <div className="noidung">Nội dung</div>
-                  <div className="tacgiavschuyehuong">
-                    <div style={{ width: "50%" }}>
-                      <i className="tentacgia">Tên tác giả</i>
+            <Link to={`/noi-dung/${id}`} style={{ color: "black" }}>
+              <div className="topmanga">
+                <div className="topmangabg" />
+                <div className="topmangadetail">
+                  <div className="topmangaavt">
+                    <img src={avt} className="topmangaavt" />
+                  </div>
+                  <div className="topmangainfo">
+                    <p className="topmangatitle">{ten}</p>
+                    <Flex gap={10} style={{ marginBottom: 10 }}>
+                      {theloai.map((item) => (
+                        <div className="buttontheloai">
+                          {item.toUpperCase()}
+                        </div>
+                      ))}
+                    </Flex>
+                    <div className="noidung" style={{ fontSize: 18 }}>
+                      {detail}
                     </div>
-                    <div className="chuyenhuong">
-                      <i className="no">No.1</i>
-                      <mdIcons.MdArrowBackIos
-                        fontSize={25}
-                        style={{ marginTop: 5, marginRight: 30 }}
-                      />
-                      <mdIcons.MdArrowForwardIos
-                        fontSize={25}
-                        style={{ marginTop: 5, marginRight: 10 }}
-                      />
+                    <div className="tacgiavschuyehuong">
+                      <div style={{ width: "50%" }}>
+                        <i className="tentacgia">{author}</i>
+                      </div>
+                      <div className="chuyenhuong">
+                        <i className="no">No.1</i>
+                        <mdIcons.MdArrowBackIos
+                          fontSize={25}
+                          style={{ marginTop: 5, marginRight: 30 }}
+                        />
+                        <mdIcons.MdArrowForwardIos
+                          fontSize={25}
+                          style={{ marginTop: 5, marginRight: 10 }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </Col>
         </Row>
         {/*truyen moi cap nhat*/}
@@ -141,9 +170,9 @@ function Trangchu() {
                 </Col>
               </Row>
               <Top1time />
-              <TimeManga />
-              <TimeManga />
-              <TimeManga />
+              <TimeManga keyy={1} />
+              <TimeManga keyy={3} />
+              <TimeManga keyy={5} />
             </div>
           </Col>
         </Row>

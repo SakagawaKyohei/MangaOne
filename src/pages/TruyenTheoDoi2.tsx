@@ -6,6 +6,7 @@ import MangaCart from "../components/MangaCart/MangaCart";
 import * as mdIcons from "react-icons/md";
 import useUser from "../hooks/useUser";
 import NeedLogin from "./NeedLogin";
+import useGetMangaFollowId from "../hooks/Follow/useMangaFollowId";
 
 function TruyenTheoDoi2() {
   const style2: React.CSSProperties = {
@@ -22,6 +23,7 @@ function TruyenTheoDoi2() {
     flexDirection: "row",
   };
   const user = useUser();
+  const mids = useGetMangaFollowId(user.data?.id);
   if (user.data == null) {
     return <NeedLogin />;
   }
@@ -46,11 +48,17 @@ function TruyenTheoDoi2() {
             </h1>
             <div style={style2}>
               <Row gutter={[16, 24]}>
-                <Col span={6}>
-                  <MangaCart mangaid="" />
-                </Col>
+                {mids.isSuccess ? (
+                  mids.data.map((item) => (
+                    <Col span={6} key={item.manga_id}>
+                      <MangaCart mangaid={item.manga_id} />
+                    </Col>
+                  ))
+                ) : (
+                  <></>
+                )}
               </Row>
-              <div
+              {/* <div
                 className="chuyenhuong"
                 style={{
                   width: "100%",
@@ -69,7 +77,7 @@ function TruyenTheoDoi2() {
                   fontSize={35}
                   style={{ marginLeft: 16 }}
                 />
-              </div>
+              </div> */}
             </div>
             {/*custom lai*/}
           </Col>

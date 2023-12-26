@@ -8,6 +8,7 @@ const GetMangaFollowId = async (userid: any) => {
     .from("favorite")
     .select("manga_id")
     .eq("user_id", userid);
+
   if (mangaiderror) {
     throw new Error(mangaiderror.message);
   }

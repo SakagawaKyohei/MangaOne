@@ -6,6 +6,7 @@ const GetMangaMID = async (mangaId: string) => {
     .from("manga")
     .select("*")
     .eq("id", mangaId);
+
   if (error) {
     throw new Error(error.message);
   }

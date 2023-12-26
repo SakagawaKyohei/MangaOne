@@ -67,9 +67,9 @@ function Lichsudoc() {
                   </Col>
                 </Row>
                 <Top1time />
-                <TimeManga />
-                <TimeManga />
-                <TimeManga />
+                <TimeManga keyy={1} />
+                <TimeManga keyy={3} />
+                <TimeManga keyy={5} />
               </div>
             </Col>
           </Row>

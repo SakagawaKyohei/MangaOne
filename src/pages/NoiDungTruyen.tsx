@@ -14,6 +14,7 @@ import useUser from "../hooks/useUser";
 import useIsFollow from "../hooks/Follow/useIsFollow";
 import useAddFollow from "../hooks/Follow/useAddFollow";
 import useDeleteFollow from "../hooks/Follow/useDeleteFollow";
+import useGetMangaView from "../hooks/GetMangaInfo/useGetViewManga";
 function NoiDungTruyen() {
   const { id } = useParams();
   const mid = id ? id.toString() : "";
@@ -50,6 +51,7 @@ function NoiDungTruyen() {
 
   const [data, setdata] = useState<any[]>();
   const [more, setmore] = useState(false);
+  const getview = useGetMangaView(id);
   useEffect(() => {
     if (chapter.data != null) {
       setdata(chapter.data.last20);
@@ -287,7 +289,7 @@ function NoiDungTruyen() {
                       }}
                     >
                       <faIcons.FaRegEye style={{ marginRight: 10 }} />
-                      <p> 0.00</p>
+                      <p> {getview.data}</p>
                     </div>
                   </div>
                   {/*clear code sau*/}
@@ -446,7 +448,7 @@ function NoiDungTruyen() {
                                     color: "rgba(153, 153, 153, 0.60)",
                                   }}
                                 >
-                                  35.846
+                                  {item.view}
                                 </p>
                               </Col>
                             </Row>

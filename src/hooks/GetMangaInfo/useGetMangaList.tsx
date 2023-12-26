@@ -5,7 +5,8 @@ const GetMangaList = async (page: number) => {
   const { data: pagemanga, error } = await supabase
     .from("manga")
     .select("*")
-    .range((page - 1) * 12, page * 12 - 1);
+    .range((page - 1) * 12, page * 12 - 1)
+    .order("created_at", { ascending: false });
   if (error) {
     throw new Error(error.message);
   }
