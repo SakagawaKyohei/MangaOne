@@ -4,11 +4,19 @@ import MangaCart from "../components/MangaCart/MangaCart";
 import star from "../images/StarIcon.png";
 import TimeManga from "../components/TopTimeManga/TimeManga";
 import Top1time from "../components/TopTimeManga/Top1time";
+import useGetMangaFollowId from "../hooks/Follow/useMangaFollowId";
+import useUser from "../hooks/useUser";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
 //chinh top item thanh component
 function Truyentheodoi() {
+  const user = useUser();
+  const mids = useGetMangaFollowId(user.data?.id);
+  if (mids.isSuccess) {
+    console.log(mids.data);
+    console.log(user.data?.id);
+  }
   return (
     <ConfigProvider
       theme={{
@@ -32,19 +40,31 @@ function Truyentheodoi() {
           <Col span={16}>
             <p style={{ fontSize: 0.01 }}>.</p>{" "}
             {/*collision tăng chiều cao cho div*/}
-            <p className="title" style={{ marginBottom: 30, marginTop: 90 }}>
+            <p
+              className="title"
+              onClick={() => {
+                console.log(mids.data);
+              }}
+              style={{ marginBottom: 30, marginTop: 90 }}
+            >
               Truyện theo dõi
             </p>
             <div style={{ marginTop: 20 }}>
               <Row gutter={[16, 24]}>
-                <Col span={6}>
-                  <MangaCart mangaid="" />
-                </Col>
+                {mids.isSuccess ? (
+                  mids.data.map((item) => (
+                    <Col span={6} key={item.manga_id}>
+                      <MangaCart mangaid={item.manga_id} />
+                    </Col>
+                  ))
+                ) : (
+                  <></>
+                )}
               </Row>
             </div>
-            <div className="pagination">
+            {/* <div className="pagination">
               <Pagination defaultCurrent={1} total={50} />
-            </div>
+            </div> */}
           </Col>
           {/*Xếp hạng theo mốc thời gian*/}
           <Col span={8}>

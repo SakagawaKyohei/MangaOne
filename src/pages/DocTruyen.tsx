@@ -16,20 +16,54 @@ import * as faIcons from "react-icons/fa";
 import useGetChapter from "../hooks/GetMangaInfo/useGetChapter";
 import useGetChapterByCID from "../hooks/GetMangaInfo/useGetChapterByCID";
 import useGetMangaByMID from "../hooks/GetMangaInfo/useGetMangaByMID";
+import useAddFollow from "../hooks/Follow/useAddFollow";
+import useUser from "../hooks/useUser";
+import useDeleteFollow from "../hooks/Follow/useDeleteFollow";
+import useIsFollow from "../hooks/Follow/useIsFollow";
+import { setuid } from "process";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
 //chinh top item thanh component
 function DocTruyen() {
   const { mid } = useParams();
+
   const chapterlist = useGetChapter(mid ?? "");
   const { id } = useParams();
   const chapter = useGetChapterByCID(id as string);
   const [pages, setpages] = useState([]);
+  const user = useUser();
+  const follow = useAddFollow(user.data?.id, mid);
+  const unfollow = useDeleteFollow(user.data?.id, mid);
+  const followdata = useIsFollow(user.data?.id, mid);
   const [naem, setname] = useState("");
   const manga = useGetMangaByMID(mid ?? "");
   let names: any = [];
   const nav = useNavigate();
+
+  let a = false;
+
+  if (followdata.isSuccess) {
+    if (followdata.data?.length != 0) {
+      a = true;
+
+      console.log(followdata.data?.length);
+    } else {
+      a = false;
+      console.log(a);
+    }
+    console.log("aaaaaaaaaaa");
+  }
+  if (followdata.isError) {
+    console.log((followdata.error as any).message);
+  }
+
+  const [isfollow, setisfollow] = useState<boolean>();
+  useEffect(() => {
+    setisfollow(a);
+  }, [a]);
+
+  let manganame = "";
   let currenti = -1;
   if (chapterlist.isSuccess) {
     chapterlist.data.data.map((i) => {
@@ -37,8 +71,10 @@ function DocTruyen() {
     });
   }
   if (chapter.isSuccess) {
-    currenti = names.indexOf(chapter.data.name);
-    console.log(currenti);
+    currenti = names.indexOf(naem);
+  }
+  if (manga.isSuccess) {
+    manganame = manga.data.name;
   }
 
   useEffect(() => {
@@ -50,6 +86,14 @@ function DocTruyen() {
       // updateSeenChap(id); > chap.seen += 1 > db
     }
   }, [chapter.data]);
+  if (follow.isError) {
+    return <></>;
+  }
+  if (follow.isSuccess) {
+  }
+  if (follow.isLoading) {
+  }
+
   return (
     <ConfigProvider
       theme={{
@@ -106,9 +150,7 @@ function DocTruyen() {
                       color: "#FF9040",
                     }}
                     onClick={() => {}}
-                  >
-                    {manga.data.name}
-                  </p>
+                  ></p>
                 </Link>
                 <p
                   style={{
@@ -119,7 +161,7 @@ function DocTruyen() {
                   }}
                   onClick={() => {}}
                 >
-                  - {naem}
+                  {manganame} - {naem}
                 </p>
               </div>
               <Row style={{ backgroundColor: "#f6f7f8" }}>
@@ -267,26 +309,62 @@ function DocTruyen() {
                       </Button>
                     </>
                   )}
-                  <Button
-                    style={{
-                      color: "white",
-                      backgroundColor: "#FF9040",
-                      fontSize: 18,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: 0,
-                    }}
-                  >
-                    <p
-                      style={{
-                        paddingTop: 10,
-                        paddingBottom: 10,
-                      }}
-                    >
-                      Theo dõi
-                    </p>
-                  </Button>
+
+                  {!isfollow ? (
+                    <>
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#FF9040",
+                          fontSize: 18,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: 0,
+                        }}
+                        onClick={() => {
+                          follow.mutate();
+                          setisfollow(true);
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: 10,
+                            paddingBottom: 10,
+                          }}
+                        >
+                          Theo dõi
+                        </p>
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "red",
+                          fontSize: 18,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: 0,
+                        }}
+                        onClick={() => {
+                          unfollow.mutate();
+                          setisfollow(false);
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: 10,
+                            paddingBottom: 10,
+                          }}
+                        >
+                          Hủy theo dõi
+                        </p>
+                      </Button>
+                    </>
+                  )}
                 </Col>
               </Row>
             </div>
@@ -329,3 +407,4 @@ function DocTruyen() {
 
 export default DocTruyen;
 export {};
+//bug khi reload

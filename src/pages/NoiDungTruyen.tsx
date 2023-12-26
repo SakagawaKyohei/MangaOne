@@ -10,10 +10,32 @@ import useGetMangaByMID from "../hooks/GetMangaInfo/useGetMangaByMID";
 import useGetChapter from "../hooks/GetMangaInfo/useGetChapter";
 import { Link, useParams } from "react-router-dom";
 import { Footer } from "antd/es/layout/layout";
+import useUser from "../hooks/useUser";
+import useIsFollow from "../hooks/Follow/useIsFollow";
+import useAddFollow from "../hooks/Follow/useAddFollow";
+import useDeleteFollow from "../hooks/Follow/useDeleteFollow";
 function NoiDungTruyen() {
   const { id } = useParams();
   const mid = id ? id.toString() : "";
+  const user = useUser();
+  const followdata = useIsFollow(user.data?.id, mid);
+  const follow = useAddFollow(user.data?.id, mid);
+  const unfollow = useDeleteFollow(user.data?.id, mid);
+  let a = false;
+  if (followdata.isSuccess) {
+    if (followdata.data.length != 0) {
+      a = true;
+    }
+  }
+  if (follow.isSuccess) {
+    a = true;
+  }
+
   const manga = useGetMangaByMID(mid);
+  const [isfollow, setisfollow] = useState<boolean>();
+  useEffect(() => {
+    setisfollow(a);
+  }, [a]);
   const chapter = useGetChapter(mid);
   const [chapterdata, setchapterdata] = useState<any[]>([]);
   const [manganame, setmanganame] = useState("");
@@ -150,26 +172,50 @@ function NoiDungTruyen() {
                   >
                     {mangatacgia == "" ? "Tên tác giả" : mangatacgia}
                   </p>
-                  <Button
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                  {!isfollow ? (
+                    <>
+                      <Button
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
 
-                      backgroundColor: "#FF9040",
-                      color: "white",
-                      fontSize: 18,
-                      height: 45,
-                    }}
-                    onClick={() => {
-                      console.log(mid + "a");
-                    }}
-                  >
-                    <faIcons.FaHeart
-                      style={{ color: "white", marginRight: 10 }}
-                    />
-                    <p>Theo dõi</p>
-                  </Button>
+                          backgroundColor: "#FF9040",
+                          color: "white",
+                          fontSize: 18,
+                          height: 45,
+                        }}
+                        onClick={() => {
+                          follow.mutate();
+                          setisfollow(true);
+                        }}
+                      >
+                        <p>Theo dõi</p>
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+
+                          backgroundColor: "red",
+                          color: "white",
+                          fontSize: 18,
+                          height: 45,
+                        }}
+                        onClick={() => {
+                          console.log(mid + "a");
+                          unfollow.mutate();
+                          setisfollow(false);
+                        }}
+                      >
+                        <p>Hủy theo dõi</p>
+                      </Button>
+                    </>
+                  )}
 
                   <div style={{ display: "flex", flexDirection: "row" }}>
                     {mangatheloai.map((item) => (

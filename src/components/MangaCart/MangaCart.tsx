@@ -29,7 +29,7 @@ function MangaCart(pros: manga) {
   }, [chapter.data]);
   return (
     <div className="mangaitem">
-      <Link to={`noi-dung/${pros.mangaid}`}>
+      <Link to={`/noi-dung/${pros.mangaid}`}>
         <div
           style={{
             overflow: "hidden",
@@ -46,7 +46,7 @@ function MangaCart(pros: manga) {
           />
         </div>
       </Link>
-      <Link to={`noi-dung/${pros.mangaid}`} className="mangaitemtitle">
+      <Link to={`/noi-dung/${pros.mangaid}`} className="mangaitemtitle">
         <p>{ten}</p>
       </Link>
 
@@ -54,7 +54,7 @@ function MangaCart(pros: manga) {
         <div className="chapterandtime">
           <div className="mangaitemchapter">
             <Link
-              to={`doc-truyen/${pros.mangaid}/${item.id}`}
+              to={`/doc-truyen/${pros.mangaid}/${item.id}`}
               className="mangaitemchapter"
             >
               <p>{item.name}</p>
