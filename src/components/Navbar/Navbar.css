@@ -75,6 +75,7 @@ transition: 250ms;
     left: 0;
     transition: 250ms;
 }
+.nav-menu::-webkit-scrollbar{display: none}
 .nav-title span
 {
     font-family: Arial, Helvetica, sans-serif;

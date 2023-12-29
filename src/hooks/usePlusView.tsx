@@ -8,6 +8,8 @@ const PlusViewChapter = async (chapterid: any, currentview: number) => {
     .eq("id", chapterid);
 };
 
+
+
 export default function usePlusViewChapter(
   chapterid: any,
   currentview: number

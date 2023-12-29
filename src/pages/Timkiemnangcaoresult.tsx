@@ -1,9 +1,28 @@
 import { Col, ConfigProvider, Pagination, Row } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdvanceSearchCart from "../components/AdvanceSearchCart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import useAdvanceSearch from "../hooks/useAdvanceSearch";
 
 function Timkiemnangcaoresult() {
+  const [pages, setpages] = useState<number>(1);
+  const { ten, tac, theloai, page } = useParams();
+  const a = [""];
+  let theloaiArray: string[] = [];
+  if (theloai != null) {
+    theloaiArray = theloai.split(",").map((category) => category.trim());
+  }
+
+  useEffect(() => {
+    if (page == undefined) {
+      setpages(1);
+    } else {
+      setpages(Number(page));
+    }
+  }, [page]);
+  const navigate = useNavigate();
+
+  const manga = useAdvanceSearch(pages, ten, tac, theloaiArray);
   return (
     <ConfigProvider
       theme={{
@@ -42,39 +61,34 @@ function Timkiemnangcaoresult() {
           />
           <div>
             <Row gutter={[16, 24]}>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
-              <Col span={12}>
-                <AdvanceSearchCart />
-              </Col>
+              {manga.data?.pagemanga.map((item) =>
+                item.author ? (
+                  <Col key={item.id} span={12}>
+                    <AdvanceSearchCart mangaid={item.id} />
+                  </Col>
+                ) : (
+                  <Col key={item.id} span={12}>
+                    <AdvanceSearchCart mangaid={item.id} />
+                  </Col>
+                )
+              )}
             </Row>
+
             <div className="pagination">
-              <Pagination defaultCurrent={1} total={50} />
+              <Pagination
+                total={manga.data?.allmanga.length}
+                pageSize={12}
+                showSizeChanger={false}
+                showLessItems
+                current={pages}
+                onChange={(e) => {
+                  navigate(
+                    (`/ket-qua/${ten}/${tac}/${theloai}/` + e) as string
+                  );
+                  setpages(e);
+                  console.log(manga.data?.pagemanga);
+                }}
+              />
             </div>
           </div>
         </div>

@@ -61,6 +61,9 @@ function App() {
               /* here is your component tokens */ borderRadius: 0,
               fontSize: 15,
             },
+            Pagination: {
+              itemSize: 50,
+            },
             Tooltip: { fontSize: 12 },
           },
           token: {
@@ -79,7 +82,15 @@ function App() {
               <Route path="/doi-mat-khau" element={<Doimaukhau />} />
               <Route path="/lich-su" element={<Lichsudoc />} />
               <Route path="/tim-kiem-nang-cao" element={<Timkiemnangcao />} />
-              <Route path="/ket-qua" element={<Timkiemnangcaoresult />} />
+              <Route
+                path="/ket-qua/:ten/:tac/:theloai/:page"
+                element={<Timkiemnangcaoresult />}
+              />
+              <Route
+                path="/ket-qua/:ten/:tac/:theloai"
+                element={<Timkiemnangcaoresult />}
+              />
+
               <Route path="/trang-ca-nhan" element={<Trangcanhan />} />
               <Route path="/truyen-da-dang" element={<TruyenDaDang />} />
               <Route path="danh-sach-chuong/:id" element={<ChapterDaDang />} />
