@@ -105,6 +105,7 @@ function App() {
               />
               <Route path="/truyen-theo-doi" element={<Truyentheodoi />} />
               <Route path="/xem-nhieu-nhat" element={<Xemnhieunhat />} />
+              <Route path="/xem-nhieu-nhat/:page" element={<Xemnhieunhat />} />
               <Route path="/diem-dich-truyen" element={<Diemthuong />} />
               <Route path="/*" element={<Notfound />} />
               <Route path="/dang-nhap" element={<Login />} />

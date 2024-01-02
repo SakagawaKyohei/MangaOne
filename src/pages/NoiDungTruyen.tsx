@@ -23,6 +23,7 @@ function NoiDungTruyen() {
   const follow = useAddFollow(user.data?.id, mid);
   const unfollow = useDeleteFollow(user.data?.id, mid);
   let a = false;
+
   if (followdata.isSuccess) {
     if (followdata.data.length != 0) {
       a = true;

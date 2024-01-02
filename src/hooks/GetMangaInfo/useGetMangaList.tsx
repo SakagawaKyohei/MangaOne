@@ -17,15 +17,21 @@ const GetMangaList = async (page: number) => {
   const { data: allmanga, error: allmangaerror } = await supabase
     .from("manga")
     .select("*");
-  if (allmangaerror) {
-    throw new Error(allmangaerror.message);
+
+  const { data: mostviewpagemanga, error: mostviewerror } = await supabase
+    .from("manga")
+    .select("*")
+    .range((page - 1) * 12, page * 12 - 1)
+    .order("view", { ascending: false });
+  if (mostviewerror) {
+    throw new Error(mostviewerror.message);
   }
 
   if (!allmanga) {
     throw new Error("Manga not found");
   }
 
-  return { allmanga, pagemanga };
+  return { allmanga, pagemanga, mostviewpagemanga };
 };
 export default function useGetMangaList(page: number) {
   return useQuery("mangalist" + page.toString(), () => GetMangaList(page));
