@@ -7,6 +7,7 @@ import Top1time from "../components/TopTimeManga/Top1time";
 import useGetMangaFollowId from "../hooks/Follow/useMangaFollowId";
 import useUser from "../hooks/useUser";
 import useGetMangaHistoryId from "../hooks/history/useMangaHistoryID";
+import NeedLogin from "./NeedLogin";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
@@ -14,6 +15,10 @@ import useGetMangaHistoryId from "../hooks/history/useMangaHistoryID";
 function Lichsudoc() {
   const user = useUser();
   const mids = useGetMangaHistoryId(user.data?.id);
+
+  if (user.data == null) {
+    return <NeedLogin />;
+  }
 
   return (
     <ConfigProvider
