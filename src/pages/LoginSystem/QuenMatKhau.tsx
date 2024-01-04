@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import "../../components/Login/Login.css";
 import logo from "../../images/logos.svg";
 import { Link } from "react-router-dom";
@@ -8,6 +8,14 @@ import useSendmail from "../../hooks/PasswordManagement/useSendMail";
 function QuenMatKhau() {
   const [mail, setMail] = useState("");
   const sendmail = useSendmail(mail);
+  if (sendmail.isSuccess) {
+    message.success(
+      "Hướng dẫn khôi phục tài khoản đã được gửi đến mail của bạn"
+    );
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  }
   const InputStyle: React.CSSProperties = {
     border: "none",
     borderRadius: 5,

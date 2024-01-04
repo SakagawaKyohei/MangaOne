@@ -80,9 +80,9 @@ function NoiDungTruyen() {
     }
   }, [chapter.data]);
 
-  if (user.isSuccess) {
+  useEffect(() => {
     history.mutate();
-  }
+  }, [user.data]);
 
   //check div overflow
   const [isOverflow, setIsOverflow] = useState(false);

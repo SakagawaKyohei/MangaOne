@@ -45,6 +45,9 @@ function DocTruyen() {
   const nav = useNavigate();
 
   let a = false;
+  useEffect(() => {
+    history.mutate();
+  }, [user.data]);
 
   if (followdata.isSuccess) {
     if (followdata.data?.length != 0) {
@@ -103,9 +106,6 @@ function DocTruyen() {
   if (follow.isSuccess) {
   }
   if (follow.isLoading) {
-  }
-  if (user.isSuccess) {
-    history.mutate();
   }
 
   return (

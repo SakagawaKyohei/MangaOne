@@ -24,6 +24,7 @@ const createManga = async (manga: Manga, uid: any, id: string) => {
       name: manga.ten,
       other_name: manga.tenkhac,
       genre: manga.theloai,
+      view: 0,
       author: manga.tacgia,
       detail: manga.detail,
       nguoi_dang: uid,
@@ -51,6 +52,7 @@ const createManga = async (manga: Manga, uid: any, id: string) => {
       name: manga.ten,
       other_name: manga.tenkhac,
       genre: manga.theloai,
+      view: 0,
       author: manga.tacgia,
       detail: manga.detail,
       biatruyen:

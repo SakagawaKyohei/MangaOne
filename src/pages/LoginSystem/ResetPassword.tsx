@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import "../../components/Login/Login.css";
 import logo from "../../images/logos.svg";
 import { Link, useNavigate } from "react-router-dom";
@@ -36,6 +36,10 @@ function ResetPassword() {
   const [password, setPassword] = useState("");
   const resetpassword = useResetPassword(password);
   if (resetpassword.isSuccess) {
+    message.success("Đổi mật khẩu thành công, bạn sẽ quay lại trang chủ");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
     navigate("/");
   }
   if (resetpassword.isError) {
