@@ -15,12 +15,14 @@ import useIsFollow from "../hooks/Follow/useIsFollow";
 import useAddFollow from "../hooks/Follow/useAddFollow";
 import useDeleteFollow from "../hooks/Follow/useDeleteFollow";
 import useGetMangaView from "../hooks/GetMangaInfo/useGetViewManga";
+import useAddHistory from "../hooks/history/useAddHistory";
 function NoiDungTruyen() {
   const { id } = useParams();
   const mid = id ? id.toString() : "";
   const user = useUser();
   const followdata = useIsFollow(user.data?.id, mid);
   const follow = useAddFollow(user.data?.id, mid);
+  const history = useAddHistory(user.data?.id, mid);
   const unfollow = useDeleteFollow(user.data?.id, mid);
   let a = false;
 
@@ -77,6 +79,10 @@ function NoiDungTruyen() {
       setchapterdata(chapter.data.last);
     }
   }, [chapter.data]);
+
+  if (user.isSuccess) {
+    history.mutate();
+  }
 
   //check div overflow
   const [isOverflow, setIsOverflow] = useState(false);

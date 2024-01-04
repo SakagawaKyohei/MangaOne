@@ -20,8 +20,9 @@ import useAddFollow from "../hooks/Follow/useAddFollow";
 import useUser from "../hooks/useUser";
 import useDeleteFollow from "../hooks/Follow/useDeleteFollow";
 import useIsFollow from "../hooks/Follow/useIsFollow";
-import { setuid } from "process";
+
 import usePlusViewChapter from "../hooks/usePlusView";
+import useAddHistory from "../hooks/history/useAddHistory";
 //code lại more khi tràn thể loại
 //chỉnh sửa đường dẫn tương đối image giữa các file
 //lỗi flex nhiều màn hình image
@@ -34,6 +35,7 @@ function DocTruyen() {
   const chapter = useGetChapterByCID(id as string);
   const [pages, setpages] = useState([]);
   const user = useUser();
+  const history = useAddHistory(user.data?.id, mid);
   const follow = useAddFollow(user.data?.id, mid);
   const unfollow = useDeleteFollow(user.data?.id, mid);
   const followdata = useIsFollow(user.data?.id, mid);
@@ -101,6 +103,9 @@ function DocTruyen() {
   if (follow.isSuccess) {
   }
   if (follow.isLoading) {
+  }
+  if (user.isSuccess) {
+    history.mutate();
   }
 
   return (
