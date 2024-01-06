@@ -6,6 +6,7 @@ import {
   Flex,
   Input,
   Modal,
+  message,
   Row,
   Upload,
 } from "antd";
@@ -342,6 +343,7 @@ export function ChinhSuaChapterData() {
     }
   }, [chapter.data]);
   const [images, setImages] = useState<Blob[] | null>(null);
+  const nav = useNavigate();
   const upchapter = useCreateChapter(
     {
       ten: name,
@@ -364,6 +366,12 @@ export function ChinhSuaChapterData() {
   const sensor = useSensor(PointerSensor, {
     activationConstraint: { distance: 10 },
   });
+  if (upchapter.isSuccess) {
+    message.success("Cập nhật thông tin thành công");
+    setTimeout(() => {
+      nav(`/danh-sach-chuong/${mangaid}`);
+    }, 500);
+  }
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
     if (active.id !== over?.id) {
@@ -706,7 +714,7 @@ export function TruyenDaDangData() {
                   tentruyen={item.name}
                   mangaid={item.id}
                   nguoidang={user.data?.user_metadata.ten}
-                  soluotxem={1000}
+                  soluotxem={item.view}
                   checkall={checkall}
                   keyy={index.toString()}
                   setmangaid={setmangaid}
@@ -939,7 +947,7 @@ export function ChapterDaDangData() {
                   tentruyen={item.name}
                   mangaid={item.id}
                   nguoidang={user.data?.user_metadata.ten}
-                  soluotxem={1000}
+                  soluotxem={item.view}
                   checkall={checkall}
                   keyy={index.toString()}
                   setmangaid={setchapterid}

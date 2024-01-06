@@ -361,6 +361,7 @@ export function InputChinhSuaTruyen() {
   const [detail, setDetail] = useState("");
   const [image, setImage] = useState<Blob | null>(null);
   const [imageURL, setImageURL] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     if (manga.data != null) {
       setName(manga.data.name as string);
@@ -401,7 +402,10 @@ export function InputChinhSuaTruyen() {
     setGenre(selectedValues); // Cập nhật state genre khi có giá trị được chọn
   };
   if (createmanga.isSuccess) {
-    console.log("done");
+    message.success("Chỉnh sửa truyện thành công");
+    setTimeout(() => {
+      navigate("/truyen-da-dang");
+    }, 500);
   }
   if (createmanga.isLoading) {
     console.log("load");
@@ -777,7 +781,7 @@ export function InputInfo() {
 
   if (upload.isSuccess) {
   }
-  if (updatemetadata.isSuccess && upload.isSuccess) {
+  if (updatemetadata.isSuccess && (upload.isSuccess || image == null)) {
     message.success("Cập nhật thông tin thành công");
     setTimeout(() => {
       window.location.reload();

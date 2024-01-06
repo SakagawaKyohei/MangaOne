@@ -12,9 +12,6 @@ function QuenMatKhau() {
     message.success(
       "Hướng dẫn khôi phục tài khoản đã được gửi đến mail của bạn"
     );
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
   }
   const InputStyle: React.CSSProperties = {
     border: "none",
